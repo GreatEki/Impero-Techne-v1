@@ -57,10 +57,12 @@ const MTODetails: React.FC = () => {
 					<section
 						style={{ flex: 1 }}
 						className='d-flex py-4 px-5 justify-content-between'>
-						<h3>
-							{' '}
-							<AntIcons.AiOutlineArrowLeft /> Create MTO{' '}
-						</h3>
+						<Link to='/app/mto'>
+							<h3>
+								{' '}
+								<AntIcons.AiOutlineArrowLeft /> Create MTO{' '}
+							</h3>
+						</Link>
 
 						<strong>
 							{' '}

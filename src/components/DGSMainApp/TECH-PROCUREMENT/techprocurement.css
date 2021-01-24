@@ -1,14 +1,18 @@
-.site-blue {
-	background-color: #00b0f0;
+:root {
+	--site-blue: #00b0f0;
 }
 
+.site-blue {
+	background-color: var(--site-blue);
+}
 .btn-xlg {
 	height: 4em;
 	border-radius: 0.5rem;
 	font-size: 18px;
 	border: none;
 	padding: 1em;
-	width: 15em;
+	min-width: 15rem;
+	background-color: var(--site-blue);
 }
 
 .btn-xlg:focus {

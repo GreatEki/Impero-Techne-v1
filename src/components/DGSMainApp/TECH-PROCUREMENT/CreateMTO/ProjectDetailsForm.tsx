@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
 	Layout,
 	Avatar,
@@ -29,6 +29,7 @@ const formLayout = {
 };
 
 const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
+	const history = useHistory();
 	const menu = (
 		<Menu>
 			<Menu.Item>
@@ -53,10 +54,11 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 					<section
 						style={{ flex: 1 }}
 						className='d-flex py-4 px-5 justify-content-between'>
-						<h3>
-							{' '}
-							<AntIcons.AiOutlineArrowLeft /> Create MTO{' '}
-						</h3>
+						<Link to='/app/mto'>
+							<h3>
+								<AntIcons.AiOutlineArrowLeft /> Create MTO{' '}
+							</h3>
+						</Link>
 
 						<strong>
 							{' '}

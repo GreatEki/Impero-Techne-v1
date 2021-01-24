@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Descriptions } from 'antd';
+import { Pagination, Row, Col } from 'antd';
 
 const AddedItemsPanel = () => {
 	return (
@@ -59,6 +59,18 @@ const AddedItemsPanel = () => {
 					</tr>
 				</tbody>
 			</table>
+
+			<section
+				className='my-5'
+				style={{ display: 'flex', justifyContent: 'center' }}>
+				<Pagination defaultCurrent={1} total={50} />
+			</section>
+
+			<Row>
+				<Col span={6}>
+					<button className='btn-xlg site-blue text-white'> Submit </button>
+				</Col>
+			</Row>
 		</div>
 	);
 };
