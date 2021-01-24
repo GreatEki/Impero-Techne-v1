@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, Input, Select, Row, Col } from 'antd';
 
 const { Option } = Select;
@@ -39,12 +39,21 @@ const AddMTOItem = () => {
 		delivery_address: 0,
 	});
 
+	const [mtoStorageItems, setMtoStorageItems] = useState<MTOITEMSI[]>([]);
+
+	useEffect(() => {
+		localStorage.setItem('mtoStorageItems', JSON.stringify(mtoStorageItems));
+		console.log(mtoStorageItems.length - 1);
+		// eslint-disable-nextline react-hooks/exhaustive-deps
+	}, [mtoStorageItems]);
+
 	const handleFormChange = (key: string, value: string | number) => {
 		setMtoItem({ ...mtoItem, [key]: value });
 	};
 
-	const handleSubmitItem = () => {
-		console.log(mtoItem);
+	const handleSubmitItem = (newItem: MTOITEMSI) => {
+		setMtoStorageItems((mtoStorageItems) => [newItem, ...mtoStorageItems]);
+		console.log(mtoStorageItems);
 	};
 
 	return (
@@ -230,7 +239,7 @@ const AddMTOItem = () => {
 								</Form.Item>
 
 								<button
-									onClick={handleSubmitItem}
+									onClick={() => handleSubmitItem(mtoItem)}
 									style={{ marginTop: '1em', width: '100%' }}
 									className='btn-xlg site-blue text-white'>
 									{' '}

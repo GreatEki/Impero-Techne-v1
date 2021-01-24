@@ -6,7 +6,6 @@ import {
 	Col,
 	Card,
 	Avatar,
-	Button,
 	Input,
 	Tag,
 	Dropdown,
@@ -15,7 +14,6 @@ import {
 import * as AntIcons from 'react-icons/ai';
 import './techprocurement.css';
 
-const { Search } = Input;
 const { Header, Content } = Layout;
 
 const MTO: React.FC = () => {
@@ -95,7 +93,7 @@ const MTO: React.FC = () => {
 						<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
 						<span>Gift Okobia </span>
 						<Dropdown overlay={menu} placement='bottomCenter' arrow>
-							<img src='/icons/chevron-down.svg' className='ml-4' />
+							<img src='/icons/chevron-down.svg' className='ml-4' alt='prop' />
 						</Dropdown>
 					</strong>
 				</section>
@@ -124,7 +122,7 @@ const MTO: React.FC = () => {
 							/>
 
 							<div className='d-flex p-2'>
-								<img src='/icons/sound-mix.svg' className='p-2' />
+								<img src='/icons/sound-mix.svg' className='p-2' alt='prop' />
 								<h5 className='p-1'>Filter </h5>
 							</div>
 						</section>
@@ -146,9 +144,9 @@ const MTO: React.FC = () => {
 
 						<tbody>
 							{}
-							{dataSource.map((proj) => {
+							{dataSource.map((proj, index) => {
 								return (
-									<tr>
+									<tr key={index}>
 										<th scope='row' style={{ width: '25rem' }}>
 											<span className='word-break word-wrap'>
 												{proj.project_name}
