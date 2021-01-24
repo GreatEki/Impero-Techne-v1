@@ -19,6 +19,7 @@ import * as AntIcons from 'react-icons/ai';
 import ProjectInfo from './ProjectInfo';
 import MTOFormDetails from './MTOFormDetails';
 import AddMTOItem from './AddMTOItem';
+import AddedItemsPanel from './AddedItemsPanel';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -92,6 +93,12 @@ const MTODetails: React.FC = () => {
 						</Panel>
 						<Panel className='my-3' header='Add MTO Item' key='3'>
 							<AddMTOItem />
+						</Panel>
+						<Panel
+							className='my-3'
+							header='Added Items (1 items Added)'
+							key='4'>
+							<AddedItemsPanel />
 						</Panel>
 					</Collapse>
 				</Content>
