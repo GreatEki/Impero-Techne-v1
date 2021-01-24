@@ -24,9 +24,7 @@ const NextApp = () => {
 	return (
 		<div className='appContainer'>
 			<section className='slidemenu-wrapper'>
-				{/* <Link to='#' className='logo-wrapper'> */}
 				<img src='/icons/Group 19.svg' className='logo' />
-				{/* </Link> */}
 				<Slidemenu />
 			</section>
 

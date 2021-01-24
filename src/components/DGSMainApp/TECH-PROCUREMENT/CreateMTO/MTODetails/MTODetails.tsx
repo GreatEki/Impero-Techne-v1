@@ -1,19 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import {
-	Layout,
-	Avatar,
-	Dropdown,
-	Menu,
-	Card,
-	Form,
-	Row,
-	Col,
-	Input,
-	Select,
-	Radio,
-	Collapse,
-} from 'antd';
+import { Layout, Avatar, Dropdown, Menu, Collapse } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 
 import ProjectInfo from './ProjectInfo';
@@ -22,17 +9,10 @@ import AddMTOItem from './AddMTOItem';
 import AddedItemsPanel from './AddedItemsPanel';
 
 const { Header, Content } = Layout;
-const { Option } = Select;
 
 const { Panel } = Collapse;
 
 const MTODetails: React.FC = () => {
-	const text = `
-  A dog is a type of domesticated animal.
-  Known for its loyalty and faithfulness,
-  it can be found as a welcome guest in many households across the world.
-`;
-
 	const menu = (
 		<Menu>
 			<Menu.Item>
