@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="27" height="27" viewBox="0 0 27 27">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_41" data-name="Rectangle 41" width="27" height="27" transform="translate(528 213)" fill="#a6a6a6"/>
+    </clipPath>
+  </defs>
+  <g id="Mask_Group_8" data-name="Mask Group 8" transform="translate(-528 -213)" clip-path="url(#clip-path)">
+    <g id="Page-1" transform="translate(528 213)">
+      <g id="Artboard" transform="translate(-1406.7 -2282.85)">
+        <g id="grid" transform="translate(1408.05 2284.2)">
+          <path id="Rectangle-path" d="M0,0H9.45V9.45H0Z" fill="none" stroke="#292929" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.7" fill-rule="evenodd"/>
+          <path id="Rectangle-path-2" data-name="Rectangle-path" d="M14.85,0H24.3V9.45H14.85Z" fill="none" stroke="#292929" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.7" fill-rule="evenodd"/>
+          <path id="Rectangle-path-3" data-name="Rectangle-path" d="M14.85,14.85H24.3V24.3H14.85Z" fill="none" stroke="#292929" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.7" fill-rule="evenodd"/>
+          <path id="Rectangle-path-4" data-name="Rectangle-path" d="M0,14.85H9.45V24.3H0Z" fill="none" stroke="#292929" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.7" fill-rule="evenodd"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

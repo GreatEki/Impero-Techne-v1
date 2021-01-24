@@ -1,0 +1,38 @@
+.appContainer {
+	display: flex;
+	flex-direction: row;
+	min-height: 100vh;
+	background: whitesmoke;
+}
+
+.slidemenu-wrapper {
+	display: flex;
+	flex-direction: column;
+	background: white;
+}
+
+.nav {
+	background: green;
+	max-height: 100vh;
+	width: 0;
+	/* overflow-y: scroll; */
+}
+
+/* .logo-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	max-height: 100px;
+} */
+
+.logo {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1.5em;
+	/* max-height: 100px; */
+}
+
+.contentWrapper {
+	flex-grow: 1;
+}
