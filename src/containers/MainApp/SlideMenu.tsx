@@ -38,7 +38,7 @@ const SlideMenu = () => {
 					</strong>
 				}>
 				<Menu.Item key='MTO'>
-					<Link to='#'>
+					<Link to='/app/mto'>
 						<span style={{ padding: '10px' }}> MTO </span>{' '}
 					</Link>
 				</Menu.Item>

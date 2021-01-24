@@ -21,7 +21,7 @@ const Routes = () => {
 					exact
 					path={`${match.url}/create-mto`}
 					component={asyncComponent(
-						() => import('./TECH-PROCUREMENT/CreateMTO')
+						() => import('./TECH-PROCUREMENT/CreateMTO/CreateMtoIIndex')
 					)}
 				/>
 			</Switch>

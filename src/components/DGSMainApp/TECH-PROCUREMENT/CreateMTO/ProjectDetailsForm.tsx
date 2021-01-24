@@ -18,13 +18,17 @@ import * as AntIcons from 'react-icons/ai';
 const { Header, Content } = Layout;
 const { Option } = Select;
 
+interface Props {
+	next: () => void;
+}
+
 const formLayout = {
 	labelCol: {
 		span: 24,
 	},
 };
 
-const CreateMTO: React.FC = () => {
+const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 	const menu = (
 		<Menu>
 			<Menu.Item>
@@ -175,7 +179,9 @@ const CreateMTO: React.FC = () => {
 											<Row>
 												<Col span={4}>
 													<Form.Item>
-														<button className='btn-xlg site-blue text-white'>
+														<button
+															onClick={next}
+															className='btn-xlg site-blue text-white'>
 															{' '}
 															Continue{' '}
 														</button>
@@ -194,4 +200,4 @@ const CreateMTO: React.FC = () => {
 	);
 };
 
-export default CreateMTO;
+export default ProjectDetailsForm;
