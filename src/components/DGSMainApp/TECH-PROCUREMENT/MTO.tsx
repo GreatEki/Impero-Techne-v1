@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import {
 	Layout,
 	Row,
@@ -18,7 +18,8 @@ import './techprocurement.css';
 const { Search } = Input;
 const { Header, Content } = Layout;
 
-const MTO = () => {
+const MTO: React.FC = () => {
+	const history = useHistory();
 	const dataSource = [
 		{
 			project_name:
@@ -75,7 +76,7 @@ const MTO = () => {
 		</Menu>
 	);
 	return (
-		<Layout style={{ display: 'flex', height: '100vh' }}>
+		<Layout style={{ display: 'flex', minHeight: '100vh' }}>
 			<Header
 				style={{
 					background: 'whitesmoke',
@@ -102,13 +103,14 @@ const MTO = () => {
 			<Content
 				style={{
 					flexGrow: 1,
-					// background: 'green',
 					margin: '16px 20px 16px 20px',
 				}}>
 				{/*  */}
 				<Row justify='space-between'>
 					<Col span={4}>
-						<button className='btn-xlg site-blue text-white'>
+						<button
+							onClick={() => history.push(`/app/create-mto`)}
+							className='btn-xlg site-blue text-white'>
 							{' '}
 							Create MTO{' '}
 						</button>
@@ -120,12 +122,7 @@ const MTO = () => {
 								placeholder='search'
 								suffix={<AntIcons.AiOutlineSearch />}
 							/>
-							{/* <Search
-								placeholder='input search text'
-								className='rounded-pill'
-								allowClear
-								size='large'
-							/> */}
+
 							<div className='d-flex p-2'>
 								<img src='/icons/sound-mix.svg' className='p-2' />
 								<h5 className='p-1'>Filter </h5>

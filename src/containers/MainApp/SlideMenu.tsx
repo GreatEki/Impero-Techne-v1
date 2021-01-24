@@ -7,6 +7,7 @@ const { SubMenu } = Menu;
 const SlideMenu = () => {
 	return (
 		<Menu
+			// style={{ width: 256 }}
 			defaultSelectedKeys={['1']}
 			defaultOpenKeys={['tech_procurement']}
 			mode='inline'>

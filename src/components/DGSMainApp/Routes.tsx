@@ -17,6 +17,13 @@ const Routes = () => {
 					path={`${match.url}/mto`}
 					component={asyncComponent(() => import('./TECH-PROCUREMENT/MTO'))}
 				/>
+				<Route
+					exact
+					path={`${match.url}/create-mto`}
+					component={asyncComponent(
+						() => import('./TECH-PROCUREMENT/CreateMTO')
+					)}
+				/>
 			</Switch>
 		</div>
 	);
