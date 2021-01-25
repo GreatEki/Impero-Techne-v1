@@ -135,11 +135,24 @@ const MTO: React.FC = () => {
 					<table className='table table-striped table-borderless'>
 						<thead>
 							<tr>
-								<th scope='col'> Project Name</th>
-								<th scope='col'>Project Number</th>
-								<th scope='col'>Form Type</th>
-								<th scope='col'> No of Items</th>
-								<th scope='col'> Status </th>
+								<th scope='col' className='txt-small'>
+									{' '}
+									Project Name
+								</th>
+								<th scope='col' className='txt-small'>
+									Project Number
+								</th>
+								<th scope='col' className='txt-small'>
+									Form Type
+								</th>
+								<th scope='col' className='txt-small'>
+									{' '}
+									No of Items
+								</th>
+								<th scope='col' className='txt-small'>
+									{' '}
+									Status{' '}
+								</th>
 							</tr>
 						</thead>
 

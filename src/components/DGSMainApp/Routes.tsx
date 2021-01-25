@@ -37,7 +37,7 @@ const Routes = () => {
 					component={asyncComponent(
 						() =>
 							import(
-								'./TECH-PROCUREMENT/user-requisition/CreateUserRequisition/ProjectDetailForm'
+								'./TECH-PROCUREMENT/user-requisition/CreateUserRequisition/CreateRequisitionIndex'
 							)
 					)}
 				/>

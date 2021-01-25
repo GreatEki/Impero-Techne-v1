@@ -23,7 +23,11 @@ const formLayout = {
 	},
 };
 
-const ProjectDetailForm: React.FC = () => {
+interface Props {
+	next: () => void;
+}
+
+const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 	const menu = (
 		<Menu>
 			<Menu.Item>
@@ -73,20 +77,18 @@ const ProjectDetailForm: React.FC = () => {
 							<Row gutter={50}>
 								<Col span={20} offset={2}>
 									<Form {...formLayout}>
-										<Form.Item
-											name='instruction'
-											label={
-												<span>
-													Fill in Project Details to create a User Requisition
-													Form
-												</span>
-											}
-											rules={[{ required: true }]}></Form.Item>
+										<h5 className='mb-5'>
+											<span className='text-danger'>*</span>Fill in Project
+											Details to create a User Requisition Form
+										</h5>
 
 										<Form.Item
 											name='request_title'
-											label={<strong>Request Title</strong>}
-											rules={[{ required: true }]}>
+											label={
+												<strong>
+													<span className='text-danger'>*</span>Request Title
+												</strong>
+											}>
 											<Input
 												size='large'
 												placeholder='Name this Request Form'
@@ -95,8 +97,11 @@ const ProjectDetailForm: React.FC = () => {
 
 										<Form.Item
 											name='project_name'
-											label={<strong>Project</strong>}
-											rules={[{ required: true }]}>
+											label={
+												<strong>
+													<span className='text-danger'>*</span>Project
+												</strong>
+											}>
 											<Select
 												size='large'
 												placeholder='Search for a Project Name'>
@@ -106,8 +111,11 @@ const ProjectDetailForm: React.FC = () => {
 
 										<Form.Item
 											name='client'
-											label={<strong>Client</strong>}
-											rules={[{ required: true }]}>
+											label={
+												<strong>
+													<span className='text-danger'>*</span>Client
+												</strong>
+											}>
 											<Select
 												size='large'
 												placeholder='Search for a Project Name'>
@@ -117,8 +125,11 @@ const ProjectDetailForm: React.FC = () => {
 
 										<Form.Item
 											name='client'
-											label={<strong>Client</strong>}
-											rules={[{ required: true }]}>
+											label={
+												<strong>
+													<span className='text-danger'>*</span>Client
+												</strong>
+											}>
 											<Radio.Group size='large'>
 												<Radio key='product' value='Product'>
 													{' '}
@@ -133,9 +144,13 @@ const ProjectDetailForm: React.FC = () => {
 
 										<Row>
 											<Col span={4}>
-												<button className='btn-xlg site blue text-white'>
-													Continue
-												</button>
+												<Form.Item>
+													<button
+														onClick={next}
+														className='btn-xlg site blue text-white'>
+														Continue
+													</button>
+												</Form.Item>
 											</Col>
 										</Row>
 									</Form>

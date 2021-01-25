@@ -4,6 +4,7 @@
 	--font: $404040;
 	--links: #3a76ee;
 	--nunito: 'Nunito', san-serif;
+	--lightgrey: #a6a6a6;
 }
 
 * {
@@ -21,6 +22,7 @@ a {
 	color: var(--font) !important;
 }
 
-.bg-grey {
-	background-color: wheat;
+.txt-small {
+	font-size: 14px;
+	color: var(--lightgrey);
 }
