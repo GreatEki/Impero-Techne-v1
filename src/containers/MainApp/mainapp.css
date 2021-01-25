@@ -33,7 +33,3 @@
 	padding: 1.5em;
 	/* max-height: 100px; */
 }
-
-.contentWrapper {
-	flex-grow: 1;
-}

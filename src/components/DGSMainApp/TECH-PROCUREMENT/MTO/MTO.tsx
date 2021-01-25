@@ -75,115 +75,121 @@ const MTO: React.FC = () => {
 		</Menu>
 	);
 	return (
-		<Layout style={{ display: 'flex', minHeight: '100vh' }}>
-			<Header
-				style={{
-					background: 'whitesmoke',
-					display: 'flex',
-					justifyContent: 'space-between',
-					height: '5em',
-					padding: 0,
-				}}>
-				<section
-					style={{ flex: 1 }}
-					className='d-flex py-4 px-5 justify-content-between'>
-					<h3>Material Take Off (MTO)</h3>
+		<>
+			<Layout style={{ display: 'flex', minHeight: '100vh' }}>
+				<Header
+					style={{
+						background: 'whitesmoke',
+						display: 'flex',
+						justifyContent: 'space-between',
+						height: '5em',
+						padding: 0,
+					}}>
+					<section
+						style={{ flex: 1 }}
+						className='d-flex py-4 px-5 justify-content-between'>
+						<h3>Material Take Off (MTO)</h3>
 
-					<strong>
-						{' '}
-						<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
-						<span>Gift Okobia </span>
-						<Dropdown overlay={menu} placement='bottomCenter' arrow>
-							<img src='/icons/chevron-down.svg' className='ml-4' alt='prop' />
-						</Dropdown>
-					</strong>
-				</section>
-			</Header>
-			<Content
-				style={{
-					flexGrow: 1,
-					margin: '16px 20px 16px 20px',
-				}}>
-				{/*  */}
-				<Row justify='space-between'>
-					<Col span={4}>
-						<button
-							onClick={() => history.push(`/app/tech-procurement/create-mto`)}
-							className='btn-xlg site-blue text-white'>
+						<strong>
 							{' '}
-							Create MTO{' '}
-						</button>
-					</Col>
-					<Col span={12}>
-						<section className='d-flex justify-content-between'>
-							<Input
-								size='large'
-								placeholder='search'
-								suffix={<AntIcons.AiOutlineSearch />}
-							/>
+							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
+							<span>Gift Okobia </span>
+							<Dropdown overlay={menu} placement='bottomCenter' arrow>
+								<img
+									src='/icons/chevron-down.svg'
+									className='ml-4'
+									alt='prop'
+								/>
+							</Dropdown>
+						</strong>
+					</section>
+				</Header>
+				<Content
+					style={{
+						flexGrow: 1,
+						margin: '16px 20px 16px 20px',
+					}}>
+					{/*  */}
+					<Row justify='space-between'>
+						<Col span={4}>
+							<button
+								onClick={() => history.push(`/app/tech-procurement/create-mto`)}
+								className='btn-xlg site-blue text-white'>
+								{' '}
+								Create MTO{' '}
+							</button>
+						</Col>
+						<Col span={12}>
+							<section className='d-flex justify-content-between'>
+								<Input
+									size='large'
+									placeholder='search'
+									suffix={<AntIcons.AiOutlineSearch />}
+								/>
 
-							<div className='d-flex p-2'>
-								<img src='/icons/sound-mix.svg' className='p-2' alt='prop' />
-								<h5 className='p-1'>Filter </h5>
-							</div>
-						</section>
-					</Col>
-				</Row>
-				{/*  */}
+								<div className='d-flex p-2'>
+									<img src='/icons/sound-mix.svg' className='p-2' alt='prop' />
+									<h5 className='p-1'>Filter </h5>
+								</div>
+							</section>
+						</Col>
+					</Row>
+					{/*  */}
 
-				<Card className='mt-3'>
-					<table className='table table-striped table-borderless'>
-						<thead>
-							<tr>
-								<th scope='col' className='txt-small'>
-									{' '}
-									Project Name
-								</th>
-								<th scope='col' className='txt-small'>
-									Project Number
-								</th>
-								<th scope='col' className='txt-small'>
-									Form Type
-								</th>
-								<th scope='col' className='txt-small'>
-									{' '}
-									No of Items
-								</th>
-								<th scope='col' className='txt-small'>
-									{' '}
-									Status{' '}
-								</th>
-							</tr>
-						</thead>
+					<Card className='mt-3'>
+						<table className='table table-striped table-borderless'>
+							<thead>
+								<tr>
+									<th scope='col' className='txt-small'>
+										{' '}
+										Project Name
+									</th>
+									<th scope='col' className='txt-small'>
+										Project Number
+									</th>
+									<th scope='col' className='txt-small'>
+										Form Type
+									</th>
+									<th scope='col' className='txt-small'>
+										{' '}
+										No of Items
+									</th>
+									<th scope='col' className='txt-small'>
+										{' '}
+										Status{' '}
+									</th>
+								</tr>
+							</thead>
 
-						<tbody>
-							{}
-							{dataSource.map((proj, index) => {
-								return (
-									<tr key={index}>
-										<th scope='row' style={{ width: '25rem' }}>
-											<span className='word-break word-wrap'>
-												{proj.project_name}
-											</span>
-										</th>
+							<tbody>
+								{}
+								{dataSource.map((proj, index) => {
+									return (
+										<tr key={index}>
+											<th scope='row' style={{ width: '25rem' }}>
+												<span className='word-break word-wrap'>
+													{proj.project_name}
+												</span>
+											</th>
 
-										<td>{proj.project_no}</td>
-										<td>{proj.form_type}</td>
-										<td>{proj.no_of_items}</td>
-										<td className='p-3'>
-											<Tag className='tags' color={getTagColor(proj.status)}>
-												{' '}
-												{proj.status}
-											</Tag>{' '}
-										</td>
-									</tr>
-								);
-							})}
-						</tbody>
-					</table>
-				</Card>
-			</Content>
-		</Layout>
+											<td>{proj.project_no}</td>
+											<td>{proj.form_type}</td>
+											<td>{proj.no_of_items}</td>
+											<td className='p-3'>
+												<Tag className='tags' color={getTagColor(proj.status)}>
+													{' '}
+													{proj.status}
+												</Tag>{' '}
+											</td>
+										</tr>
+									);
+								})}
+							</tbody>
+						</table>
+					</Card>
+				</Content>
+			</Layout>
+		</>
 	);
 };
 
