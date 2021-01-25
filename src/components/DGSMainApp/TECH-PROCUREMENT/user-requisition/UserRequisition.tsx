@@ -80,7 +80,7 @@ const UserRequisition: React.FC = () => {
 				<section
 					style={{ flex: 1 }}
 					className='d-flex py-4 px-5 justify-content-between'>
-					<h3>Material Take Off (MTO)</h3>
+					<h3>User Requisition Forms</h3>
 
 					<strong>
 						{' '}

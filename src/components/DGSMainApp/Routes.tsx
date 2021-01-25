@@ -31,6 +31,16 @@ const Routes = () => {
 						() => import('./TECH-PROCUREMENT/user-requisition/UserRequisition')
 					)}
 				/>
+				<Route
+					exact
+					path={`${match.url}/tech-procurement/create-requisition`}
+					component={asyncComponent(
+						() =>
+							import(
+								'./TECH-PROCUREMENT/user-requisition/CreateUserRequisition/ProjectDetailForm'
+							)
+					)}
+				/>
 			</Switch>
 		</div>
 	);
