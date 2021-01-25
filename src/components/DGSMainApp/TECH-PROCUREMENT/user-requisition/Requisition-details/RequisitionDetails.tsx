@@ -43,7 +43,7 @@ const RequisitionDetails = () => {
 							</h3>
 						</Link>
 
-						<strong>
+						<strong className='hide'>
 							{' '}
 							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
 							<span>Gift Okobia </span>
@@ -65,23 +65,25 @@ const RequisitionDetails = () => {
 					}}>
 					{/*  */}
 
-					<Collapse>
-						<Panel className='my-3' header='Form Details' key='1'>
-							<FormDetailsPanel />
-						</Panel>
-					</Collapse>
+					<div className='mt-5'>
+						<Collapse>
+							<Panel className='my-3' header='Form Details' key='1'>
+								<FormDetailsPanel />
+							</Panel>
+						</Collapse>
 
-					<Collapse>
-						<Panel className='my-3' header='Product Details' key='2'>
-							<ProductDetailsPanel />
-						</Panel>
-					</Collapse>
+						<Collapse>
+							<Panel className='my-3' header='Product Details' key='2'>
+								<ProductDetailsPanel />
+							</Panel>
+						</Collapse>
 
-					<Collapse>
-						<Panel className='my-3' header='Added Product Details' key='3'>
-							<AddedProductsPanel />
-						</Panel>
-					</Collapse>
+						<Collapse>
+							<Panel className='my-3' header='Added Product Details' key='3'>
+								<AddedProductsPanel />
+							</Panel>
+						</Collapse>
+					</div>
 				</Content>
 			</Layout>
 		</>

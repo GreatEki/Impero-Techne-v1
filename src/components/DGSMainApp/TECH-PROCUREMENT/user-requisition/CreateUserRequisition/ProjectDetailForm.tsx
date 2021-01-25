@@ -59,7 +59,7 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 						</h3>
 					</Link>
 
-					<strong>
+					<strong className='hide'>
 						{' '}
 						<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
 						<span>Gift Okobia </span>
@@ -78,14 +78,18 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 
 				<Card>
 					<Row gutter={50}>
-						<Col span={20} offset={2}>
+						<Col
+							xs={{ span: 22, offset: 1 }}
+							sm={{ span: 22, offset: 1 }}
+							md={{ span: 20, offset: 2 }}
+							lg={{ span: 20, offset: 2 }}>
 							<Row gutter={50}>
 								<Col span={20} offset={2}>
 									<Form {...formLayout}>
-										<h5 className='mb-5'>
+										<p className='muted-font'>
 											<span className='text-danger'>*</span>Fill in Project
 											Details to create a User Requisition Form
-										</h5>
+										</p>
 
 										<Form.Item
 											name='request_title'

@@ -59,7 +59,7 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 							</h3>
 						</Link>
 
-						<strong>
+						<strong className='hide'>
 							{' '}
 							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
 							<span>Gift Okobia </span>
@@ -81,16 +81,20 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 					}}>
 					{/*  */}
 
-					<Row gutter={50}>
-						<Col span={20} offset={2}>
-							<Card>
+					<Card>
+						<Row gutter={50}>
+							<Col
+								xs={{ span: 22, offset: 1 }}
+								sm={{ span: 22, offset: 1 }}
+								md={{ span: 20, offset: 2 }}
+								lg={{ span: 20, offset: 2 }}>
 								<Form {...formLayout}>
 									<Row gutter={50}>
 										<Col span={20} offset={2}>
-											<small className='muted-font mb-5'>
+											<p className='muted-font'>
 												<span className='text-danger'>*</span> Fill in Project
 												Details to create MTO for the Project{' '}
-											</small>
+											</p>
 
 											<Form.Item
 												name='project_name'
@@ -199,9 +203,9 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 										</Col>
 									</Row>
 								</Form>
-							</Card>
-						</Col>
-					</Row>
+							</Col>
+						</Row>
+					</Card>
 				</Content>
 			</Layout>
 		</div>
