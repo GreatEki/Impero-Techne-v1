@@ -66,16 +66,25 @@ const MTODetails: React.FC = () => {
 					}}>
 					{/*  */}
 
-					<Collapse accordion>
+					<Collapse>
 						<Panel className='my-3' header='Project Info' key='1'>
 							<ProjectInfo />
 						</Panel>
+					</Collapse>
+
+					<Collapse>
 						<Panel className='my-3' header='MTO Form Details' key='2'>
 							<MTOFormDetails />
 						</Panel>
+					</Collapse>
+
+					<Collapse>
 						<Panel className='my-3' header='Add MTO Item' key='3'>
 							<AddMTOItem />
 						</Panel>
+					</Collapse>
+
+					<Collapse>
 						<Panel
 							className='my-3'
 							header='Added Items (1 items Added)'
