@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import App from '../../components/DGSMainApp/Routes';
 import SlideMenu from './SlideMenu';
 import './mainapp.css';
@@ -8,9 +8,6 @@ import { Layout } from 'antd';
 const { Sider } = Layout;
 
 const NextApp = () => {
-	const [sidebar, setSidebar] = useState(true);
-
-	const toggleSideBar = () => setSidebar(!sidebar);
 	return (
 		<>
 			<Layout>
@@ -25,7 +22,7 @@ const NextApp = () => {
 					onCollapse={(collapsed, type) => {
 						console.log(collapsed, type);
 					}}>
-					<img src='/icons/Group 19.svg' className='logo' />
+					<img src='/icons/Group 19.svg' className='logo' alt='prop' />
 					<SlideMenu />
 				</Sider>
 				<Layout>

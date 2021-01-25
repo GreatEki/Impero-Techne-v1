@@ -11,7 +11,7 @@ const { Header, Content } = Layout;
 
 const { Panel } = Collapse;
 
-const RequisitionDetails = () => {
+const RequisitionDetails: React.FC = () => {
 	const menu = (
 		<Menu>
 			<Menu.Item>
@@ -36,10 +36,10 @@ const RequisitionDetails = () => {
 					<section
 						style={{ flex: 1 }}
 						className='d-flex py-4 px-5 justify-content-between'>
-						<Link to='/app/tech-procurement/mto'>
+						<Link to='/app/tech-procurement/user-requisition'>
 							<h3>
 								{' '}
-								<AntIcons.AiOutlineArrowLeft /> Create MTO{' '}
+								<AntIcons.AiOutlineArrowLeft /> Create User Requisition form{' '}
 							</h3>
 						</Link>
 
