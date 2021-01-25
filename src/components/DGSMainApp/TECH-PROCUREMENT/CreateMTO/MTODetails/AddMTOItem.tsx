@@ -43,7 +43,9 @@ const AddMTOItem = () => {
 
 	useEffect(() => {
 		localStorage.setItem('mtoStorageItems', JSON.stringify(mtoStorageItems));
-		console.log(mtoStorageItems.length - 1);
+		const mtoStorageQty = mtoStorageItems.length;
+		localStorage.setItem('mtoStorageQty', JSON.stringify(mtoStorageQty));
+
 		// eslint-disable-nextline react-hooks/exhaustive-deps
 	}, [mtoStorageItems]);
 
@@ -53,7 +55,6 @@ const AddMTOItem = () => {
 
 	const handleSubmitItem = (newItem: MTOITEMSI) => {
 		setMtoStorageItems((mtoStorageItems) => [newItem, ...mtoStorageItems]);
-		console.log(mtoStorageItems);
 	};
 
 	return (
@@ -165,7 +166,7 @@ const AddMTOItem = () => {
 											handleFormChange('sellers_country', value)
 										}
 										size='large'
-										placeholder='$'>
+										placeholder=''>
 										<Option value='unit1'>America</Option>
 									</Select>
 								</Form.Item>
@@ -181,7 +182,7 @@ const AddMTOItem = () => {
 											handleFormChange('sellers_state', value)
 										}
 										size='large'
-										placeholder='$'>
+										placeholder=''>
 										<Option value='unit1'>New York </Option>
 									</Select>
 								</Form.Item>
