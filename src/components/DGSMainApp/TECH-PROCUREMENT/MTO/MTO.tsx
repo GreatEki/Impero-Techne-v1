@@ -13,7 +13,7 @@ import {
 	Button,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
-import './techprocurement.css';
+import '../techprocurement.css';
 
 const { Header, Content } = Layout;
 
@@ -108,7 +108,7 @@ const MTO: React.FC = () => {
 				<Row justify='space-between'>
 					<Col span={4}>
 						<button
-							onClick={() => history.push(`/app/create-mto`)}
+							onClick={() => history.push(`/app/tech-procurement/create-mto`)}
 							className='btn-xlg site-blue text-white'>
 							{' '}
 							Create MTO{' '}

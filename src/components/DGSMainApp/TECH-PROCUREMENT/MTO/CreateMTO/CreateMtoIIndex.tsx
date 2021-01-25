@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import MTOForm from './ProjectDetailsForm';
+import ProjectDetailsForm from './ProjectDetailsForm';
 import MTODetails from './MTODetails/MTODetails';
 
 const CreateMtoIndex = () => {
@@ -14,11 +14,11 @@ const CreateMtoIndex = () => {
 
 	switch (currentPage) {
 		case 0:
-			return <MTOForm next={next} />;
+			return <ProjectDetailsForm next={next} />;
 		case 1:
 			return <MTODetails />;
 		default:
-			return <MTOForm next={next} />;
+			return <ProjectDetailsForm next={next} />;
 	}
 };
 

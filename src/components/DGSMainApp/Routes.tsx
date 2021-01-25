@@ -14,14 +14,14 @@ const Routes = () => {
 				/>
 				<Route
 					exact
-					path={`${match.url}/mto`}
-					component={asyncComponent(() => import('./TECH-PROCUREMENT/MTO'))}
+					path={`${match.url}/tech-procurement/mto`}
+					component={asyncComponent(() => import('./TECH-PROCUREMENT/MTO/MTO'))}
 				/>
 				<Route
 					exact
-					path={`${match.url}/create-mto`}
+					path={`${match.url}/tech-procurement/create-mto`}
 					component={asyncComponent(
-						() => import('./TECH-PROCUREMENT/CreateMTO/CreateMtoIIndex')
+						() => import('./TECH-PROCUREMENT/MTO/CreateMTO/CreateMtoIIndex')
 					)}
 				/>
 			</Switch>

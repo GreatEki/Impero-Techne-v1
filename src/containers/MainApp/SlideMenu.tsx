@@ -38,27 +38,27 @@ const SlideMenu = () => {
 					</strong>
 				}>
 				<Menu.Item key='MTO'>
-					<Link to='/app/mto'>
+					<Link to='/app/tech-procurement/mto'>
 						<span style={{ padding: '10px' }}> MTO </span>{' '}
 					</Link>
 				</Menu.Item>
 				<Menu.Item key='User_Requisition'>
-					<Link to='#'>
+					<Link to='/app/tech-procurement/user-requisition'>
 						<span style={{ padding: '10px' }}> User Requisition </span>{' '}
 					</Link>
 				</Menu.Item>
 				<Menu.Item key='justification'>
-					<Link to='#'>
+					<Link to='/app/tech-procurement/justification-of-award'>
 						<span style={{ padding: '10px' }}> Jusitification of Award </span>{' '}
 					</Link>
 				</Menu.Item>
 				<Menu.Item key='contract award'>
-					<Link to='#'>
+					<Link to='/app/tech-procurement/contract-award'>
 						<span style={{ padding: '10px' }}> Contract Award </span>{' '}
 					</Link>
 				</Menu.Item>
 				<Menu.Item key='project milestone'>
-					<Link to='#'>
+					<Link to='/app/tech-procurement/project-milestone'>
 						<span style={{ padding: '10px' }}> Project Milestone </span>{' '}
 					</Link>
 				</Menu.Item>
