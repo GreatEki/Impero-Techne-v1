@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Layout, Avatar, Dropdown, Menu, Collapse } from 'antd';
+import { Layout, Avatar, Dropdown, Menu, Collapse, Card, Row, Col } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 
 import ProjectInfo from './ProjectInfo';
@@ -44,7 +44,7 @@ const MTODetails: React.FC = () => {
 							</h3>
 						</Link>
 
-						<strong>
+						<strong className='hide'>
 							{' '}
 							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
 							<span>Gift Okobia </span>
@@ -65,33 +65,58 @@ const MTODetails: React.FC = () => {
 						margin: '16px 20px 16px 20px',
 					}}>
 					{/*  */}
+					<Card>
+						<Row className='my-3' align='middle' justify='space-between'>
+							<Col span={4}>
+								<strong>MTO Info</strong>
+							</Col>
+							<Col span={4}>
+								<button className='btn-xlg text-white'>Add</button>
+							</Col>
+						</Row>
 
-					<Collapse>
-						<Panel className='my-3' header='Project Info' key='1'>
-							<ProjectInfo />
-						</Panel>
-					</Collapse>
+						<Collapse
+							expandIconPosition='right'
+							defaultActiveKey={['projectInfo']}>
+							<Panel className='my-3' header='Project Info' key='projectInfo'>
+								<ProjectInfo />
+							</Panel>
+						</Collapse>
 
-					<Collapse>
-						<Panel className='my-3' header='MTO Form Details' key='2'>
-							<MTOFormDetails />
-						</Panel>
-					</Collapse>
+						<Collapse expandIconPosition='right'>
+							<Panel
+								className='my-3'
+								header='MTO Form Details'
+								key='mtoFormDetail'>
+								<MTOFormDetails />
+							</Panel>
+						</Collapse>
 
-					<Collapse>
-						<Panel className='my-3' header='Add MTO Item' key='3'>
-							<AddMTOItem />
-						</Panel>
-					</Collapse>
+						<Collapse expandIconPosition='right'>
+							<Panel className='my-3' header='Add MTO Item' key='addMTOItem'>
+								<AddMTOItem />
+							</Panel>
+						</Collapse>
 
-					<Collapse>
-						<Panel
-							className='my-3'
-							header='Added Items (1 items Added)'
-							key='4'>
-							<AddedItemsPanel />
-						</Panel>
-					</Collapse>
+						<Collapse expandIconPosition='right'>
+							<Panel
+								className='my-3'
+								header='Added Items (1 items Added)'
+								key='addedItemsPanel'>
+								<AddedItemsPanel />
+							</Panel>
+						</Collapse>
+						{/*  */}
+
+						<Row className='my-3' align='middle' justify='space-between'>
+							<Col span={4}>
+								<button className='site-btn-danger'>Cancel</button>
+							</Col>
+							<Col span={4}>
+								<button className='btn-xlg text-white'>Add</button>
+							</Col>
+						</Row>
+					</Card>
 				</Content>
 			</Layout>
 		</>
