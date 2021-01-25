@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
+import * as AntIcons from 'react-icons/ai';
 import {
 	Layout,
 	Row,
@@ -52,7 +53,11 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 				<section
 					style={{ flex: 1 }}
 					className='d-flex py-4 px-5 justify-content-between'>
-					<h3>Create User Requisition Form</h3>
+					<Link to='/app/tech-procurement/user-requisition'>
+						<h3>
+							<AntIcons.AiOutlineArrowLeft /> Create User Requisition Form{' '}
+						</h3>
+					</Link>
 
 					<strong>
 						{' '}
@@ -86,7 +91,7 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 											name='request_title'
 											label={
 												<strong>
-													<span className='text-danger'>*</span>Request Title
+													Request Title <span className='text-danger'>*</span>
 												</strong>
 											}>
 											<Input
@@ -99,7 +104,7 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 											name='project_name'
 											label={
 												<strong>
-													<span className='text-danger'>*</span>Project
+													Project <span className='text-danger'>*</span>
 												</strong>
 											}>
 											<Select
@@ -113,7 +118,7 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 											name='client'
 											label={
 												<strong>
-													<span className='text-danger'>*</span>Client
+													Client <span className='text-danger'>*</span>
 												</strong>
 											}>
 											<Select
@@ -127,7 +132,8 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 											name='client'
 											label={
 												<strong>
-													<span className='text-danger'>*</span>Client
+													{' '}
+													Request Type <span className='text-danger'>*</span>
 												</strong>
 											}>
 											<Radio.Group size='large'>
@@ -142,15 +148,13 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 											</Radio.Group>
 										</Form.Item>
 
-										<Row>
-											<Col span={4}>
-												<Form.Item>
-													<button
-														onClick={next}
-														className='btn-xlg site blue text-white'>
-														Continue
-													</button>
-												</Form.Item>
+										<Row gutter={50}>
+											<Col span={6}>
+												<button
+													onClick={next}
+													className='btn-xlg site blue text-white'>
+													Continue
+												</button>
 											</Col>
 										</Row>
 									</Form>
