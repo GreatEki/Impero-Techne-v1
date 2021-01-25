@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {
 	Layout,
@@ -88,18 +88,16 @@ const MTO: React.FC = () => {
 					<section
 						style={{ flex: 1 }}
 						className='d-flex py-4 px-5 justify-content-between'>
-						<h3>Material Take Off (MTO)</h3>
+						<div>
+							<h4>Material Take Off (MTO)</h4>
+						</div>
 
-						<strong>
+						<strong className='hide'>
 							{' '}
 							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
 							<span>Gift Okobia </span>
 							<Dropdown overlay={menu} placement='bottomCenter' arrow>
-								<img
-									src='/icons/chevron-down.svg'
-									className='ml-4'
-									alt='prop'
-								/>
+								<img src='/icons/chevron-down.svg' alt='prop' />
 							</Dropdown>
 						</strong>
 					</section>
@@ -110,8 +108,8 @@ const MTO: React.FC = () => {
 						margin: '16px 20px 16px 20px',
 					}}>
 					{/*  */}
-					<Row justify='space-between'>
-						<Col span={4}>
+					<Row className='mt-3' justify='space-between' gutter={[50, 20]}>
+						<Col xs={12} sm={12} md={6} lg={4}>
 							<button
 								onClick={() => history.push(`/app/tech-procurement/create-mto`)}
 								className='btn-xlg site-blue text-white'>
@@ -119,7 +117,7 @@ const MTO: React.FC = () => {
 								Create MTO{' '}
 							</button>
 						</Col>
-						<Col span={12}>
+						<Col xs={24} sm={24} md={12} lg={12}>
 							<section className='d-flex justify-content-between'>
 								<Input
 									size='large'
@@ -137,55 +135,58 @@ const MTO: React.FC = () => {
 					{/*  */}
 
 					<Card className='mt-3'>
-						<table className='table table-striped table-borderless'>
-							<thead>
-								<tr>
-									<th scope='col' className='txt-small'>
-										{' '}
-										Project Name
-									</th>
-									<th scope='col' className='txt-small'>
-										Project Number
-									</th>
-									<th scope='col' className='txt-small'>
-										Form Type
-									</th>
-									<th scope='col' className='txt-small'>
-										{' '}
-										No of Items
-									</th>
-									<th scope='col' className='txt-small'>
-										{' '}
-										Status{' '}
-									</th>
-								</tr>
-							</thead>
+						<section className='table-responsive'>
+							<table className='table table-striped table-borderless'>
+								<thead>
+									<tr>
+										<th scope='col' className='txt-small'>
+											{' '}
+											Project Name
+										</th>
+										<th scope='col' className='txt-small'>
+											Project Number
+										</th>
+										<th scope='col' className='txt-small'>
+											Form Type
+										</th>
+										<th scope='col' className='txt-small'>
+											{' '}
+											No of Items
+										</th>
+										<th scope='col' className='txt-small'>
+											{' '}
+											Status{' '}
+										</th>
+									</tr>
+								</thead>
 
-							<tbody>
-								{}
-								{dataSource.map((proj, index) => {
-									return (
-										<tr key={index}>
-											<th scope='row' style={{ width: '25rem' }}>
-												<span className='word-break word-wrap'>
-													{proj.project_name}
-												</span>
-											</th>
+								<tbody>
+									{dataSource.map((proj, index) => {
+										return (
+											<tr key={index}>
+												<th scope='row' style={{ width: '25rem' }}>
+													<span className='word-break word-wrap'>
+														{proj.project_name}
+													</span>
+												</th>
 
-											<td>{proj.project_no}</td>
-											<td>{proj.form_type}</td>
-											<td>{proj.no_of_items}</td>
-											<td className='p-3'>
-												<Tag className='tags' color={getTagColor(proj.status)}>
-													{' '}
-													{proj.status}
-												</Tag>{' '}
-											</td>
-										</tr>
-									);
-								})}
-							</tbody>
-						</table>
+												<td>{proj.project_no}</td>
+												<td>{proj.form_type}</td>
+												<td>{proj.no_of_items}</td>
+												<td className='p-3'>
+													<Tag
+														className='tags'
+														color={getTagColor(proj.status)}>
+														{' '}
+														{proj.status}
+													</Tag>{' '}
+												</td>
+											</tr>
+										);
+									})}
+								</tbody>
+							</table>
+						</section>
 					</Card>
 				</Content>
 			</Layout>

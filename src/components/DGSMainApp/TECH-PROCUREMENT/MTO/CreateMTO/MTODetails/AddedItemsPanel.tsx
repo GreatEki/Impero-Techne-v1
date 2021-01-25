@@ -3,7 +3,7 @@ import { Pagination, Row, Col } from 'antd';
 
 const AddedItemsPanel = () => {
 	return (
-		<div>
+		<div className='table-responsive'>
 			<table className='table table-borderless table-striped'>
 				<thead>
 					<tr>

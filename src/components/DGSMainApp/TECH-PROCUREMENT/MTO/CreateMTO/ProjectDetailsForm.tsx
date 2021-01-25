@@ -87,9 +87,10 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 								<Form {...formLayout}>
 									<Row gutter={50}>
 										<Col span={20} offset={2}>
-											<Form.Item
-												label='Fill in Project Details to create MTO for the Project'
-												rules={[{ required: true }]}></Form.Item>
+											<small className='muted-font mb-5'>
+												<span className='text-danger'>*</span> Fill in Project
+												Details to create MTO for the Project{' '}
+											</small>
 
 											<Form.Item
 												name='project_name'
@@ -140,17 +141,23 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 
 											<Form.Item name='discipline' label='Discipline'>
 												<Radio.Group>
-													<Radio key='male' value='male'>
+													<Radio key='electrical-mto' value='electrical mto'>
 														{' '}
-														Male{' '}
+														<strong>Electrical MTO</strong>{' '}
 													</Radio>
-													<Radio key='female' value='female'>
+													<Radio key='piping-mto' value='Piping MTO'>
 														{' '}
-														Female{' '}
+														<strong>Piping MTO</strong>{' '}
 													</Radio>
-													<Radio key='other' value='other'>
+													<Radio key='civil-mto' value='Civil MTo'>
 														{' '}
-														Other{' '}
+														<strong>Civil MTo</strong>{' '}
+													</Radio>
+													<Radio
+														key='instrumentation-mto'
+														value='Instrumentation MTO'>
+														{' '}
+														<strong>Instrumentation MTO</strong>{' '}
 													</Radio>
 												</Radio.Group>
 											</Form.Item>

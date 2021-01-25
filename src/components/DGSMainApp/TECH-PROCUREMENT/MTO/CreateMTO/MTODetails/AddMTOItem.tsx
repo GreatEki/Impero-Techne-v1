@@ -85,7 +85,9 @@ const AddMTOItem = () => {
 							</Col>
 						</Row>
 
-						<Row gutter={100} justify='space-between'>
+						<Row
+							gutter={[{ xs: 10, sm: 10, md: 50, lg: 50 }, 10]}
+							justify='space-between'>
 							<Col span={12}>
 								<Form.Item
 									name='volatge'
@@ -117,7 +119,9 @@ const AddMTOItem = () => {
 							</Col>
 						</Row>
 						{/*  */}
-						<Row gutter={100} justify='space-between'>
+						<Row
+							gutter={[{ xs: 10, sm: 10, md: 50, lg: 50 }, 10]}
+							justify='space-between'>
 							<Col span={12}>
 								<Form.Item
 									name='qty_required'
@@ -155,7 +159,9 @@ const AddMTOItem = () => {
 						{/*  */}
 
 						{/*  */}
-						<Row gutter={100} justify='space-between'>
+						<Row
+							gutter={[{ xs: 10, sm: 10, md: 50, lg: 50 }, 10]}
+							justify='space-between'>
 							<Col span={12}>
 								<Form.Item
 									name='sellers-country'
@@ -190,7 +196,9 @@ const AddMTOItem = () => {
 						</Row>
 
 						{/*  */}
-						<Row gutter={100} justify='space-between'>
+						<Row
+							gutter={[{ xs: 10, sm: 10, md: 50, lg: 50 }, 10]}
+							justify='space-between'>
 							<Col span={12}>
 								<Form.Item
 									name='unit_price'
@@ -223,7 +231,9 @@ const AddMTOItem = () => {
 						</Row>
 
 						{/*  */}
-						<Row gutter={100} justify='space-between'>
+						<Row
+							gutter={[{ xs: 10, sm: 10, md: 50, lg: 50 }, 10]}
+							justify='space-between'>
 							<Col span={12}>
 								<Form.Item
 									name='sellers_city'
