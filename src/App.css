@@ -79,6 +79,13 @@ a {
 	border-radius: 0.4rem !important;
 }
 
+.dot {
+	width: 50;
+	height: 50px;
+	border-radius: 50%;
+	background: var(--site-blue);
+}
+
 @media (min-width: 100px) and (max-width: 767px) {
 	.hide {
 		display: none !important

@@ -8,6 +8,7 @@ import ProductDetailsPanel from './ProductDetailsPanel';
 import AddedProductsPanel from './AddedProductsPanel';
 import ServiceDetailFormPanel from './ServiceDetailFormPanel';
 import ServiceDetailsView from './ServiceDetailsView';
+import DeliveryInfoPanel from './DeliveryInfoPanel';
 
 const { Header, Content } = Layout;
 
@@ -71,7 +72,10 @@ const RequisitionDetails: React.FC = () => {
 						<Collapse
 							expandIconPosition='right'
 							defaultActiveKey='form-details'>
-							<Panel className='my-3' header='Form Details' key='form-details'>
+							<Panel
+								className='my-3'
+								header={<label className='muted-font'>Form Details </label>}
+								key='form-details'>
 								<FormDetailsPanel />
 							</Panel>
 						</Collapse>
@@ -79,13 +83,13 @@ const RequisitionDetails: React.FC = () => {
 						<Collapse expandIconPosition='right'>
 							<Panel
 								className='my-3'
-								header='Product Details'
+								header={<label className='muted-font'>Product Details </label>}
 								key='prod-detail'>
 								<ProductDetailsPanel />
 							</Panel>
 							<Panel
 								className='my-3'
-								header='Service Details'
+								header={<label className='muted-font'>Service Details </label>}
 								key='service-detail'>
 								<ServiceDetailFormPanel />
 							</Panel>
@@ -94,7 +98,7 @@ const RequisitionDetails: React.FC = () => {
 						<Collapse expandIconPosition='right'>
 							<Panel
 								className='my-3'
-								header='Service Details'
+								header={<label className='muted-font'>Service Details </label>}
 								key='service-detail-view'>
 								<ServiceDetailsView />
 							</Panel>
@@ -103,7 +107,18 @@ const RequisitionDetails: React.FC = () => {
 						<Collapse expandIconPosition='right'>
 							<Panel
 								className='my-3'
-								header='Added Product Details'
+								header={<label className='muted-font'>Delivery Info</label>}
+								key='delivery-info'>
+								<DeliveryInfoPanel />
+							</Panel>
+						</Collapse>
+
+						<Collapse expandIconPosition='right'>
+							<Panel
+								className='my-3'
+								header={
+									<label className='muted-font'>Added Product Details </label>
+								}
 								key='added-prod-service'>
 								<AddedProductsPanel />
 							</Panel>
