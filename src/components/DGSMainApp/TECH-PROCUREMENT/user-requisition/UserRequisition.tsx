@@ -12,7 +12,6 @@ import {
 	Menu,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
-import '../techprocurement.css';
 
 const { Header, Content } = Layout;
 
@@ -106,7 +105,7 @@ const UserRequisition: React.FC = () => {
 							onClick={() =>
 								history.push(`/app/tech-procurement/create-requisition`)
 							}
-							className='btn-xlg site-blue text-white'>
+							className='btn-xlg'>
 							{' '}
 							Create Requisition{' '}
 						</button>

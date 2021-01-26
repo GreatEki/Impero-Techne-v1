@@ -22,7 +22,7 @@ const NextApp = () => {
 					onCollapse={(collapsed, type) => {
 						console.log(collapsed, type);
 					}}>
-					<img src='/icons/Group 19.svg' className='logo' alt='prop' />
+					<img src='/icons/dgs-logo.svg' className='logo' alt='prop' />
 					<SlideMenu />
 				</Sider>
 				<Layout>

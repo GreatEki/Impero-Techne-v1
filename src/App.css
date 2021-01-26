@@ -23,9 +23,14 @@ a {
 	color: var(--font) !important;
 }
 
-.site-blue {
+.site-bg-primary {
 	background-color: var(--site-blue);
 }
+
+.site-primary {
+	color: var(--site-blue) !important;
+}
+
 .btn-xlg {
 	height: 3.5em;
 	border-radius: 0.3rem;
@@ -76,7 +81,7 @@ a {
 }
 
 .round {
-	border-radius: 0.4rem !important;
+	border-radius: 0.3rem !important;
 }
 
 .dot {
@@ -84,6 +89,32 @@ a {
 	height: 50px;
 	border-radius: 50%;
 	background: var(--site-blue);
+}
+
+.loginWrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-image: url('./images/bg_login.jpg');
+	background-size: cover;
+	background-repeat: no-repeat;
+	padding: 0;
+	margin: 0;
+	overflow: hidden;
+	width: 100vw;
+	height: 100vh !important;
+}
+
+.card-modal {
+	min-width: 40% !important;
+	padding: 2.5rem !important;
+}
+
+.flex-end {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	width: 100% !important;
 }
 
 @media (min-width: 100px) and (max-width: 767px) {
@@ -94,5 +125,16 @@ a {
 
 	strong {
 		font-size: 14px;
+	}
+
+	.card-modal {
+		width: 100vw;
+		height: 100vh;
+		padding: 0.5rem !important;
+	}
+
+	.btn-xlg {
+		font-size: 14px;
+		padding: 0.5em;
 	}
 }

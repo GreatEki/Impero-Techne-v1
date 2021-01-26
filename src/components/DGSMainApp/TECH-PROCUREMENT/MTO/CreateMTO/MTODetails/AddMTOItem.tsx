@@ -252,7 +252,7 @@ const AddMTOItem = () => {
 								<button
 									onClick={() => handleSubmitItem(mtoItem)}
 									style={{ marginTop: '1em', width: '100%' }}
-									className='btn-xlg site-blue text-white'>
+									className='btn-xlg'>
 									{' '}
 									Add Item
 								</button>

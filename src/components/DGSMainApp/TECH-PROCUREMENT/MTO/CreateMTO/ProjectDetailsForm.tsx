@@ -191,9 +191,7 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 											<Row>
 												<Col span={4}>
 													<Form.Item>
-														<button
-															onClick={next}
-															className='btn-xlg site-blue text-white'>
+														<button onClick={next} className='btn-xlg'>
 															{' '}
 															Continue{' '}
 														</button>

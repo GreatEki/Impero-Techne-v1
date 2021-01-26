@@ -68,7 +68,7 @@ const AddedItemsPanel = () => {
 
 			<Row>
 				<Col span={6}>
-					<button className='btn-xlg site-blue text-white'> Submit </button>
+					<button className='btn-xlg'> Submit </button>
 				</Col>
 			</Row>
 		</div>

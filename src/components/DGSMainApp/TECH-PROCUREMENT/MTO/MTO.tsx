@@ -10,10 +10,8 @@ import {
 	Tag,
 	Dropdown,
 	Menu,
-	Button,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
-import '../techprocurement.css';
 
 const { Header, Content } = Layout;
 
@@ -109,10 +107,10 @@ const MTO: React.FC = () => {
 					}}>
 					{/*  */}
 					<Row className='mt-3' justify='space-between' gutter={[50, 20]}>
-						<Col xs={12} sm={12} md={6} lg={4}>
+						<Col xs={18} sm={18} md={6} lg={4}>
 							<button
 								onClick={() => history.push(`/app/tech-procurement/create-mto`)}
-								className='btn-xlg site-blue text-white'>
+								className='btn-xlg'>
 								{' '}
 								Create MTO{' '}
 							</button>
