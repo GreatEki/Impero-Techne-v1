@@ -9,6 +9,7 @@ import AddedProductsPanel from './AddedProductsPanel';
 import ServiceDetailFormPanel from './ServiceDetailFormPanel';
 import ServiceDetailsView from './ServiceDetailsView';
 import DeliveryInfoPanel from './DeliveryInfoPanel';
+import AddedMTOPanel from './AddedMTOPanel';
 
 const { Header, Content } = Layout;
 
@@ -110,6 +111,15 @@ const RequisitionDetails: React.FC = () => {
 								header={<label className='muted-font'>Delivery Info</label>}
 								key='delivery-info'>
 								<DeliveryInfoPanel />
+							</Panel>
+						</Collapse>
+
+						<Collapse expandIconPosition='right'>
+							<Panel
+								className='my-3'
+								header={<label className='muted-font'>Added MTO</label>}
+								key='added-mto'>
+								<AddedMTOPanel />
 							</Panel>
 						</Collapse>
 
