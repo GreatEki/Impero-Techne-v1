@@ -86,12 +86,13 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 							<Row gutter={50}>
 								<Col span={20} offset={2}>
 									<Form {...formLayout}>
-										<p className='muted-font'>
-											<span className='text-danger'>*</span>Fill in Project
+										<strong className='muted-font'>
+											<span className='text-danger'>*</span> Fill in Project
 											Details to create a User Requisition Form
-										</p>
+										</strong>
 
 										<Form.Item
+											className='mt-5'
 											name='request_title'
 											label={
 												<strong>

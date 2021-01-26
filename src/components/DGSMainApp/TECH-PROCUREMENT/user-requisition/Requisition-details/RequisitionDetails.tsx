@@ -6,6 +6,7 @@ import { Layout, Avatar, Dropdown, Menu, Collapse } from 'antd';
 import FormDetailsPanel from './FormDetailsPanel';
 import ProductDetailsPanel from './ProductDetailsPanel';
 import AddedProductsPanel from './AddedProductsPanel';
+import ServiceDetailFormPanel from './ServiceDetailFormPanel';
 
 const { Header, Content } = Layout;
 
@@ -66,20 +67,34 @@ const RequisitionDetails: React.FC = () => {
 					{/*  */}
 
 					<div className='mt-5'>
-						<Collapse>
-							<Panel className='my-3' header='Form Details' key='1'>
+						<Collapse
+							expandIconPosition='right'
+							defaultActiveKey='form-details'>
+							<Panel className='my-3' header='Form Details' key='form-details'>
 								<FormDetailsPanel />
 							</Panel>
 						</Collapse>
 
-						<Collapse>
-							<Panel className='my-3' header='Product Details' key='2'>
+						<Collapse expandIconPosition='right'>
+							<Panel
+								className='my-3'
+								header='Product Details'
+								key='prod-detail'>
 								<ProductDetailsPanel />
+							</Panel>
+							<Panel
+								className='my-3'
+								header='Service Details'
+								key='service-detail'>
+								<ServiceDetailFormPanel />
 							</Panel>
 						</Collapse>
 
-						<Collapse>
-							<Panel className='my-3' header='Added Product Details' key='3'>
+						<Collapse expandIconPosition='right'>
+							<Panel
+								className='my-3'
+								header='Added Product Details'
+								key='added-prod-service'>
 								<AddedProductsPanel />
 							</Panel>
 						</Collapse>
