@@ -7,6 +7,7 @@ import FormDetailsPanel from './FormDetailsPanel';
 import ProductDetailsPanel from './ProductDetailsPanel';
 import AddedProductsPanel from './AddedProductsPanel';
 import ServiceDetailFormPanel from './ServiceDetailFormPanel';
+import ServiceDetailsView from './ServiceDetailsView';
 
 const { Header, Content } = Layout;
 
@@ -87,6 +88,15 @@ const RequisitionDetails: React.FC = () => {
 								header='Service Details'
 								key='service-detail'>
 								<ServiceDetailFormPanel />
+							</Panel>
+						</Collapse>
+
+						<Collapse expandIconPosition='right'>
+							<Panel
+								className='my-3'
+								header='Service Details'
+								key='service-detail-view'>
+								<ServiceDetailsView />
 							</Panel>
 						</Collapse>
 

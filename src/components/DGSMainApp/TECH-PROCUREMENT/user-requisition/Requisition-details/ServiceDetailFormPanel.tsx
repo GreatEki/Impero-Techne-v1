@@ -1,15 +1,5 @@
 import React from 'react';
-import {
-	Input,
-	Select,
-	Radio,
-	Button,
-	DatePicker,
-	Form,
-	Table,
-	Row,
-	Col,
-} from 'antd';
+import { Input, Select, Radio, DatePicker, Form, Table, Row, Col } from 'antd';
 import * as FaIcons from 'react-icons/fa';
 
 const { TextArea } = Input;
