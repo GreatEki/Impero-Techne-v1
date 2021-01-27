@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Card, Input, Typography, Form, Row, Col } from 'antd';
 import * as IoIcon from 'react-icons/io5';
@@ -11,7 +11,25 @@ const formLayout = {
 	},
 };
 
+interface StateI {
+	email: string;
+	password: string;
+}
+
 const Login = () => {
+	const [state, setState] = useState<StateI>({
+		email: '',
+		password: '',
+	});
+
+	function handleFormChange(field: string, value: string) {
+		setState({ ...state, [field]: value });
+	}
+
+	function onSubmit(formState: StateI) {
+		console.log(formState);
+	}
+
 	return (
 		<div className='loginWrapper'>
 			<Card className='card-modal'>
@@ -28,16 +46,20 @@ const Login = () => {
 
 				<section>
 					<Form {...formLayout}>
-						<Form.Item label={<strong>Email</strong>}>
+						<Form.Item name='email' label={<strong>Email</strong>}>
 							<Input
+								type='email'
 								placeholder='yourmail@dgslimited.com'
 								size='large'
 								style={{ height: '50px' }}
 								className='round'
+								onChange={(e) =>
+									handleFormChange('email', e.currentTarget.value)
+								}
 							/>
 						</Form.Item>
 
-						<Form.Item label={<strong>Password</strong>}>
+						<Form.Item name='password' label={<strong>Password</strong>}>
 							<Input
 								type='password'
 								placeholder='Password'
@@ -45,11 +67,16 @@ const Login = () => {
 								style={{ height: '50px' }}
 								suffix={<IoIcon.IoEyeSharp />}
 								className='round'
+								onChange={(e) =>
+									handleFormChange('password', e.currentTarget.value)
+								}
 							/>
 						</Form.Item>
 
 						<Form.Item>
-							<button className='btn-xlg'>Login</button>
+							<button onClick={() => onSubmit(state)} className='btn-xlg'>
+								Login
+							</button>
 						</Form.Item>
 
 						<section className='flex-end'>
