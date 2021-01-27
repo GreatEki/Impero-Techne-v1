@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
-import { baseUrl, config } from '../BaseUrl';
+import { baseUrl } from '../BaseUrl';
 
 import {
 	UserDispatchTypes,
@@ -18,6 +18,9 @@ export const signIn = (user: { email: string; password: string }) => async (
 		});
 
 		const { data } = await axios.post(`${baseUrl}/api/v1/users/login`, user);
+
+		localStorage.setItem('token', JSON.stringify(data.token));
+		localStorage.setItem('theUser', JSON.stringify(data));
 
 		dispatch({
 			type: LOGIN_USER,
