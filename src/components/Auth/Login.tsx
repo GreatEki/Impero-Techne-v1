@@ -1,8 +1,11 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
-import { Card, Input, Typography, Form, Row, Col } from 'antd';
+import { Card, Input, Typography, Form, Button } from 'antd';
 import * as IoIcon from 'react-icons/io5';
-
+import { signIn } from 'appRedux/actions/userActions';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootStore } from 'appRedux/Store';
 const { Title, Text } = Typography;
 
 const formLayout = {
@@ -16,18 +19,31 @@ interface StateI {
 	password: string;
 }
 
-const Login = () => {
+const Login: React.FC = () => {
+	const history = useHistory();
 	const [state, setState] = useState<StateI>({
 		email: '',
 		password: '',
 	});
 
+	const { loading, error } = useSelector((state: RootStore) => state.user);
+
+	const dispatch = useDispatch();
+
 	function handleFormChange(field: string, value: string) {
 		setState({ ...state, [field]: value });
 	}
 
-	function onSubmit(formState: StateI) {
-		console.log(formState);
+	async function onSubmit(formState: StateI) {
+		await dispatch(signIn(formState));
+		if (error === null) {
+			// if he have no errors. We redirect to the app
+			console.log(error);
+			return history.push('/app');
+		} else {
+			console.log(error);
+			return error;
+		}
 	}
 
 	return (
@@ -46,6 +62,7 @@ const Login = () => {
 
 				<section>
 					<Form {...formLayout}>
+						{error && <p className='text-danger'> {error} </p>}
 						<Form.Item name='email' label={<strong>Email</strong>}>
 							<Input
 								type='email'
@@ -74,9 +91,12 @@ const Login = () => {
 						</Form.Item>
 
 						<Form.Item>
-							<button onClick={() => onSubmit(state)} className='btn-xlg'>
+							<Button
+								loading={loading}
+								onClick={() => onSubmit(state)}
+								className='btn-xlg'>
 								Login
-							</button>
+							</Button>
 						</Form.Item>
 
 						<section className='flex-end'>

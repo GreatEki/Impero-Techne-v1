@@ -28,14 +28,14 @@ a {
 }
 
 .btn-xlg {
-	height: 3.5em;
-	border-radius: 0.3rem;
-	font-size: 16px;
-	border: none;
-	padding: 1em;
+	height: 3.5em !important;
+	border-radius: 0.3rem !important;
+	font-size: 16px !important;
+	border: none !important;
+	padding: 1em !important;
 	min-width: 100% !important;
-	background-color: var(--site-blue);
-	color: white;
+	background-color: var(--site-blue) !important;
+	color: white !important;
 }
 
 .btn-xlg:focus {
