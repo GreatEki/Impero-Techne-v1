@@ -19,6 +19,8 @@ interface StateI {
 	password: string;
 }
 
+type FormError = StateI | null;
+
 const Login: React.FC = () => {
 	const history = useHistory();
 	const [state, setState] = useState<StateI>({
@@ -26,23 +28,54 @@ const Login: React.FC = () => {
 		password: '',
 	});
 
+	const [stateErrors, setStateErrors] = useState<StateI | null>(null);
+
 	const { loading, error } = useSelector((state: RootStore) => state.user);
 
 	const dispatch = useDispatch();
+
+	const checkErrors = (formState: StateI) => {
+		let formErrors: FormError = {
+			email: '',
+			password: '',
+		};
+		if (!formState.email) {
+			formErrors.email = 'Email is required';
+		}
+
+		if (!formState.password) {
+			formErrors.password = 'Password is required';
+		}
+
+		if (formState.email && formState.password) {
+			formErrors = null;
+		}
+
+		return formErrors;
+	};
 
 	function handleFormChange(field: string, value: string) {
 		setState({ ...state, [field]: value });
 	}
 
 	async function onSubmit(formState: StateI) {
-		await dispatch(signIn(formState));
-		if (error === null) {
-			// if he have no errors. We redirect to the app
-			console.log(error);
-			return history.push('/app');
+		const validationErrors = checkErrors(formState);
+		if (validationErrors) {
+			setStateErrors(validationErrors);
 		} else {
-			console.log(error);
-			return error;
+			setStateErrors(validationErrors);
+			// Make Request to API
+			await dispatch(signIn(formState));
+
+			// verify that response didn't return any errors.
+			if (error === null) {
+				// if we have no errors. We redirect to the app
+				console.log(error);
+				history.push('/app');
+			} else {
+				console.log(error);
+				return error;
+			}
 		}
 	}
 
@@ -62,7 +95,7 @@ const Login: React.FC = () => {
 
 				<section>
 					<Form {...formLayout}>
-						{error && <p className='text-danger'> {error} </p>}
+						{error && <p className='text-danger text-break'> {error} </p>}
 						<Form.Item name='email' label={<strong>Email</strong>}>
 							<Input
 								type='email'
@@ -74,6 +107,9 @@ const Login: React.FC = () => {
 									handleFormChange('email', e.currentTarget.value)
 								}
 							/>
+							{stateErrors?.email && (
+								<p className='text-danger'>{stateErrors.email}</p>
+							)}
 						</Form.Item>
 
 						<Form.Item name='password' label={<strong>Password</strong>}>
@@ -88,6 +124,9 @@ const Login: React.FC = () => {
 									handleFormChange('password', e.currentTarget.value)
 								}
 							/>
+							{stateErrors?.password && (
+								<p className='text-danger'>{stateErrors.password}</p>
+							)}
 						</Form.Item>
 
 						<Form.Item>
