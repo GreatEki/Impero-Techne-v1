@@ -53,6 +53,10 @@ a {
 	background-color: var(--site-primary);
 }
 
+.bg-grey {
+	background-color: #fffafa;
+}
+
 .btn-xlg {
 	height: 3.5em !important;
 	border-radius: 0.3rem !important;

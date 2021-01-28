@@ -2,15 +2,17 @@ import React from 'react';
 import * as TiIcons from 'react-icons/ti';
 import * as MdIcon from 'react-icons/md';
 import * as BsIcon from 'react-icons/bs';
-import { Card, Space } from 'antd';
+import { Card, Space, Typography } from 'antd';
+
+const { Title } = Typography;
 
 const Notifications: React.FC = () => {
 	return (
 		<div>
 			<section className='d-flex justify-content-between'>
-				<strong>
-					<TiIcons.TiChartArea className='site-primary' /> Notifications{' '}
-				</strong>
+				<Title level={3}>
+					<BsIcon.BsBell className='site-danger' /> Notifications{' '}
+				</Title>
 				<small> Recently</small>
 			</section>
 
@@ -19,8 +21,10 @@ const Notifications: React.FC = () => {
 					<strong>User Requisition Order Accepted by Checker</strong>
 					<br />
 					<>
-						<small>Personnel Protective Equipment Requisition title </small>
-						<small>
+						<small className='muted-font'>
+							Personnel Protective Equipment Requisition title{' '}
+						</small>
+						<small className='muted-font'>
 							{' '}
 							<BsIcon.BsDot className='site-dot' /> Sapele Gas Plant{' '}
 						</small>

@@ -3,6 +3,7 @@ import { Layout, Row, Col, Card, Dropdown, Avatar, Space } from 'antd';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 import * as TiIcons from 'react-icons/ti';
 import Notifications from './Notifications';
+import RecentlyOpened from './RecentlyOpened';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -45,7 +46,7 @@ const Dashboard: React.FC = () => {
 						flexGrow: 1,
 						margin: '16px 20px 16px 20px',
 					}}>
-					<Row gutter={50} justify='space-between'>
+					<Row gutter={50}>
 						{/* ====== Left Grid ======  */}
 						<Col xs={24} md={24} lg={12}>
 							<section className='d-flex justify-content-between'>
@@ -64,7 +65,9 @@ const Dashboard: React.FC = () => {
 						{/* ====== End of Left Grid ======  */}
 
 						{/* ====== Right Grid ====== */}
-						<Col xs={24} md={24} lg={12}></Col>
+						<Col xs={24} md={24} lg={12}>
+							<RecentlyOpened />
+						</Col>
 						{/* ====== End of  Right Grid ====== */}
 					</Row>
 				</Content>
