@@ -12,6 +12,7 @@ import {
 	Input,
 	Select,
 	Radio,
+	Space,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
@@ -42,8 +43,8 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 						padding: 0,
 					}}>
 					<section
-						style={{ flex: 1 }}
-						className='d-flex py-4 px-5 justify-content-between'>
+						style={{ flex: 1, padding: '1rem 4rem' }}
+						className='d-flex justify-content-between'>
 						<Link to='/app/tech-procurement/mto'>
 							<h3>
 								<AntIcons.AiOutlineArrowLeft /> Create MTO{' '}
@@ -53,18 +54,20 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 						<strong className='hide'>
 							{' '}
 							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
-							<span>Gift Okobia </span>
-							<Dropdown
-								overlay={<UserProfileMenu />}
-								placement='bottomCenter'
-								arrow>
-								<img
-									src='/icons/chevron-down.svg'
-									className='ml-4'
-									alt='prop
+							<Space size='middle'>
+								<span>Gift Okobia </span>
+								<Dropdown
+									overlay={<UserProfileMenu />}
+									placement='bottomCenter'
+									arrow>
+									<img
+										src='/icons/chevron-down.svg'
+										className='ml-4'
+										alt='prop
                                 '
-								/>
-							</Dropdown>
+									/>
+								</Dropdown>
+							</Space>
 						</strong>
 					</section>
 				</Header>

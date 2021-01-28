@@ -9,7 +9,7 @@ import {
 	Input,
 	Tag,
 	Dropdown,
-	Menu,
+	Space,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
@@ -75,22 +75,26 @@ const MTO: React.FC = () => {
 						padding: 0,
 					}}>
 					<section
-						style={{ flex: 1 }}
-						className='d-flex py-4 px-5 justify-content-between'>
+						style={{ flex: 1, padding: '1.5rem 4rem' }}
+						className='d-flex justify-content-between'>
 						<div>
 							<h4>Material Take Off (MTO)</h4>
 						</div>
 
 						<strong className='hide'>
-							{' '}
-							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
-							<span>Gift Okobia </span>
-							<Dropdown
-								overlay={<UserProfileMenu />}
-								placement='bottomCenter'
-								arrow>
-								<img src='/icons/chevron-down.svg' alt='prop' />
-							</Dropdown>
+							<Avatar
+								size={50}
+								src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png'
+							/>{' '}
+							<Space size='middle'>
+								<span>Gift Okobia </span>
+								<Dropdown
+									overlay={<UserProfileMenu />}
+									placement='bottomCenter'
+									arrow>
+									<img src='/icons/chevron-down.svg' alt='prop' />
+								</Dropdown>
+							</Space>
 						</strong>
 					</section>
 				</Header>

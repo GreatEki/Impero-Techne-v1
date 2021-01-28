@@ -13,6 +13,7 @@ import {
 	Menu,
 	Select,
 	Radio,
+	Space,
 } from 'antd';
 
 const { Header, Content } = Layout;
@@ -51,8 +52,8 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 					padding: 0,
 				}}>
 				<section
-					style={{ flex: 1 }}
-					className='d-flex py-4 px-5 justify-content-between'>
+					style={{ flex: 1, padding: '1.5rem 4rem' }}
+					className='d-flex justify-content-between'>
 					<Link to='/app/tech-procurement/user-requisition'>
 						<h3>
 							<AntIcons.AiOutlineArrowLeft /> Create User Requisition Form{' '}
@@ -62,10 +63,16 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 					<strong className='hide'>
 						{' '}
 						<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
-						<span>Gift Okobia </span>
-						<Dropdown overlay={menu} placement='bottomCenter' arrow>
-							<img src='/icons/chevron-down.svg' className='ml-4' alt='prop' />
-						</Dropdown>
+						<Space size='middle'>
+							<span>Gift Okobia </span>
+							<Dropdown overlay={menu} placement='bottomCenter' arrow>
+								<img
+									src='/icons/chevron-down.svg'
+									className='ml-4'
+									alt='prop'
+								/>
+							</Dropdown>
+						</Space>
 					</strong>
 				</section>
 			</Header>

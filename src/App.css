@@ -18,6 +18,10 @@
 	font-size: 18px;
 }
 
+body {
+	overflow-y: scroll;
+}
+
 a {
 	color: var(--font) !important;
 }

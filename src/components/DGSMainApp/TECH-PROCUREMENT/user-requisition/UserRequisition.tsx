@@ -10,6 +10,7 @@ import {
 	Tag,
 	Dropdown,
 	Menu,
+	Space,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 
@@ -77,7 +78,7 @@ const UserRequisition: React.FC = () => {
 					padding: 0,
 				}}>
 				<section
-					style={{ flex: 1 }}
+					style={{ flex: 1, padding: '1.5rem 4rem' }}
 					className='d-flex py-4 px-5 justify-content-between'>
 					<div>
 						<h3>User Requisition Forms</h3>
@@ -86,10 +87,16 @@ const UserRequisition: React.FC = () => {
 					<strong className='hide'>
 						{' '}
 						<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
-						<span>Gift Okobia </span>
-						<Dropdown overlay={menu} placement='bottomCenter' arrow>
-							<img src='/icons/chevron-down.svg' className='ml-4' alt='prop' />
-						</Dropdown>
+						<Space size='middle'>
+							<span>Gift Okobia </span>
+							<Dropdown overlay={menu} placement='bottomCenter' arrow>
+								<img
+									src='/icons/chevron-down.svg'
+									className='ml-4'
+									alt='prop'
+								/>
+							</Dropdown>
+						</Space>
 					</strong>
 				</section>
 			</Header>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as AntIcons from 'react-icons/ai';
-import { Layout, Avatar, Dropdown, Menu, Collapse } from 'antd';
+import { Layout, Avatar, Dropdown, Menu, Collapse, Space } from 'antd';
 
 import FormDetailsPanel from './FormDetailsPanel';
 import ProductDetailsPanel from './ProductDetailsPanel';
@@ -38,7 +38,7 @@ const RequisitionDetails: React.FC = () => {
 						padding: 0,
 					}}>
 					<section
-						style={{ flex: 1 }}
+						style={{ flex: 1, padding: '1.5rem 4rem' }}
 						className='d-flex py-4 px-5 justify-content-between'>
 						<Link to='/app/tech-procurement/user-requisition'>
 							<h3>
@@ -50,15 +50,17 @@ const RequisitionDetails: React.FC = () => {
 						<strong className='hide'>
 							{' '}
 							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
-							<span>Gift Okobia </span>
-							<Dropdown overlay={menu} placement='bottomCenter' arrow>
-								<img
-									src='/icons/chevron-down.svg'
-									className='ml-4'
-									alt='prop
+							<Space size='middle'>
+								<span>Gift Okobia </span>
+								<Dropdown overlay={menu} placement='bottomCenter' arrow>
+									<img
+										src='/icons/chevron-down.svg'
+										className='ml-4'
+										alt='prop
                             '
-								/>
-							</Dropdown>
+									/>
+								</Dropdown>
+							</Space>
 						</strong>
 					</section>
 				</Header>

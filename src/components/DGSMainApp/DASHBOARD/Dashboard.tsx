@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Row, Col, Card, Dropdown, Avatar } from 'antd';
+import { Layout, Row, Col, Card, Dropdown, Avatar, Space } from 'antd';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 import * as TiIcons from 'react-icons/ti';
 import Notifications from './Notifications';
@@ -19,8 +19,8 @@ const Dashboard: React.FC = () => {
 						padding: 0,
 					}}>
 					<section
-						style={{ flex: 1 }}
-						className='d-flex py-4 px-5 justify-content-between'>
+						style={{ flex: 1, padding: '1.5rem 4rem' }}
+						className='d-flex justify-content-between'>
 						<div>
 							<h4>Dashboard</h4>
 						</div>
@@ -28,13 +28,15 @@ const Dashboard: React.FC = () => {
 						<strong className='hide'>
 							{' '}
 							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
-							<span>Gift Okobia </span>
-							<Dropdown
-								overlay={<UserProfileMenu />}
-								placement='bottomCenter'
-								arrow>
-								<img src='/icons/chevron-down.svg' alt='prop' />
-							</Dropdown>
+							<Space size='middle'>
+								<span>Gift Okobia </span>
+								<Dropdown
+									overlay={<UserProfileMenu />}
+									placement='bottomCenter'
+									arrow>
+									<img src='/icons/chevron-down.svg' alt='prop' />
+								</Dropdown>
+							</Space>
 						</strong>
 					</section>
 				</Header>
