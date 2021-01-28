@@ -12,6 +12,7 @@ import {
 	Menu,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
+import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 
 const { Header, Content } = Layout;
 
@@ -62,16 +63,6 @@ const MTO: React.FC = () => {
 		return color;
 	};
 
-	const menu = (
-		<Menu>
-			<Menu.Item>
-				<Link to='#'>View Profile</Link>
-			</Menu.Item>
-			<Menu.Item>
-				<Link to='#'>Log Out</Link>
-			</Menu.Item>
-		</Menu>
-	);
 	return (
 		<>
 			<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -94,7 +85,10 @@ const MTO: React.FC = () => {
 							{' '}
 							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
 							<span>Gift Okobia </span>
-							<Dropdown overlay={menu} placement='bottomCenter' arrow>
+							<Dropdown
+								overlay={<UserProfileMenu />}
+								placement='bottomCenter'
+								arrow>
 								<img src='/icons/chevron-down.svg' alt='prop' />
 							</Dropdown>
 						</strong>

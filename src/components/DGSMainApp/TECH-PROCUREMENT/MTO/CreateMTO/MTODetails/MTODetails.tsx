@@ -7,22 +7,13 @@ import ProjectInfo from './ProjectInfo';
 import MTOFormDetails from './MTOFormDetails';
 import AddMTOItem from './AddMTOItem';
 import AddedItemsPanel from './AddedItemsPanel';
+import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 
 const { Header, Content } = Layout;
 
 const { Panel } = Collapse;
 
 const MTODetails: React.FC = () => {
-	const menu = (
-		<Menu>
-			<Menu.Item>
-				<Link to='#'>View Profile</Link>
-			</Menu.Item>
-			<Menu.Item>
-				<Link to='#'>Log Out</Link>
-			</Menu.Item>
-		</Menu>
-	);
 	return (
 		<>
 			<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -48,7 +39,10 @@ const MTODetails: React.FC = () => {
 							{' '}
 							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
 							<span>Gift Okobia </span>
-							<Dropdown overlay={menu} placement='bottomCenter' arrow>
+							<Dropdown
+								overlay={<UserProfileMenu />}
+								placement='bottomCenter'
+								arrow>
 								<img
 									src='/icons/chevron-down.svg'
 									className='ml-4'

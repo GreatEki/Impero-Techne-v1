@@ -155,8 +155,42 @@ const AddMTOItem = () => {
 								</Form.Item>
 							</Col>
 						</Row>
+						{/*  */}
 
 						{/*  */}
+						<Row
+							gutter={[{ xs: 10, sm: 10, md: 50, lg: 50 }, 10]}
+							justify='space-between'>
+							<Col span={12}>
+								<Form.Item
+									name='unit_price'
+									label={<strong>Unit Price</strong>}
+									rules={[{ required: true }]}>
+									<Select
+										onChange={(value: string | number) =>
+											handleFormChange('unit_price', value)
+										}
+										size='large'
+										placeholder='$'>
+										<Option value='unit1'>unit 1</Option>
+									</Select>
+								</Form.Item>
+							</Col>
+
+							<Col span={12}>
+								<Form.Item
+									name='total_price'
+									label={<strong>Total Price</strong>}
+									rules={[{ required: true }]}>
+									<Input
+										onChange={(e) =>
+											handleFormChange('total_price', e.currentTarget.value)
+										}
+										placeholder='$ 0'
+									/>
+								</Form.Item>
+							</Col>
+						</Row>
 
 						{/*  */}
 						<Row
@@ -191,41 +225,6 @@ const AddMTOItem = () => {
 										placeholder=''>
 										<Option value='unit1'>New York </Option>
 									</Select>
-								</Form.Item>
-							</Col>
-						</Row>
-
-						{/*  */}
-						<Row
-							gutter={[{ xs: 10, sm: 10, md: 50, lg: 50 }, 10]}
-							justify='space-between'>
-							<Col span={12}>
-								<Form.Item
-									name='unit_price'
-									label={<strong>Unit Price</strong>}
-									rules={[{ required: true }]}>
-									<Select
-										onChange={(value: string | number) =>
-											handleFormChange('unit_price', value)
-										}
-										size='large'
-										placeholder='$'>
-										<Option value='unit1'>unit 1</Option>
-									</Select>
-								</Form.Item>
-							</Col>
-
-							<Col span={12}>
-								<Form.Item
-									name='total_price'
-									label={<strong>Total Price</strong>}
-									rules={[{ required: true }]}>
-									<Input
-										onChange={(e) =>
-											handleFormChange('total_price', e.currentTarget.value)
-										}
-										placeholder='$ 0'
-									/>
 								</Form.Item>
 							</Col>
 						</Row>

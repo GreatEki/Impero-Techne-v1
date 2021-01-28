@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300&display=swap');
 
 :root {
-	--font: $404040;
+	--font: #404040;
 	--links: #3a76ee;
 	--nunito: 'Nunito', san-serif;
 	--lightgrey: #a6a6a6;
-	--site-blue: #00b0f0;
+	--site-primary: #00b0f0;
+	--site-success: #42ba96;
+	--site-warning: #ffc107;
+	--site-danger: #df4759;
 }
 
 * {
@@ -19,12 +22,31 @@ a {
 	color: var(--font) !important;
 }
 
-.site-bg-primary {
-	background-color: var(--site-blue);
+.site-success {
+	color: var(--site-success);
+}
+.site-warning {
+	color: var(--site-warning);
 }
 
 .site-primary {
-	color: var(--site-blue) !important;
+	color: var(--site-primary) !important;
+}
+
+.site-danger {
+	color: var(--site-danger);
+}
+
+.site-menu {
+	padding: 0;
+}
+
+.site-menu:focus {
+	color: var(--site-primary) !important;
+}
+
+.site-bg-primary {
+	background-color: var(--site-primary);
 }
 
 .btn-xlg {
@@ -34,7 +56,7 @@ a {
 	border: none !important;
 	padding: 1em !important;
 	min-width: 100% !important;
-	background-color: var(--site-blue) !important;
+	background-color: var(--site-primary) !important;
 	color: white !important;
 }
 
@@ -44,7 +66,7 @@ a {
 }
 
 .site-btn-sm {
-	background: var(--site-blue);
+	background: var(--site-primary);
 	border: none;
 	padding: 0.3rem 1rem;
 }
@@ -80,11 +102,9 @@ a {
 	border-radius: 0.3rem !important;
 }
 
-.dot {
-	width: 50;
-	height: 50px;
-	border-radius: 50%;
-	background: var(--site-blue);
+.site-dot {
+	color: var(--site-primary) !important;
+	font-size: 26px !important;
 }
 
 .loginWrapper {
@@ -104,7 +124,7 @@ a {
 
 .card-modal {
 	min-width: 40% !important;
-	padding: 2.5rem !important;
+	padding: 2rem !important;
 	z-index: 2;
 }
 

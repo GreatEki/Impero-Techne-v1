@@ -7,59 +7,63 @@ const { SubMenu } = Menu;
 const SlideMenu = () => {
 	return (
 		<Menu
-			// style={{ width: 256 }}
 			defaultSelectedKeys={['1']}
 			defaultOpenKeys={['tech_procurement']}
 			mode='inline'>
 			<Menu.Item key='dashboard'>
-				<Link to='#'>
+				<Link to='/app' className='site-menu'>
 					{/*  */}
 					<img src='/icons/Mask Group 8.svg' alt='icon' />
-					<strong style={{ padding: '10px' }}> Dashboard</strong>{' '}
+					<strong style={{ padding: '15px' }}> Dashboard</strong>{' '}
 				</Link>
 			</Menu.Item>
 
 			{/*  */}
 			<Menu.Item key='activities menu'>
-				<Link to='#'>
+				<Link to='#' className='site-menu'>
 					{/*  */}
 					<img src='/icons/list.svg' alt='icon' />
-					<strong style={{ padding: '10px' }}> Activities Menu </strong>{' '}
+					<strong style={{ padding: '15px' }}> Activities Menu </strong>{' '}
 				</Link>
 			</Menu.Item>
 
 			<SubMenu
 				key='tech_procurement'
-				// icon={}
 				title={
 					<strong>
 						<img src='/icons/tech_procurement.svg' alt='icon' />
-						<span style={{ padding: '10px' }}> Tech Procurement </span>{' '}
+						<span style={{ padding: '15px' }}> Tech Procurement </span>{' '}
 					</strong>
 				}>
 				<Menu.Item key='MTO'>
-					<Link to='/app/tech-procurement/mto'>
-						<span style={{ padding: '10px' }}> MTO </span>{' '}
+					<Link to='/app/tech-procurement/mto' className='site-menu'>
+						<span style={{ padding: '15px' }}> MTO </span>{' '}
 					</Link>
 				</Menu.Item>
 				<Menu.Item key='User_Requisition'>
-					<Link to='/app/tech-procurement/user-requisition'>
-						<span style={{ padding: '10px' }}> User Requisition </span>{' '}
+					<Link
+						to='/app/tech-procurement/user-requisition'
+						className='site-menu'>
+						<span style={{ padding: '15px' }}> User Requisition </span>{' '}
 					</Link>
 				</Menu.Item>
 				<Menu.Item key='justification'>
-					<Link to='/app/tech-procurement/justification-of-award'>
-						<span style={{ padding: '10px' }}> Jusitification of Award </span>{' '}
+					<Link
+						to='/app/tech-procurement/justification-of-award'
+						className='site-menu'>
+						<span style={{ padding: '15px' }}> Jusitification of Award </span>{' '}
 					</Link>
 				</Menu.Item>
 				<Menu.Item key='contract award'>
-					<Link to='/app/tech-procurement/contract-award'>
-						<span style={{ padding: '10px' }}> Contract Award </span>{' '}
+					<Link to='/app/tech-procurement/contract-award' className='site-menu'>
+						<span style={{ padding: '15px' }}> Contract Award </span>{' '}
 					</Link>
 				</Menu.Item>
 				<Menu.Item key='project milestone'>
-					<Link to='/app/tech-procurement/project-milestone'>
-						<span style={{ padding: '10px' }}> Project Milestone </span>{' '}
+					<Link
+						to='/app/tech-procurement/project-milestone'
+						className='site-menu'>
+						<span style={{ padding: '15px' }}> Project Milestone </span>{' '}
 					</Link>
 				</Menu.Item>
 			</SubMenu>
@@ -71,23 +75,23 @@ const SlideMenu = () => {
 					<strong>
 						{/*  */}
 						<img src='/icons/reports.svg' alt='icon' />
-						<span style={{ padding: '10px' }}> Reports </span>{' '}
+						<span style={{ padding: '15px' }}> Reports </span>{' '}
 					</strong>
 				}>
 				<Menu.Item key='daily reports'>
-					<Link to='#'>
-						<span style={{ padding: '10px' }}> Daily reports </span>{' '}
+					<Link to='#' className='site-menu'>
+						<span style={{ padding: '15px' }}> Daily reports </span>{' '}
 					</Link>
 				</Menu.Item>
 				<Menu.Item key='Construction Reports'>
-					<Link to='#'>
-						<span style={{ padding: '10px' }}> Construction Reports</span>{' '}
+					<Link to='#' className='site-menu'>
+						<span style={{ padding: '15px' }}> Construction Reports</span>{' '}
 					</Link>
 				</Menu.Item>
 
 				<Menu.Item key='non-confirmance report'>
-					<Link to='#'>
-						<span style={{ padding: '10px' }}> Non-Conformance Report </span>{' '}
+					<Link to='#' className='site-menu'>
+						<span style={{ padding: '15px' }}> Non-Conformance Report </span>{' '}
 					</Link>
 				</Menu.Item>
 			</SubMenu>
@@ -98,12 +102,12 @@ const SlideMenu = () => {
 				title={
 					<strong>
 						<img src='/icons/admin.svg' alt='icon' />
-						<span style={{ padding: '10px' }}> Admin </span>{' '}
+						<span style={{ padding: '15px' }}> Admin </span>{' '}
 					</strong>
 				}>
 				<Menu.Item key='register user'>
-					<Link to='#'>
-						<span style={{ padding: '10px' }}> Register User </span>{' '}
+					<Link to='#' className='site-menu'>
+						<span style={{ padding: '15px' }}> Register User </span>{' '}
 					</Link>
 				</Menu.Item>
 			</SubMenu>
