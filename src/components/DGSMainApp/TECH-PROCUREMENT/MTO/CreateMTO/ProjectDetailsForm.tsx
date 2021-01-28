@@ -14,6 +14,7 @@ import {
 	Radio,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
+import Logout from 'components/Auth/Logout';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -33,7 +34,7 @@ const menu = (
 			<Link to='#'>View Profile</Link>
 		</Menu.Item>
 		<Menu.Item>
-			<Link to='#'>Log Out</Link>
+			<Logout />
 		</Menu.Item>
 	</Menu>
 );

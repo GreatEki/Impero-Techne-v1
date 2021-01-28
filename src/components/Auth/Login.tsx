@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Card, Input, Typography, Form, Button } from 'antd';
 import * as IoIcon from 'react-icons/io5';
-import { signIn, clearErrors } from 'appRedux/actions/userActions';
+import { signIn } from 'appRedux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from 'appRedux/Store';
 const { Title, Text } = Typography;

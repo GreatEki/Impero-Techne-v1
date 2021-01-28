@@ -10,11 +10,11 @@ export const getAllCountry = () => async (
 	dispatch: Dispatch<MiscellaneousDispatchTypes>
 ) => {
 	try {
-		const res = await AuthAxios.get('/api/v1/miscellaneous/GetAllCountry');
+		const { data } = await AuthAxios.get('/api/v1/miscellaneous/GetAllCountry');
 
 		dispatch({
 			type: GET_ALL_COUNTRY,
-			payload: res.data,
+			payload: data.data,
 		});
 	} catch (err) {
 		if (err.response) {

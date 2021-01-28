@@ -10,14 +10,6 @@ import {
 	CLEAR_ERRORS,
 } from '../types/userTypes';
 
-export const clearErrors = () => async (
-	dispatch: Dispatch<UserDispatchTypes>
-) => {
-	await dispatch({
-		type: CLEAR_ERRORS,
-	});
-};
-
 export const signIn = (
 	user: { email: string; password: string },
 	props: any
@@ -50,4 +42,13 @@ export const signIn = (
 			payload: err.response ? err.response.data.loginError : err.message,
 		});
 	}
+};
+
+export const logOut = (props: any) => {
+	// remove token from storage
+	localStorage.removeItem('token');
+	// remove user from storage
+	localStorage.removeItem('theUser');
+
+	props.history.push('/');
 };
