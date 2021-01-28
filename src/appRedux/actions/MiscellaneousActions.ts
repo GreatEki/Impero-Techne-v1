@@ -12,7 +12,6 @@ export const getAllCountry = () => async (
 	try {
 		const res = await AuthAxios.get('/api/v1/miscellaneous/GetAllCountry');
 
-		console.log(res.data);
 		dispatch({
 			type: GET_ALL_COUNTRY,
 			payload: res.data,
