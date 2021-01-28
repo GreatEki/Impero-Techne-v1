@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { Card, Input, Typography, Form, Button } from 'antd';
 import * as IoIcon from 'react-icons/io5';
-import { signIn } from 'appRedux/actions/userActions';
+import { signIn, clearErrors } from 'appRedux/actions/userActions';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootStore } from 'appRedux/Store';
 const { Title, Text } = Typography;
@@ -21,7 +21,7 @@ interface StateI {
 
 type FormError = StateI | null;
 
-const Login: React.FC = () => {
+const Login: React.FC = (props) => {
 	const history = useHistory();
 	const [state, setState] = useState<StateI>({
 		email: '',
@@ -34,6 +34,11 @@ const Login: React.FC = () => {
 
 	const dispatch = useDispatch();
 
+	function validateEmail(email: string) {
+		var re = /\S+@\S+\.\S+/;
+		return re.test(email);
+	}
+
 	const checkErrors = (formState: StateI) => {
 		let formErrors: FormError = {
 			email: '',
@@ -43,11 +48,16 @@ const Login: React.FC = () => {
 			formErrors.email = 'Email is required';
 		}
 
+		const isvalid = validateEmail(formState.email);
+		if (!isvalid) {
+			formErrors.email = 'Enter a valid Email';
+		}
+
 		if (!formState.password) {
 			formErrors.password = 'Password is required';
 		}
 
-		if (formState.email && formState.password) {
+		if (formState.email && isvalid && formState.password) {
 			formErrors = null;
 		}
 
@@ -64,18 +74,8 @@ const Login: React.FC = () => {
 			setStateErrors(validationErrors);
 		} else {
 			setStateErrors(validationErrors);
-			// Make Request to API
-			await dispatch(signIn(formState));
-
-			// verify that response didn't return any errors.
-			if (error === null) {
-				// if we have no errors. We redirect to the app
-				console.log(error);
-				history.push('/app');
-			} else {
-				console.log(error);
-				return error;
-			}
+			// Send Request to API
+			await dispatch(signIn(formState, props));
 		}
 	}
 

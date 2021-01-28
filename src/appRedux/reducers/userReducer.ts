@@ -40,13 +40,18 @@ const userReducer = (
 	switch (action.type) {
 		case UserT.LOADING:
 			return {
+				...state,
 				loading: true,
-				error: null,
 			};
 		case UserT.LOADING_FAIL:
 			return {
 				loading: false,
 				error: action.payload,
+			};
+		case UserT.CLEAR_ERRORS:
+			return {
+				...state,
+				error: null,
 			};
 
 		case UserT.LOGIN_USER:
@@ -54,7 +59,6 @@ const userReducer = (
 				...state,
 				user: action.payload,
 				loading: false,
-				error: null,
 			};
 		default:
 			return state;
