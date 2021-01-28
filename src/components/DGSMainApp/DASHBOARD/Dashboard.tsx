@@ -54,10 +54,10 @@ const Dashboard: React.FC = () => {
 									<TiIcons.TiChartArea className='site-primary' /> Request
 									Statistics
 								</strong>
-								<strong className='muted-font'>
-									{' '}
-									Total Requests<strong> 20 </strong>{' '}
-								</strong>
+								<div>
+									<strong className='muted-font'> Total Requests </strong>
+									<strong> 20 </strong>
+								</div>
 							</section>
 
 							<Notifications />

@@ -8,12 +8,12 @@ const { Title } = Typography;
 
 const Notifications: React.FC = () => {
 	return (
-		<div>
+		<div className='mt-4'>
 			<section className='d-flex justify-content-between'>
 				<Title level={3}>
 					<BsIcon.BsBell className='site-danger' /> Notifications{' '}
 				</Title>
-				<small> Recently</small>
+				<strong> Recently</strong>
 			</section>
 
 			<Card>
