@@ -14,7 +14,7 @@ import {
 	Radio,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
-import Logout from 'components/Auth/Logout';
+import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -28,16 +28,6 @@ const formLayout = {
 		span: 24,
 	},
 };
-const menu = (
-	<Menu>
-		<Menu.Item>
-			<Link to='#'>View Profile</Link>
-		</Menu.Item>
-		<Menu.Item>
-			<Logout />
-		</Menu.Item>
-	</Menu>
-);
 
 const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 	return (
@@ -64,7 +54,10 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 							{' '}
 							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
 							<span>Gift Okobia </span>
-							<Dropdown overlay={menu} placement='bottomCenter' arrow>
+							<Dropdown
+								overlay={<UserProfileMenu />}
+								placement='bottomCenter'
+								arrow>
 								<img
 									src='/icons/chevron-down.svg'
 									className='ml-4'
