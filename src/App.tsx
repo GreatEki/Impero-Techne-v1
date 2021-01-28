@@ -8,7 +8,7 @@ import 'antd/dist/antd.css';
 function App() {
 	return (
 		<div className='App'>
-			<BrowserRouter forceRefresh={true}>
+			<BrowserRouter>
 				<Switch>
 					<Route exact path='/' component={Login} />
 					<Route path='/app' component={MainApp} />

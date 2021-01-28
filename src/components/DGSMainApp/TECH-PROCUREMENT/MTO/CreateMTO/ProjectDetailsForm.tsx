@@ -27,18 +27,18 @@ const formLayout = {
 		span: 24,
 	},
 };
+const menu = (
+	<Menu>
+		<Menu.Item>
+			<Link to='#'>View Profile</Link>
+		</Menu.Item>
+		<Menu.Item>
+			<Link to='#'>Log Out</Link>
+		</Menu.Item>
+	</Menu>
+);
 
 const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
-	const menu = (
-		<Menu>
-			<Menu.Item>
-				<Link to='#'>View Profile</Link>
-			</Menu.Item>
-			<Menu.Item>
-				<Link to='#'>Log Out</Link>
-			</Menu.Item>
-		</Menu>
-	);
 	return (
 		<div>
 			<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -173,7 +173,7 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 												rules={[{ required: true }]}>
 												<Select placeholder='Select---' size='large'>
 													<Option value='projectName'> Project Name </Option>
-													<Option value='projectName'>
+													<Option value='projectName1'>
 														{' '}
 														Project projectName{' '}
 													</Option>

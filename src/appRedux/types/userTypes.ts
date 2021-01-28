@@ -3,7 +3,13 @@ export const LOADING = 'LOADING';
 export const LOADING_FAIL = 'LOADING_FAIL';
 export const CLEAR_ERRORS = 'CLEAR_ERROR';
 
-export type ROLES = 'Admin' | 'Staff';
+export type ROLES =
+	| 'Admin'
+	| 'Checker'
+	| 'Staff'
+	| 'Authorizer'
+	| 'VendorAdmin'
+	| 'Vendor';
 
 export interface LoadingDispatch {
 	type: typeof LOADING;

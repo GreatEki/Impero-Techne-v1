@@ -45,6 +45,7 @@ const userReducer = (
 			};
 		case UserT.LOADING_FAIL:
 			return {
+				...state,
 				loading: false,
 				error: action.payload,
 			};
