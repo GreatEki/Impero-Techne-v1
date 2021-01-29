@@ -7,6 +7,8 @@ import {
 	getAllCities,
 } from 'appRedux/actions/MiscellaneousActions';
 import { RootStore } from 'appRedux/Store';
+import { numberWithCommas } from 'utils/numberWithCommas';
+
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -79,6 +81,13 @@ const AddMTOItem = () => {
 		setMtoStorageItems((mtoStorageItems) => [newItem, ...mtoStorageItems]);
 	};
 
+	const calcTotalPrice = (item: MTOITEMSI) => {
+		const totalPrice = item.unit_price * item.qty_required_to_buy;
+		const updatedItem = Object.assign({}, mtoItem, { total_price: totalPrice });
+		setMtoItem(updatedItem);
+		return totalPrice;
+	};
+
 	return (
 		<div>
 			<Row>
@@ -101,7 +110,6 @@ const AddMTOItem = () => {
 											handleFormChange('description', e.currentTarget.value)
 										}
 										size='large'
-										className='rounded'
 									/>
 								</Form.Item>
 							</Col>
@@ -120,7 +128,6 @@ const AddMTOItem = () => {
 											handleFormChange('voltage', e.currentTarget.value)
 										}
 										size='large'
-										className='rounded'
 									/>
 								</Form.Item>
 							</Col>
@@ -156,7 +163,6 @@ const AddMTOItem = () => {
 											handleFormChange('qty_required', e.currentTarget.value)
 										}
 										size='large'
-										className='rounded'
 									/>
 								</Form.Item>
 							</Col>
@@ -173,8 +179,8 @@ const AddMTOItem = () => {
 												e.currentTarget.value
 											)
 										}
+										onBlur={() => calcTotalPrice(mtoItem)}
 										size='large'
-										className='rounded'
 									/>
 								</Form.Item>
 							</Col>
@@ -190,29 +196,31 @@ const AddMTOItem = () => {
 									name='unit_price'
 									label={<strong>Unit Price</strong>}
 									rules={[{ required: true }]}>
-									<Select
-										showSearch={true}
-										optionFilterProp='children'
-										onChange={(value: string | number) =>
-											handleFormChange('unit_price', value)
-										}
+									<Input
+										prefix={'$'}
 										size='large'
-										placeholder='$'>
-										<Option value='unit1'>unit 1</Option>
-									</Select>
+										onBlur={() => calcTotalPrice(mtoItem)}
+										onChange={(e) =>
+											handleFormChange(
+												'unit_price',
+												parseInt(e.currentTarget.value)
+											)
+										}
+									/>
 								</Form.Item>
 							</Col>
 
 							<Col span={12}>
 								<Form.Item
-									name='total_price'
 									label={<strong>Total Price</strong>}
 									rules={[{ required: true }]}>
 									<Input
+										disabled
+										size='large'
 										onChange={(e) =>
 											handleFormChange('total_price', e.currentTarget.value)
 										}
-										placeholder='$ 0'
+										value={`$ ${numberWithCommas(mtoItem.total_price)}`}
 									/>
 								</Form.Item>
 							</Col>
@@ -228,13 +236,12 @@ const AddMTOItem = () => {
 									label={<strong>Seller's Country</strong>}
 									rules={[{ required: true }]}>
 									<Select
+										size='large'
 										showSearch={true}
 										optionFilterProp='children'
 										onChange={(value: string | number) =>
 											handleFormChange('sellers_country', value)
-										}
-										size='large'
-										placeholder=''>
+										}>
 										{countries ? (
 											countries.map((country) => (
 												<Fragment key={country.countryId}>

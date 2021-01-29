@@ -144,6 +144,15 @@ a {
 	width: 100% !important;
 }
 
+.form-input {
+	height: 50px !important;
+}
+
+.form-select {
+	-webkit-appearance: menulist-button;
+	height: 50px;
+}
+
 @media (min-width: 100px) and (max-width: 767px) {
 	.hide {
 		display: none !important
