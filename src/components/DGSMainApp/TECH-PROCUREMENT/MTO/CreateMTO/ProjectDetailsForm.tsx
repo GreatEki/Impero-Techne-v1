@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
@@ -18,6 +18,7 @@ import {
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 import { getAllProjects } from 'appRedux/actions/MiscellaneousActions';
+import { getAllClients } from 'appRedux/actions/adminModuleActions';
 import { RootStore } from 'appRedux/Store';
 
 const { Header, Content } = Layout;
@@ -34,13 +35,20 @@ const formLayout = {
 };
 
 const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
+	const [hasLoaded, setHasLoaded] = useState(false);
+
 	const dispatch = useDispatch();
 	useEffect(() => {
+		setHasLoaded(false);
 		dispatch(getAllProjects());
+		dispatch(getAllClients());
+		setHasLoaded(true);
+
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const { projects } = useSelector((state: RootStore) => state.miscellaneous);
+	const { clients } = useSelector((state: RootStore) => state.adminModule);
 	return (
 		<div>
 			<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -136,11 +144,18 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 												<Select
 													placeholder="Search for Client's Name"
 													size='large'>
-													<Option value='projectName'> Project Name </Option>
-													<Option value='projectName'>
-														{' '}
-														Project projectName{' '}
-													</Option>
+													{clients ? (
+														clients.map((client) => (
+															<Option value={client.clientId}>
+																{client.clientName}{' '}
+															</Option>
+														))
+													) : (
+														<>
+															{' '}
+															<Empty />{' '}
+														</>
+													)}
 												</Select>
 											</Form.Item>
 

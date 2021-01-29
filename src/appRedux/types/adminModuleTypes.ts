@@ -1,7 +1,5 @@
-import { LOADING_FAIL } from './userTypes';
-
 export const LOADING = 'LOADING';
-export const LOADING_FAL = 'LOADING_FAIL';
+export const LOADING_FAIL = 'LOADING_FAIL';
 export const GET_ALL_CLIENTS = 'GET_ALL_CLIENTS';
 
 export interface LoadingDispatch {

@@ -34,8 +34,6 @@ export const getAllProjects = () => async (
 	try {
 		const { data } = await AuthAxios.get('/api/v1/projects');
 
-		console.log(data);
-
 		dispatch({
 			type: GET_ALL_PROJECTS,
 			payload: data.data,

@@ -1,15 +1,17 @@
 import * as adminMT from '../types/adminModuleTypes';
 
 interface StateI {
+	loading: boolean;
 	clients: adminMT.ClientsI[];
 }
 
-const INITIAL_STATE = {
+const INITIAL_STATE: StateI = {
 	clients: [],
+	loading: false,
 };
 
 const adminModuleReducer = (
-	state = INITIAL_STATE,
+	state: StateI = INITIAL_STATE,
 	action: adminMT.adminModuleDispatchTypes
 ) => {
 	switch (action.type) {
