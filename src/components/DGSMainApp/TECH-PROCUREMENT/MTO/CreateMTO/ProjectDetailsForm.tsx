@@ -23,6 +23,7 @@ import {
 } from 'appRedux/actions/MiscellaneousActions';
 import { getAllClients } from 'appRedux/actions/adminModuleActions';
 import { RootStore } from 'appRedux/Store';
+import { ProjectInfoI } from 'appRedux/types/mtoTypes';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -37,18 +38,9 @@ const formLayout = {
 	},
 };
 
-interface ProjectDetailsI {
-	project_id: number;
-	client_id: number;
-	company_id: number;
-	discipline: string;
-	discipline_subType: string;
-	request_formName: string;
-}
-
 const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 	const [hasLoaded, setHasLoaded] = useState(false);
-	const [projectDetails, setProjectDetails] = useState<ProjectDetailsI>({
+	const [projectInfo, setProjectInfo] = useState<ProjectInfoI>({
 		project_id: 0,
 		client_id: 0,
 		company_id: 0,
@@ -70,17 +62,23 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
+	// Load in AllProject and AllCompanies from redux store display in form fields
 	const { projects, companies } = useSelector(
 		(state: RootStore) => state.miscellaneous
 	);
+
+	// Load in AllClients from redux store to display in form fields
 	const { clients } = useSelector((state: RootStore) => state.adminModule);
 
+	// Method handles the data entries of the form
 	const handleFormInputs = (key: string, value: string | number) => {
-		setProjectDetails({ ...projectDetails, [key]: value });
+		setProjectInfo({ ...projectInfo, [key]: value });
 	};
 
-	const handleSubmit = (projectDetails: ProjectDetailsI) => {
-		console.log(projectDetails);
+	// handles submit action
+	const handleSubmit = (projectInfo: ProjectInfoI) => {
+		console.log(projectInfo);
+		next();
 	};
 	return (
 		<div>
@@ -302,7 +300,7 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 												<Col span={4}>
 													<Form.Item>
 														<button
-															onClick={() => handleSubmit(projectDetails)}
+															onClick={() => handleSubmit(projectInfo)}
 															className='btn-xlg'>
 															{' '}
 															Continue{' '}
