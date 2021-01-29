@@ -20,9 +20,6 @@ export const getAllCountry = () => async (
 			payload: data.data,
 		});
 	} catch (err) {
-		if (err.response) {
-			console.log(err.response);
-		}
 		dispatch({
 			type: LOADING_FAIL,
 			payload: err.response ? err.response.data.message : err.message,

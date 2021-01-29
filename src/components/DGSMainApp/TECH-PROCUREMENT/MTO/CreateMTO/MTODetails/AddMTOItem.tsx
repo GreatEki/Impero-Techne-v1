@@ -1,7 +1,10 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input, Select, Row, Col, Empty } from 'antd';
-import { getAllStates } from 'appRedux/actions/MiscellaneousActions';
+import {
+	getAllStates,
+	getAllCountry,
+} from 'appRedux/actions/MiscellaneousActions';
 import { RootStore } from 'appRedux/Store';
 const { Option } = Select;
 const { TextArea } = Input;
@@ -46,7 +49,8 @@ const AddMTOItem = () => {
 
 	useEffect(() => {
 		(async () => {
-			dispatch(getAllStates());
+			await dispatch(getAllCountry());
+			await dispatch(getAllStates());
 		})();
 
 		//eslint-disable-next-line react-hooks/exhaustive-deps
@@ -61,7 +65,9 @@ const AddMTOItem = () => {
 		// eslint-disable-nextline react-hooks/exhaustive-deps
 	}, [mtoStorageItems]);
 
-	const { states } = useSelector((state: RootStore) => state.miscellaneous);
+	const { states, countries } = useSelector(
+		(state: RootStore) => state.miscellaneous
+	);
 
 	const handleFormChange = (key: string, value: string | number) => {
 		setMtoItem({ ...mtoItem, [key]: value });
@@ -227,7 +233,19 @@ const AddMTOItem = () => {
 										}
 										size='large'
 										placeholder=''>
-										<Option value='unit1'>America</Option>
+										{countries ? (
+											countries.map((country) => (
+												<Fragment key={country.countryId}>
+													<Option value={country.countryId}>
+														{country.countryName}
+													</Option>
+												</Fragment>
+											))
+										) : (
+											<>
+												<Empty />
+											</>
+										)}
 									</Select>
 								</Form.Item>
 							</Col>
