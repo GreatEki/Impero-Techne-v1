@@ -3,6 +3,7 @@ import {
 	GET_ALL_COMPANIES,
 	GET_ALL_COUNTRY,
 	GET_ALL_PROJECTS,
+	GET_ALL_STATES,
 	MiscellaneousDispatchTypes,
 } from '../types/miscellaneousTypes';
 import AuthAxios from 'config/AuthAxios';
@@ -66,6 +67,24 @@ export const getAllCompanies = () => async (
 		if (err.response) {
 			console.log(err.response);
 		}
+		dispatch({
+			type: LOADING_FAIL,
+			payload: err.response ? err.response.data.message : err.message,
+		});
+	}
+};
+
+export const getAllStates = () => async (
+	dispatch: Dispatch<MiscellaneousDispatchTypes>
+) => {
+	try {
+		const { data } = await AuthAxios.get('/api/v1/miscellaneous/GetAllState');
+
+		dispatch({
+			type: GET_ALL_STATES,
+			payload: data.data,
+		});
+	} catch (err) {
 		dispatch({
 			type: LOADING_FAIL,
 			payload: err.response ? err.response.data.message : err.message,

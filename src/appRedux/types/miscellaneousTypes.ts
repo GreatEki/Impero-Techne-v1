@@ -4,6 +4,7 @@ export const CLEAR_ERRORS = 'CLEAR_ERROR';
 export const GET_ALL_COUNTRY = 'GET_ALL_COUNTRY';
 export const GET_ALL_PROJECTS = 'GET_ALL_PROJECTS';
 export const GET_ALL_COMPANIES = 'GET_ALL_COMPANIES';
+export const GET_ALL_STATES = 'GET_ALL_STATES';
 
 export interface LoadingDispatch {
 	type: typeof LOADING;
@@ -26,6 +27,15 @@ export interface CountryI {
 export interface GetAllCountriesDispatch {
 	type: typeof GET_ALL_COUNTRY;
 	payload: CountryI[];
+}
+
+export interface States {
+	stateId: number;
+	stateName: string;
+}
+export interface GetAllStatesDispatch {
+	type: typeof GET_ALL_STATES;
+	payload: States[];
 }
 
 export interface ProjectsI {
@@ -56,4 +66,5 @@ export type MiscellaneousDispatchTypes =
 	| LoadingFailDispatch
 	| ClearErrorsDispatch
 	| GetAllProjectsDispatch
-	| GetAllCompaniesDispatch;
+	| GetAllCompaniesDispatch
+	| GetAllStatesDispatch;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pagination, Row, Col } from 'antd';
+import { FiMinusSquare } from 'react-icons/fi';
 
 const AddedItemsPanel = () => {
 	return (
@@ -55,6 +56,7 @@ const AddedItemsPanel = () => {
 						<td>
 							<span className='text-muted'></span>
 							<br />
+							<FiMinusSquare className='site-danger' />
 						</td>
 					</tr>
 				</tbody>

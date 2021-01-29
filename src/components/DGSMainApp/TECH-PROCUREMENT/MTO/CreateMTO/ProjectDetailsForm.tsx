@@ -53,11 +53,10 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		(async () => {
-			setHasLoaded(false);
 			await dispatch(getAllProjects());
 			await dispatch(getAllClients());
 			await dispatch(getAllCompanies());
-			await setHasLoaded(true);
+			setHasLoaded(true);
 		})();
 
 		//eslint-disable-next-line react-hooks/exhaustive-deps

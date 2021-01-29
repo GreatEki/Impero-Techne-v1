@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Form, Input, Select, Row, Col } from 'antd';
-
+import React, { useState, useEffect, Fragment } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Form, Input, Select, Row, Col, Empty } from 'antd';
+import { getAllStates } from 'appRedux/actions/MiscellaneousActions';
+import { RootStore } from 'appRedux/Store';
 const { Option } = Select;
 const { TextArea } = Input;
 
@@ -25,6 +27,7 @@ interface MTOITEMSI {
 }
 
 const AddMTOItem = () => {
+	const dispatch = useDispatch();
 	const [mtoItem, setMtoItem] = useState<MTOITEMSI>({
 		description: '',
 		voltage: '',
@@ -42,12 +45,23 @@ const AddMTOItem = () => {
 	const [mtoStorageItems, setMtoStorageItems] = useState<MTOITEMSI[]>([]);
 
 	useEffect(() => {
+		(async () => {
+			dispatch(getAllStates());
+		})();
+
+		//eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	// This useEffect updates local storage when mtoStorage is updated
+	useEffect(() => {
 		localStorage.setItem('mtoStorageItems', JSON.stringify(mtoStorageItems));
 		const mtoStorageQty = mtoStorageItems.length;
 		localStorage.setItem('mtoStorageQty', JSON.stringify(mtoStorageQty));
 
 		// eslint-disable-nextline react-hooks/exhaustive-deps
 	}, [mtoStorageItems]);
+
+	const { states } = useSelector((state: RootStore) => state.miscellaneous);
 
 	const handleFormChange = (key: string, value: string | number) => {
 		setMtoItem({ ...mtoItem, [key]: value });
@@ -109,6 +123,8 @@ const AddMTOItem = () => {
 									label={<strong>Unit </strong>}
 									rules={[{ required: true }]}>
 									<Select
+										showSearch={true}
+										optionFilterProp='children'
 										onChange={(value: string | number) =>
 											handleFormChange('unit', value)
 										}
@@ -167,6 +183,8 @@ const AddMTOItem = () => {
 									label={<strong>Unit Price</strong>}
 									rules={[{ required: true }]}>
 									<Select
+										showSearch={true}
+										optionFilterProp='children'
 										onChange={(value: string | number) =>
 											handleFormChange('unit_price', value)
 										}
@@ -202,6 +220,8 @@ const AddMTOItem = () => {
 									label={<strong>Seller's Country</strong>}
 									rules={[{ required: true }]}>
 									<Select
+										showSearch={true}
+										optionFilterProp='children'
 										onChange={(value: string | number) =>
 											handleFormChange('sellers_country', value)
 										}
@@ -218,12 +238,26 @@ const AddMTOItem = () => {
 									label={<strong>Seller's State</strong>}
 									rules={[{ required: true }]}>
 									<Select
+										showSearch={true}
+										optionFilterProp='children'
 										onChange={(value: string | number) =>
 											handleFormChange('sellers_state', value)
 										}
 										size='large'
 										placeholder=''>
-										<Option value='unit1'>New York </Option>
+										{states ? (
+											states.map((state) => (
+												<Fragment key={state.stateId}>
+													<Option value={state.stateId}>
+														{state.stateName}
+													</Option>
+												</Fragment>
+											))
+										) : (
+											<>
+												<Empty />
+											</>
+										)}
 									</Select>
 								</Form.Item>
 							</Col>
