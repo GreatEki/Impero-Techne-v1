@@ -5,6 +5,7 @@ interface STATEI {
 	errors: string | null;
 	countries: MiscT.CountryI[];
 	projects: MiscT.ProjectsI[];
+	companies: MiscT.CompaniesI[];
 }
 
 const INITIAL_STATE: STATEI = {
@@ -12,6 +13,7 @@ const INITIAL_STATE: STATEI = {
 	errors: null,
 	countries: [],
 	projects: [],
+	companies: [],
 };
 
 const miscellaneousReducer = (
@@ -30,6 +32,11 @@ const miscellaneousReducer = (
 			return {
 				...state,
 				projects: action.payload,
+			};
+		case MiscT.GET_ALL_COMPANIES:
+			return {
+				...state,
+				companies: action.payload,
 			};
 		default:
 			return state;

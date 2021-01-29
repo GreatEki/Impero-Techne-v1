@@ -16,8 +16,6 @@ export const getAllClients = () => async (
 			type: GET_ALL_CLIENTS,
 			payload: data,
 		});
-
-		console.log(data);
 	} catch (err) {
 		if (err.response) {
 			console.log(err.response);

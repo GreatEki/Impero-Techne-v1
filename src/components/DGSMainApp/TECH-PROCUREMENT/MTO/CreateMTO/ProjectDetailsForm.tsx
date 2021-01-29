@@ -17,7 +17,10 @@ import {
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
-import { getAllProjects } from 'appRedux/actions/MiscellaneousActions';
+import {
+	getAllProjects,
+	getAllCompanies,
+} from 'appRedux/actions/MiscellaneousActions';
 import { getAllClients } from 'appRedux/actions/adminModuleActions';
 import { RootStore } from 'appRedux/Store';
 
@@ -39,15 +42,20 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 
 	const dispatch = useDispatch();
 	useEffect(() => {
-		setHasLoaded(false);
-		dispatch(getAllProjects());
-		dispatch(getAllClients());
-		setHasLoaded(true);
+		(async () => {
+			setHasLoaded(false);
+			await dispatch(getAllProjects());
+			await dispatch(getAllClients());
+			await dispatch(getAllCompanies());
+			await setHasLoaded(true);
+		})();
 
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	const { projects } = useSelector((state: RootStore) => state.miscellaneous);
+	const { projects, companies } = useSelector(
+		(state: RootStore) => state.miscellaneous
+	);
 	const { clients } = useSelector((state: RootStore) => state.adminModule);
 	return (
 		<div>
@@ -116,6 +124,8 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 												label={<strong> Project Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
+													showSearch={true}
+													optionFilterProp='children'
 													placeholder='Search for Project Name'
 													size='large'>
 													{projects ? (
@@ -142,6 +152,8 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 												label={<strong> Client's Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
+													showSearch={true}
+													optionFilterProp='children'
 													placeholder="Search for Client's Name"
 													size='large'>
 													{clients ? (
@@ -165,13 +177,24 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 												label={<strong> Company Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
+													showSearch={true}
+													optionFilterProp='children'
 													placeholder='Search for Company Name'
 													size='large'>
-													<Option value='projectName'> Project Name </Option>
-													<Option value='projectName'>
-														{' '}
-														Project projectName{' '}
-													</Option>
+													{companies ? (
+														companies.map((company) => (
+															<Fragment key={company.companyId}>
+																<Option value={company.companyId}>
+																	{' '}
+																	{company.companyName}{' '}
+																</Option>
+															</Fragment>
+														))
+													) : (
+														<>
+															<Empty />
+														</>
+													)}
 												</Select>
 											</Form.Item>
 
@@ -203,11 +226,18 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 												name='discipline_subType'
 												label={<strong> Discipline Sub Type </strong>}
 												rules={[{ required: true }]}>
-												<Select placeholder='Select---' size='large'>
-													<Option value='projectName'> Project Name </Option>
-													<Option value='projectName1'>
+												<Select
+													showSearch={true}
+													optionFilterProp='children'
+													placeholder='Select---'
+													size='large'>
+													<Option value='sub-discipline1'>
 														{' '}
-														Project projectName{' '}
+														sub-discipline1
+													</Option>
+													<Option value='sub-discipline2'>
+														{' '}
+														sub-discipline1
 													</Option>
 												</Select>
 											</Form.Item>
