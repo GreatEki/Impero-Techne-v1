@@ -1,7 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Row, Col } from 'antd';
+import { RootStore } from 'appRedux/Store';
 
 const ProjectInfo = () => {
+	const { projectInfo } = useSelector((state: RootStore) => state.mto);
+
 	return (
 		<div>
 			<Row gutter={50}>
@@ -13,7 +17,7 @@ const ProjectInfo = () => {
 					<Row gutter={50} className='my-2'>
 						<Col span={24}>
 							<p className='txt-small'>Project Name </p>
-							<strong>Personnel Protective Equipments (PPE) </strong>
+							<strong> {projectInfo ? projectInfo.project_name : null} </strong>
 						</Col>
 					</Row>
 					<Row gutter={50} className='my-2'>
@@ -23,11 +27,11 @@ const ProjectInfo = () => {
 						</Col>
 						<Col sm={{ span: 12 }} md={{ span: 12 }} lg={{ span: 8 }}>
 							<p className='txt-small'>Client</p>
-							<strong>Nigerian Gas Company</strong>
+							<strong>{projectInfo ? projectInfo.client_name : null}</strong>
 						</Col>
 						<Col sm={{ span: 12 }} md={{ span: 12 }} lg={{ span: 8 }}>
 							<p className='txt-small'>Company</p>
-							<strong>DGS Integrated Products Limited</strong>
+							<strong>{projectInfo ? projectInfo.company_name : null}</strong>
 						</Col>
 					</Row>
 				</Col>

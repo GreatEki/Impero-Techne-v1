@@ -1,9 +1,9 @@
 export const ADD_PROJECT_INFO = 'ADD_PROJECT_INFO';
 
 export interface ProjectInfoI {
-	project_id: number;
-	client_id: number;
-	company_id: number;
+	project_name: string;
+	client_name: string;
+	company_name: string;
 	discipline: string;
 	discipline_subType: string;
 	request_formName: string;

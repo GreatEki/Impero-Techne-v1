@@ -23,6 +23,7 @@ import {
 } from 'appRedux/actions/MiscellaneousActions';
 import { getAllClients } from 'appRedux/actions/adminModuleActions';
 import { RootStore } from 'appRedux/Store';
+import { addProjectInfo } from 'appRedux/actions/mtoActions';
 import { ProjectInfoI } from 'appRedux/types/mtoTypes';
 
 const { Header, Content } = Layout;
@@ -41,9 +42,9 @@ const formLayout = {
 const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 	const [hasLoaded, setHasLoaded] = useState(false);
 	const [projectInfo, setProjectInfo] = useState<ProjectInfoI>({
-		project_id: 0,
-		client_id: 0,
-		company_id: 0,
+		project_name: '',
+		client_name: '',
+		company_name: '',
 		discipline: '',
 		discipline_subType: '',
 		request_formName: '',
@@ -77,7 +78,8 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 
 	// handles submit action
 	const handleSubmit = (projectInfo: ProjectInfoI) => {
-		console.log(projectInfo);
+		// console.log(projectInfo);
+		dispatch(addProjectInfo(projectInfo, dispatch));
 		next();
 	};
 	return (
@@ -143,12 +145,12 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 											</p>
 
 											<Form.Item
-												name='project_id'
+												name='project_name'
 												label={<strong> Project Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
 													onChange={(value: number) =>
-														handleFormInputs('project_id', value)
+														handleFormInputs('project_name', value)
 													}
 													showSearch={true}
 													optionFilterProp='children'
@@ -157,7 +159,7 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 													{projects ? (
 														projects.map((project) => (
 															<Fragment key={project.projectId}>
-																<Option value={project.projectId}>
+																<Option value={project.projectName}>
 																	{' '}
 																	{project.projectName}{' '}
 																</Option>
@@ -174,12 +176,12 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 
 											{/*  */}
 											<Form.Item
-												name='client_id'
+												name='client_name'
 												label={<strong> Client's Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
 													onChange={(value: number) =>
-														handleFormInputs('client_id', value)
+														handleFormInputs('client_name', value)
 													}
 													showSearch={true}
 													optionFilterProp='children'
@@ -187,7 +189,9 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 													size='large'>
 													{clients ? (
 														clients.map((client) => (
-															<Option value={client.clientId}>
+															<Option
+																key={client.clientId}
+																value={client.clientName}>
 																{client.clientName}{' '}
 															</Option>
 														))
@@ -202,12 +206,12 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 
 											{/*  */}
 											<Form.Item
-												name='company_id'
+												name='company_name'
 												label={<strong> Company Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
 													onChange={(value: number) =>
-														handleFormInputs('company_id', value)
+														handleFormInputs('company_name', value)
 													}
 													showSearch={true}
 													optionFilterProp='children'
@@ -216,7 +220,7 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 													{companies ? (
 														companies.map((company) => (
 															<Fragment key={company.companyId}>
-																<Option value={company.companyId}>
+																<Option value={company.companyName}>
 																	{' '}
 																	{company.companyName}{' '}
 																</Option>
