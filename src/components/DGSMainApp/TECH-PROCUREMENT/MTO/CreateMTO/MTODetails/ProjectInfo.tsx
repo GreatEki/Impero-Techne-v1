@@ -26,7 +26,7 @@ const ProjectInfo = () => {
 							<strong>Nigerian Gas Company</strong>
 						</Col>
 						<Col sm={{ span: 12 }} md={{ span: 12 }} lg={{ span: 8 }}>
-							<p className='txt-small'>Client</p>
+							<p className='txt-small'>Company</p>
 							<strong>DGS Integrated Products Limited</strong>
 						</Col>
 					</Row>

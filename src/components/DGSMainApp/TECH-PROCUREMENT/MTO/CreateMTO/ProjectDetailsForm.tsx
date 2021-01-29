@@ -37,8 +37,25 @@ const formLayout = {
 	},
 };
 
+interface ProjectDetailsI {
+	project_id: number;
+	client_id: number;
+	company_id: number;
+	discipline: string;
+	discipline_subType: string;
+	request_formName: string;
+}
+
 const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 	const [hasLoaded, setHasLoaded] = useState(false);
+	const [projectDetails, setProjectDetails] = useState<ProjectDetailsI>({
+		project_id: 0,
+		client_id: 0,
+		company_id: 0,
+		discipline: '',
+		discipline_subType: '',
+		request_formName: '',
+	});
 
 	const dispatch = useDispatch();
 	useEffect(() => {
@@ -57,6 +74,14 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 		(state: RootStore) => state.miscellaneous
 	);
 	const { clients } = useSelector((state: RootStore) => state.adminModule);
+
+	const handleFormInputs = (key: string, value: string | number) => {
+		setProjectDetails({ ...projectDetails, [key]: value });
+	};
+
+	const handleSubmit = (projectDetails: ProjectDetailsI) => {
+		console.log(projectDetails);
+	};
 	return (
 		<div>
 			<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -120,10 +145,13 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 											</p>
 
 											<Form.Item
-												name='project_name'
+												name='project_id'
 												label={<strong> Project Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
+													onChange={(value: number) =>
+														handleFormInputs('project_id', value)
+													}
 													showSearch={true}
 													optionFilterProp='children'
 													placeholder='Search for Project Name'
@@ -148,10 +176,13 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 
 											{/*  */}
 											<Form.Item
-												name='client_name'
+												name='client_id'
 												label={<strong> Client's Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
+													onChange={(value: number) =>
+														handleFormInputs('client_id', value)
+													}
 													showSearch={true}
 													optionFilterProp='children'
 													placeholder="Search for Client's Name"
@@ -173,10 +204,13 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 
 											{/*  */}
 											<Form.Item
-												name='company_name'
+												name='company_id'
 												label={<strong> Company Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
+													onChange={(value: number) =>
+														handleFormInputs('company_id', value)
+													}
 													showSearch={true}
 													optionFilterProp='children'
 													placeholder='Search for Company Name'
@@ -199,7 +233,10 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 											</Form.Item>
 
 											<Form.Item name='discipline' label='Discipline'>
-												<Radio.Group>
+												<Radio.Group
+													onChange={(e) =>
+														handleFormInputs('discipline', e.target.value)
+													}>
 													<Radio key='electrical-mto' value='electrical mto'>
 														{' '}
 														<strong>Electrical MTO</strong>{' '}
@@ -227,6 +264,9 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 												label={<strong> Discipline Sub Type </strong>}
 												rules={[{ required: true }]}>
 												<Select
+													onChange={(value: number) =>
+														handleFormInputs('discipline_subType', value)
+													}
 													showSearch={true}
 													optionFilterProp='children'
 													placeholder='Select---'
@@ -247,13 +287,23 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 												name='requestForm_name'
 												label={<strong> Name this Request Form </strong>}
 												rules={[{ required: true }]}>
-												<Input size='large' />
+												<Input
+													size='large'
+													onChange={(e) =>
+														handleFormInputs(
+															'request_formName',
+															e.currentTarget.value
+														)
+													}
+												/>
 											</Form.Item>
 
 											<Row>
 												<Col span={4}>
 													<Form.Item>
-														<button onClick={next} className='btn-xlg'>
+														<button
+															onClick={() => handleSubmit(projectDetails)}
+															className='btn-xlg'>
 															{' '}
 															Continue{' '}
 														</button>

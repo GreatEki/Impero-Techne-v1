@@ -58,8 +58,6 @@ export const getAllCompanies = () => async (
 			'/api/v1/miscellaneous/GetAllCompanyQueries'
 		);
 
-		console.log(data);
-
 		dispatch({
 			type: GET_ALL_COMPANIES,
 			payload: data.data,
