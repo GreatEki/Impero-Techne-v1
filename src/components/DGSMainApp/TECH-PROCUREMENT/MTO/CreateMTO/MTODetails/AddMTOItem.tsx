@@ -4,6 +4,7 @@ import { Form, Input, Select, Row, Col, Empty } from 'antd';
 import {
 	getAllStates,
 	getAllCountry,
+	getAllCities,
 } from 'appRedux/actions/MiscellaneousActions';
 import { RootStore } from 'appRedux/Store';
 const { Option } = Select;
@@ -51,6 +52,7 @@ const AddMTOItem = () => {
 		(async () => {
 			await dispatch(getAllCountry());
 			await dispatch(getAllStates());
+			await dispatch(getAllCities());
 		})();
 
 		//eslint-disable-next-line react-hooks/exhaustive-deps
@@ -65,7 +67,7 @@ const AddMTOItem = () => {
 		// eslint-disable-nextline react-hooks/exhaustive-deps
 	}, [mtoStorageItems]);
 
-	const { states, countries } = useSelector(
+	const { states, countries, cities } = useSelector(
 		(state: RootStore) => state.miscellaneous
 	);
 
@@ -292,11 +294,20 @@ const AddMTOItem = () => {
 									rules={[{ required: true }]}>
 									<Select
 										size='large'
-										placeholder='$'
 										onChange={(value: string | number) =>
 											handleFormChange('sellers_city', value)
 										}>
-										<Option value='unit1'>Brooklyn</Option>
+										{cities ? (
+											cities.map((city) => (
+												<Fragment key={city.cityId}>
+													<Option value={city.cityId}>{city.cityName}</Option>
+												</Fragment>
+											))
+										) : (
+											<Fragment>
+												<Empty />
+											</Fragment>
+										)}
 									</Select>
 								</Form.Item>
 

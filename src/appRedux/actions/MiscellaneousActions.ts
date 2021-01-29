@@ -1,5 +1,6 @@
 import { Dispatch } from 'redux';
 import {
+	GET_ALL_CITIES,
 	GET_ALL_COMPANIES,
 	GET_ALL_COUNTRY,
 	GET_ALL_PROJECTS,
@@ -79,6 +80,25 @@ export const getAllStates = () => async (
 
 		dispatch({
 			type: GET_ALL_STATES,
+			payload: data.data,
+		});
+	} catch (err) {
+		dispatch({
+			type: LOADING_FAIL,
+			payload: err.response ? err.response.data.message : err.message,
+		});
+	}
+};
+
+export const getAllCities = () => async (
+	dispatch: Dispatch<MiscellaneousDispatchTypes>
+) => {
+	try {
+		const { data } = await AuthAxios.get('/api/v1/miscellaneous/GetAllCity');
+
+		console.log(data);
+		dispatch({
+			type: GET_ALL_CITIES,
 			payload: data.data,
 		});
 	} catch (err) {

@@ -5,6 +5,7 @@ export const GET_ALL_COUNTRY = 'GET_ALL_COUNTRY';
 export const GET_ALL_PROJECTS = 'GET_ALL_PROJECTS';
 export const GET_ALL_COMPANIES = 'GET_ALL_COMPANIES';
 export const GET_ALL_STATES = 'GET_ALL_STATES';
+export const GET_ALL_CITIES = 'GET_ALL_CITIES';
 
 export interface LoadingDispatch {
 	type: typeof LOADING;
@@ -38,6 +39,16 @@ export interface GetAllStatesDispatch {
 	payload: States[];
 }
 
+export interface CitiesI {
+	cityId: number;
+	cityName: string;
+}
+
+export interface GetAllCitiesDispatch {
+	type: typeof GET_ALL_CITIES;
+	payload: CitiesI[];
+}
+
 export interface ProjectsI {
 	projectId: number;
 	projectName: string;
@@ -67,4 +78,5 @@ export type MiscellaneousDispatchTypes =
 	| ClearErrorsDispatch
 	| GetAllProjectsDispatch
 	| GetAllCompaniesDispatch
-	| GetAllStatesDispatch;
+	| GetAllStatesDispatch
+	| GetAllCitiesDispatch;
