@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Fragment, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import {
 	Layout,
 	Avatar,
 	Dropdown,
-	Menu,
+	Empty,
 	Card,
 	Form,
 	Row,
@@ -16,6 +17,8 @@ import {
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
+import { getAllProjects } from 'appRedux/actions/MiscellaneousActions';
+import { RootStore } from 'appRedux/Store';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -31,6 +34,13 @@ const formLayout = {
 };
 
 const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
+	const dispatch = useDispatch();
+	useEffect(() => {
+		dispatch(getAllProjects());
+		//eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const { projects } = useSelector((state: RootStore) => state.miscellaneous);
 	return (
 		<div>
 			<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -100,11 +110,21 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 												<Select
 													placeholder='Search for Project Name'
 													size='large'>
-													<Option value='projectName'> Project Name </Option>
-													<Option value='projectName'>
-														{' '}
-														Project projectName{' '}
-													</Option>
+													{projects ? (
+														projects.map((project) => (
+															<Fragment key={project.projectId}>
+																<Option value={project.projectId}>
+																	{' '}
+																	{project.projectName}{' '}
+																</Option>
+															</Fragment>
+														))
+													) : (
+														<>
+															{' '}
+															<Empty />{' '}
+														</>
+													)}
 												</Select>
 											</Form.Item>
 
