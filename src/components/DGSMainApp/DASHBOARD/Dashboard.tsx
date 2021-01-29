@@ -4,6 +4,7 @@ import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 import * as TiIcons from 'react-icons/ti';
 import Notifications from './Notifications';
 import RecentlyOpened from './RecentlyOpened';
+import RequestStatistics from './RequestStatistics';
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -48,24 +49,15 @@ const Dashboard: React.FC = () => {
 					}}>
 					<Row gutter={50}>
 						{/* ====== Left Grid ======  */}
-						<Col xs={24} md={24} lg={12}>
-							<section className='d-flex justify-content-between'>
-								<strong>
-									<TiIcons.TiChartArea className='site-primary' /> Request
-									Statistics
-								</strong>
-								<div>
-									<strong className='muted-font'> Total Requests </strong>
-									<strong> 20 </strong>
-								</div>
-							</section>
+						<Col xs={24} md={24} lg={14}>
+							<RequestStatistics />
 
 							<Notifications />
 						</Col>
 						{/* ====== End of Left Grid ======  */}
 
 						{/* ====== Right Grid ====== */}
-						<Col xs={24} md={24} lg={12}>
+						<Col xs={24} md={24} lg={10}>
 							<RecentlyOpened />
 						</Col>
 						{/* ====== End of  Right Grid ====== */}
