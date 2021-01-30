@@ -1,4 +1,3 @@
-import { addMtoStorageItem } from 'appRedux/actions/mtoActions';
 import * as MtoT from 'appRedux/types/mtoTypes';
 
 interface StateI {
@@ -31,6 +30,12 @@ const mtoReducer = (
 			};
 
 		case MtoT.ADD_MTOSTORAGE_ITEM:
+			return {
+				...state,
+				mtoStorageItems: action.payload,
+			};
+
+		case MtoT.REMOVE_MTOSTORAGE_ITEM:
 			return {
 				...state,
 				mtoStorageItems: action.payload,

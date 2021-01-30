@@ -5,6 +5,7 @@ import {
 	ProjectInfoI,
 	MtoStorageItemI,
 	ADD_MTOSTORAGE_ITEM,
+	REMOVE_MTOSTORAGE_ITEM,
 } from '../types/mtoTypes';
 
 export const addProjectInfo = (
@@ -24,6 +25,15 @@ export const addMtoStorageItem = (storageItem: MtoStorageItemI[]) => (
 ) => {
 	dispatch({
 		type: ADD_MTOSTORAGE_ITEM,
+		payload: storageItem,
+	});
+};
+
+export const removeMtoStorageItem = (storageItem: MtoStorageItemI[]) => (
+	dispatch: Dispatch<MtoDispatchTypes>
+) => {
+	dispatch({
+		type: REMOVE_MTOSTORAGE_ITEM,
 		payload: storageItem,
 	});
 };

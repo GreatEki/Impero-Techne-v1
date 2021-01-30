@@ -1,11 +1,13 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Row, Col, Empty } from 'antd';
 import { FiMinusSquare } from 'react-icons/fi';
 import { RootStore } from 'appRedux/Store';
 import { MtoStorageItemI } from 'appRedux/types/mtoTypes';
+import { removeMtoStorageItem } from 'appRedux/actions/mtoActions';
 
 const AddedItemsPanel = () => {
+	const dispatch = useDispatch();
 	const [store, setStore] = useState<MtoStorageItemI[]>([]);
 	const { mtoStorageItems } = useSelector((state: RootStore) => state.mto);
 
@@ -14,6 +16,12 @@ const AddedItemsPanel = () => {
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [mtoStorageItems]);
 
+	const removeItem = (theItem: MtoStorageItemI) => {
+		const filteredItems = store.filter(
+			(item) => item.itemId !== theItem.itemId
+		);
+		dispatch(removeMtoStorageItem(filteredItems));
+	};
 	return (
 		<div className='table-responsive'>
 			<table className='table table-borderless table-striped'>
@@ -65,7 +73,7 @@ const AddedItemsPanel = () => {
 									<br />
 									<strong>$ {item.total_price}</strong>
 								</td>
-								<td>
+								<td onClick={() => removeItem(item)}>
 									<span className='text-muted'></span>
 									<br />
 									<FiMinusSquare className='site-danger' />

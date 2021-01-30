@@ -1,5 +1,6 @@
 export const ADD_PROJECT_INFO = 'ADD_PROJECT_INFO';
 export const ADD_MTOSTORAGE_ITEM = 'ADD_MTOSTORAGE_ITEM';
+export const REMOVE_MTOSTORAGE_ITEM = 'REMOVE_MTOSTORAGE_ITEM';
 
 export interface ProjectInfoI {
 	project_name: string;
@@ -35,6 +36,12 @@ export interface AddMtoStorageItemDispatch {
 	payload: MtoStorageItemI[];
 }
 
+export interface RemoveMtoStorageItemDispatch {
+	type: typeof REMOVE_MTOSTORAGE_ITEM;
+	payload: MtoStorageItemI[];
+}
+
 export type MtoDispatchTypes =
 	| AddProjectInfoDispatch
-	| AddMtoStorageItemDispatch;
+	| AddMtoStorageItemDispatch
+	| RemoveMtoStorageItemDispatch;
