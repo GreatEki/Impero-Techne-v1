@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect, Fragment, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import * as AntIcons from 'react-icons/ai';
 import {
@@ -10,11 +11,15 @@ import {
 	Input,
 	Form,
 	Dropdown,
-	Menu,
 	Select,
 	Radio,
 	Space,
+	Empty,
 } from 'antd';
+import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
+import { getAllClients } from 'appRedux/actions/adminModuleActions';
+import { getAllProjects } from 'appRedux/actions/MiscellaneousActions';
+import { RootStore } from 'appRedux/Store';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -30,16 +35,24 @@ interface Props {
 }
 
 const ProjectDetailForm: React.FC<Props> = ({ next }) => {
-	const menu = (
-		<Menu>
-			<Menu.Item>
-				<Link to='#'>View Profile</Link>
-			</Menu.Item>
-			<Menu.Item>
-				<Link to='#'>Log Out</Link>
-			</Menu.Item>
-		</Menu>
-	);
+	const dispatch = useDispatch();
+
+	const [formState, setFormState] = useState();
+
+	useEffect(() => {
+		(async () => {
+			await dispatch(getAllClients());
+			await dispatch(getAllProjects());
+		})();
+
+		//eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	// Load in AllProject from redux store display in form fields
+	const { projects } = useSelector((state: RootStore) => state.miscellaneous);
+
+	// Load in AllClients from redux store to display in form fields
+	const { clients } = useSelector((state: RootStore) => state.adminModule);
 
 	return (
 		<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -65,7 +78,10 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 						<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
 						<Space size='middle'>
 							<span>Gift Okobia </span>
-							<Dropdown overlay={menu} placement='bottomCenter' arrow>
+							<Dropdown
+								overlay={<UserProfileMenu />}
+								placement='bottomCenter'
+								arrow>
 								<img
 									src='/icons/chevron-down.svg'
 									className='ml-4'
@@ -122,7 +138,21 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 											<Select
 												size='large'
 												placeholder='Search for a Project Name'>
-												<Option value='project1'>Project1</Option>
+												{projects ? (
+													projects.map((project) => (
+														<Fragment key={project.projectId}>
+															<Option value={project.projectName}>
+																{' '}
+																{project.projectName}{' '}
+															</Option>
+														</Fragment>
+													))
+												) : (
+													<>
+														{' '}
+														<Empty />{' '}
+													</>
+												)}
 											</Select>
 										</Form.Item>
 
@@ -136,7 +166,20 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 											<Select
 												size='large'
 												placeholder='Search for a Project Name'>
-												<Option value='client1'>Client1</Option>
+												{clients ? (
+													clients.map((client) => (
+														<Option
+															key={client.clientId}
+															value={client.clientName}>
+															{client.clientName}{' '}
+														</Option>
+													))
+												) : (
+													<>
+														{' '}
+														<Empty />{' '}
+													</>
+												)}
 											</Select>
 										</Form.Item>
 
