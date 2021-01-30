@@ -54,7 +54,7 @@ const AddMTOItem: React.FC = () => {
 	useEffect(() => {
 		dispatch(addMtoStorageItem(mtoStorageItems));
 
-		// eslint-disable-nextline react-hooks/exhaustive-deps
+		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [mtoStorageItems]);
 
 	const { states, countries, cities } = useSelector(
@@ -66,8 +66,11 @@ const AddMTOItem: React.FC = () => {
 	};
 
 	const handleSubmitItem = (theItem: MtoStorageItemI) => {
+		// Generate a unique id for each item added to the AddedItems Panel
 		const itemId = uuidv4();
+		// Update the item with the id
 		const updatedItem = Object.assign({}, theItem, { itemId });
+		// Add item to MTO Storage.
 		setMtoStorageItems((mtoStorageItems) => [updatedItem, ...mtoStorageItems]);
 		message.success('MTO Item Added Successfully');
 		setMtoItem({
