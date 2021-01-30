@@ -54,6 +54,14 @@ const ProductDetailsPanel = () => {
 			...productStorageItems,
 		]);
 		message.success('Product Added Successfully');
+		setFormState({
+			itemId: '',
+			description: '',
+			quantity: 0,
+			unit: '',
+			unit_cost: 0,
+			estimated_cost: 0,
+		});
 	};
 	return (
 		<>
@@ -70,6 +78,7 @@ const ProductDetailsPanel = () => {
 										</strong>
 									}>
 									<Input
+										value={formState.description}
 										onChange={(e) =>
 											handleFormChange('description', e.currentTarget.value)
 										}
@@ -89,6 +98,7 @@ const ProductDetailsPanel = () => {
 										</strong>
 									}>
 									<Input
+										value={formState.quantity}
 										onChange={(e) =>
 											handleFormChange('quantity', e.currentTarget.value)
 										}
@@ -107,6 +117,7 @@ const ProductDetailsPanel = () => {
 										</strong>
 									}>
 									<Select
+										value={formState.unit}
 										onChange={(value: string) =>
 											handleFormChange('unit', value)
 										}
@@ -127,6 +138,7 @@ const ProductDetailsPanel = () => {
 										</strong>
 									}>
 									<Input
+										value={formState.unit_cost}
 										onChange={(e) =>
 											handleFormChange('unit_cost', e.currentTarget.value)
 										}
