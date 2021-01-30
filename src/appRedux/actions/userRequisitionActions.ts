@@ -4,6 +4,7 @@ import {
 	userReq_ProjectInfoI,
 	ADD_PROJECT_INFO,
 	ADD_PRODUCTSTORAGE_ITEM,
+	REMOVE_PRODUCTSTORAGE_ITEM,
 	ProductStorageItemI,
 } from '../types/userRequisitionTypes';
 
@@ -21,6 +22,15 @@ export const addItemToProductStorageItems = (
 ) => (dispatch: Dispatch<userRequisitionDispatchTypes>) => {
 	dispatch({
 		type: ADD_PRODUCTSTORAGE_ITEM,
+		payload: storageItems,
+	});
+};
+
+export const removeItemfromProductStorageItems = (
+	storageItems: ProductStorageItemI[]
+) => (dispatch: Dispatch<userRequisitionDispatchTypes>) => {
+	dispatch({
+		type: REMOVE_PRODUCTSTORAGE_ITEM,
 		payload: storageItems,
 	});
 };

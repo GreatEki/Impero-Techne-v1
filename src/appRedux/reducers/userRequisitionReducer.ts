@@ -31,6 +31,12 @@ const userRequisitionReducer = (
 				...state,
 				productStorageItems: action.payload,
 			};
+
+		case userReqT.REMOVE_PRODUCTSTORAGE_ITEM:
+			return {
+				...state,
+				productStorageItems: action.payload,
+			};
 		default:
 			return state;
 	}

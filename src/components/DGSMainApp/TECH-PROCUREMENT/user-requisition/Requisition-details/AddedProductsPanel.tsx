@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Row, Col, Empty } from 'antd';
 import { ProductStorageItemI } from 'appRedux/types/userRequisitionTypes';
 import { RootStore } from 'appRedux/Store';
 import { numberWithCommas } from 'utils/numberWithCommas';
+import { FiMinusSquare } from 'react-icons/fi';
+import { removeItemfromProductStorageItems } from 'appRedux/actions/userRequisitionActions';
 
 const AddedProductsPanel = () => {
+	const dispatch = useDispatch();
 	const [storeItems, setStoreItems] = useState<ProductStorageItemI[]>([]);
 
 	const { productStorageItems } = useSelector(
@@ -15,11 +18,19 @@ const AddedProductsPanel = () => {
 	useEffect(() => {
 		setStoreItems(productStorageItems);
 	}, [productStorageItems]);
+
+	const removeItem = (theItem: ProductStorageItemI) => {
+		const filteredItems = storeItems.filter(
+			(item) => item.itemId !== theItem.itemId
+		);
+		dispatch(removeItemfromProductStorageItems(filteredItems));
+	};
 	return (
 		<div className='table-responsive'>
 			<table className='table table-borderless table-striped'>
 				<thead>
 					<tr>
+						<th></th>
 						<th></th>
 						<th></th>
 						<th></th>
@@ -52,6 +63,11 @@ const AddedProductsPanel = () => {
 									<span className='text-muted'>Estimated Cost</span>
 									<br />
 									<strong>{numberWithCommas(item.estimated_cost)}</strong>
+								</td>
+								<td onClick={() => removeItem(item)}>
+									<span className='text-muted'></span>
+									<br />
+									<FiMinusSquare className='site-danger' />
 								</td>
 							</tr>
 						))
