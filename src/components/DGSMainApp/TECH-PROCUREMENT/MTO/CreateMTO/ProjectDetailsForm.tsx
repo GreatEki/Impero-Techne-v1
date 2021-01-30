@@ -235,6 +235,7 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 
 											<Form.Item name='discipline' label='Discipline'>
 												<Radio.Group
+													size='large'
 													onChange={(e) =>
 														handleFormInputs('discipline', e.target.value)
 													}>

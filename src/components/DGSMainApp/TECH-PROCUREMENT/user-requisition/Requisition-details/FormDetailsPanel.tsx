@@ -1,6 +1,11 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Row, Col } from 'antd';
+import { RootStore } from 'appRedux/Store';
 const FormDetailsPanel = () => {
+	const { userReq_ProjectInfo } = useSelector(
+		(state: RootStore) => state.userRequisition
+	);
 	return (
 		<div>
 			<Row gutter={50}>
@@ -8,17 +13,23 @@ const FormDetailsPanel = () => {
 					<Row gutter={50} className='my-2'>
 						<Col span={12}>
 							<p className='txt-small'>Request Title</p>
-							<strong>Personnel Protective Equipments (PPE) </strong>
+							<strong>
+								{userReq_ProjectInfo ? userReq_ProjectInfo.request_title : null}
+							</strong>
 						</Col>
 						<Col span={12}>
 							<p className='txt-small'>Project</p>
-							<strong>Sapele Gas Plant</strong>
+							<strong>
+								{userReq_ProjectInfo ? userReq_ProjectInfo.project_name : null}
+							</strong>
 						</Col>
 					</Row>
 					<Row gutter={50} className='my-2'>
 						<Col span={12}>
 							<p className='txt-small'>Client</p>
-							<strong>Seplat</strong>
+							<strong>
+								{userReq_ProjectInfo ? userReq_ProjectInfo.client_name : null}
+							</strong>
 						</Col>
 					</Row>
 				</Col>

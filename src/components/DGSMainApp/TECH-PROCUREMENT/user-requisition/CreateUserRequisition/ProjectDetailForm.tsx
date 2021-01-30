@@ -22,6 +22,7 @@ import { getAllClients } from 'appRedux/actions/adminModuleActions';
 import { getAllProjects } from 'appRedux/actions/MiscellaneousActions';
 import { RootStore } from 'appRedux/Store';
 import { userReq_ProjectInfoI } from 'appRedux/types/userRequisitionTypes';
+import { addUserReqProjectInfo } from 'appRedux/actions/userRequisitionActions';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -67,7 +68,8 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 	};
 
 	const handleSubmit = (formState: userReq_ProjectInfoI) => {
-		console.log(formState);
+		dispatch(addUserReqProjectInfo(formState));
+		next();
 	};
 
 	return (
