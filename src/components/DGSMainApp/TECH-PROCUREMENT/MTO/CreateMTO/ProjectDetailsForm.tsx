@@ -40,7 +40,6 @@ const formLayout = {
 };
 
 const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
-	const [hasLoaded, setHasLoaded] = useState(false);
 	const [projectInfo, setProjectInfo] = useState<ProjectInfoI>({
 		project_name: '',
 		client_name: '',
@@ -56,7 +55,6 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 			await dispatch(getAllProjects());
 			await dispatch(getAllClients());
 			await dispatch(getAllCompanies());
-			setHasLoaded(true);
 		})();
 
 		//eslint-disable-next-line react-hooks/exhaustive-deps

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as AntIcons from 'react-icons/ai';
-import { Layout, Avatar, Dropdown, Menu, Collapse, Space } from 'antd';
+import { Layout, Avatar, Dropdown, Collapse, Space } from 'antd';
 
 import FormDetailsPanel from './FormDetailsPanel';
 import ProductDetailsPanel from './ProductDetailsPanel';
@@ -10,22 +10,20 @@ import ServiceDetailFormPanel from './ServiceDetailFormPanel';
 import ServiceDetailsView from './ServiceDetailsView';
 import DeliveryInfoPanel from './DeliveryInfoPanel';
 import AddedMTOPanel from './AddedMTOPanel';
+import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
+
+import { useSelector } from 'react-redux';
+import { RootStore } from 'appRedux/Store';
 
 const { Header, Content } = Layout;
 
 const { Panel } = Collapse;
 
 const RequisitionDetails: React.FC = () => {
-	const menu = (
-		<Menu>
-			<Menu.Item>
-				<Link to='#'>View Profile</Link>
-			</Menu.Item>
-			<Menu.Item>
-				<Link to='#'>Log Out</Link>
-			</Menu.Item>
-		</Menu>
+	const { userReq_ProjectInfo } = useSelector(
+		(state: RootStore) => state.userRequisition
 	);
+
 	return (
 		<>
 			<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -52,7 +50,10 @@ const RequisitionDetails: React.FC = () => {
 							<Avatar src='https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png' />{' '}
 							<Space size='middle'>
 								<span>Gift Okobia </span>
-								<Dropdown overlay={menu} placement='bottomCenter' arrow>
+								<Dropdown
+									overlay={<UserProfileMenu />}
+									placement='bottomCenter'
+									arrow>
 									<img
 										src='/icons/chevron-down.svg'
 										className='ml-4'
@@ -84,27 +85,38 @@ const RequisitionDetails: React.FC = () => {
 						</Collapse>
 
 						<Collapse expandIconPosition='right'>
-							<Panel
-								className='my-3'
-								header={<label className='muted-font'>Product Details </label>}
-								key='prod-detail'>
-								<ProductDetailsPanel />
-							</Panel>
-							<Panel
-								className='my-3'
-								header={<label className='muted-font'>Service Details </label>}
-								key='service-detail'>
-								<ServiceDetailFormPanel />
-							</Panel>
+							{userReq_ProjectInfo.request_type === 'product' || 'Product' ? (
+								<Panel
+									className='my-3'
+									header={
+										<label className='muted-font'>Product Details </label>
+									}
+									key='product-detail'>
+									<ProductDetailsPanel />
+								</Panel>
+							) : (
+								<Panel
+									className='my-3'
+									header={
+										<label className='muted-font'>Service Details </label>
+									}
+									key='service-detail-form'>
+									<ServiceDetailFormPanel />
+								</Panel>
+							)}
 						</Collapse>
 
 						<Collapse expandIconPosition='right'>
-							<Panel
-								className='my-3'
-								header={<label className='muted-font'>Service Details </label>}
-								key='service-detail-view'>
-								<ServiceDetailsView />
-							</Panel>
+							{userReq_ProjectInfo.request_type === 'service' || 'Service' ? (
+								<Panel
+									className='my-3'
+									header={
+										<label className='muted-font'>Service Details </label>
+									}
+									key='service-view'>
+									<ServiceDetailsView />
+								</Panel>
+							) : null}
 						</Collapse>
 
 						<Collapse expandIconPosition='right'>

@@ -1,5 +1,5 @@
-import React from 'react';
-import { Row, Col, Input, Select, Form } from 'antd';
+import React, { useState } from 'react';
+import { Row, Col, Input, Select, Form, Button } from 'antd';
 
 const { Option } = Select;
 
@@ -9,7 +9,36 @@ const formLayout = {
 	},
 };
 
+interface FormStateI {
+	description: string;
+	quantity: number;
+	unit: string;
+	unit_cost: number;
+	estimated_cost: number;
+}
+
 const ProductDetailsPanel = () => {
+	const [formState, setFormState] = useState<FormStateI>({
+		description: '',
+		quantity: 0,
+		unit: '',
+		unit_cost: 0,
+		estimated_cost: 0,
+	});
+
+	const calcEstimatedCost = (formState: FormStateI) => {
+		const total = Number(formState.unit_cost) * Number(formState.quantity);
+		setFormState({ ...formState, estimated_cost: total });
+		return total;
+	};
+
+	const handleFormChange = (key: string, value: string | number) => {
+		setFormState({ ...formState, [key]: value });
+	};
+
+	const handleSubmit = (formState: FormStateI) => {
+		console.log(formState);
+	};
 	return (
 		<>
 			<Row>
@@ -24,7 +53,13 @@ const ProductDetailsPanel = () => {
 											Description <span className='text-danger'>*</span>
 										</strong>
 									}>
-									<Input size='large' className='round' />
+									<Input
+										onChange={(e) =>
+											handleFormChange('description', e.currentTarget.value)
+										}
+										size='large'
+										className='round'
+									/>
 								</Form.Item>
 							</Col>
 						</Row>
@@ -37,7 +72,14 @@ const ProductDetailsPanel = () => {
 											Quantity <span className='text-danger'>*</span>
 										</strong>
 									}>
-									<Input size='large' className='round' />
+									<Input
+										onChange={(e) =>
+											handleFormChange('quantity', e.currentTarget.value)
+										}
+										onBlur={() => calcEstimatedCost(formState)}
+										size='large'
+										className='round'
+									/>
 								</Form.Item>
 							</Col>
 
@@ -48,7 +90,12 @@ const ProductDetailsPanel = () => {
 											Unit <span className='text-danger'>*</span>
 										</strong>
 									}>
-									<Select size='large' style={{ width: '100%' }}>
+									<Select
+										onChange={(value: string) =>
+											handleFormChange('unit', value)
+										}
+										size='large'
+										style={{ width: '100%' }}>
 										<Option value='kg'>Kilogram</Option>
 									</Select>
 								</Form.Item>
@@ -63,7 +110,14 @@ const ProductDetailsPanel = () => {
 											Unit Cost <span className='text-danger'>*</span>
 										</strong>
 									}>
-									<Input size='large' className='round' />
+									<Input
+										onChange={(e) =>
+											handleFormChange('unit_cost', e.currentTarget.value)
+										}
+										onBlur={() => calcEstimatedCost(formState)}
+										size='large'
+										className='round'
+									/>
 								</Form.Item>
 							</Col>
 
@@ -74,7 +128,11 @@ const ProductDetailsPanel = () => {
 											Estimated Cost <span className='text-danger'>*</span>
 										</strong>
 									}>
-									<Input size='large' className='round' />
+									<Input
+										size='large'
+										value={formState.estimated_cost}
+										className='round'
+									/>
 								</Form.Item>
 							</Col>
 						</Row>
@@ -82,7 +140,12 @@ const ProductDetailsPanel = () => {
 						<Row gutter={50} className='my-3'>
 							<Col xs={24} sm={24} md={12} lg={12}>
 								<Form.Item>
-									<button className='btn-xlg text-white'> Add Item </button>
+									<Button
+										onClick={() => handleSubmit(formState)}
+										className='btn-xlg text-white'>
+										{' '}
+										Add Item{' '}
+									</Button>
 								</Form.Item>
 							</Col>
 						</Row>
