@@ -1,4 +1,5 @@
 export const ADD_PROJECT_INFO = 'ADD_PROJECT_INFO';
+export const ADD_PRODUCTSTORAGE_ITEM = 'ADD_PRODUCTSTORAGE_ITEM';
 
 export interface userReq_ProjectInfoI {
 	request_title: string;
@@ -12,4 +13,20 @@ export interface AddProjectInfoDispatch {
 	payload: userReq_ProjectInfoI;
 }
 
-export type userRequisitionDispatchTypes = AddProjectInfoDispatch;
+export interface ProductStorageItemI {
+	itemId: string;
+	description: string;
+	quantity: number;
+	unit: string;
+	unit_cost: number;
+	estimated_cost: number;
+}
+
+export interface AddProductStorageItemDispatch {
+	type: typeof ADD_PRODUCTSTORAGE_ITEM;
+	payload: ProductStorageItemI[];
+}
+
+export type userRequisitionDispatchTypes =
+	| AddProjectInfoDispatch
+	| AddProductStorageItemDispatch;

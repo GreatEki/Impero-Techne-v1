@@ -1,5 +1,9 @@
-import React, { useState } from 'react';
-import { Row, Col, Input, Select, Form, Button } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Row, Col, Input, Select, Form, Button, message } from 'antd';
+import { ProductStorageItemI } from 'appRedux/types/userRequisitionTypes';
+import { v4 as uuidv4 } from 'uuid';
+import { addItemToProductStorageItems } from 'appRedux/actions/userRequisitionActions';
 
 const { Option } = Select;
 
@@ -9,16 +13,10 @@ const formLayout = {
 	},
 };
 
-interface FormStateI {
-	description: string;
-	quantity: number;
-	unit: string;
-	unit_cost: number;
-	estimated_cost: number;
-}
-
 const ProductDetailsPanel = () => {
-	const [formState, setFormState] = useState<FormStateI>({
+	const dispatch = useDispatch();
+	const [formState, setFormState] = useState<ProductStorageItemI>({
+		itemId: '',
 		description: '',
 		quantity: 0,
 		unit: '',
@@ -26,7 +24,17 @@ const ProductDetailsPanel = () => {
 		estimated_cost: 0,
 	});
 
-	const calcEstimatedCost = (formState: FormStateI) => {
+	const [productStorageItems, setProductStorageItems] = useState<
+		ProductStorageItemI[]
+	>([]);
+
+	useEffect(() => {
+		dispatch(addItemToProductStorageItems(productStorageItems));
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [productStorageItems]);
+
+	const calcEstimatedCost = (formState: ProductStorageItemI) => {
 		const total = Number(formState.unit_cost) * Number(formState.quantity);
 		setFormState({ ...formState, estimated_cost: total });
 		return total;
@@ -36,8 +44,16 @@ const ProductDetailsPanel = () => {
 		setFormState({ ...formState, [key]: value });
 	};
 
-	const handleSubmit = (formState: FormStateI) => {
-		console.log(formState);
+	const handleSubmit = (formState: ProductStorageItemI) => {
+		// Generate Id
+		const id = uuidv4();
+		// update the item with the id
+		const updatedItem = Object.assign({}, formState, { itemId: id });
+		setProductStorageItems((productStorageItems) => [
+			updatedItem,
+			...productStorageItems,
+		]);
+		message.success('Product Added Successfully');
 	};
 	return (
 		<>
