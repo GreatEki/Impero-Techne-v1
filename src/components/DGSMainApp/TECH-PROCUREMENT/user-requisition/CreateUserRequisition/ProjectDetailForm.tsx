@@ -15,11 +15,13 @@ import {
 	Radio,
 	Space,
 	Empty,
+	Button,
 } from 'antd';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 import { getAllClients } from 'appRedux/actions/adminModuleActions';
 import { getAllProjects } from 'appRedux/actions/MiscellaneousActions';
 import { RootStore } from 'appRedux/Store';
+import { userReq_ProjectInfoI } from 'appRedux/types/userRequisitionTypes';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -37,7 +39,12 @@ interface Props {
 const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 	const dispatch = useDispatch();
 
-	const [formState, setFormState] = useState();
+	const [formState, setFormState] = useState<userReq_ProjectInfoI>({
+		request_title: '',
+		project_name: '',
+		client_name: '',
+		request_type: '',
+	});
 
 	useEffect(() => {
 		(async () => {
@@ -53,6 +60,15 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 
 	// Load in AllClients from redux store to display in form fields
 	const { clients } = useSelector((state: RootStore) => state.adminModule);
+
+	// Method handles the data entries of the form
+	const handleFormInputs = (key: string, value: string | number) => {
+		setFormState({ ...formState, [key]: value });
+	};
+
+	const handleSubmit = (formState: userReq_ProjectInfoI) => {
+		console.log(formState);
+	};
 
 	return (
 		<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -116,26 +132,36 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 
 										<Form.Item
 											className='mt-5'
-											name='request_title'
 											label={
 												<strong>
 													Request Title <span className='text-danger'>*</span>
 												</strong>
 											}>
 											<Input
+												value={formState.request_title}
+												onChange={(e) =>
+													handleFormInputs(
+														'request_title',
+														e.currentTarget.value
+													)
+												}
 												size='large'
 												placeholder='Name this Request Form'
 											/>
 										</Form.Item>
 
 										<Form.Item
-											name='project_name'
 											label={
 												<strong>
 													Project <span className='text-danger'>*</span>
 												</strong>
 											}>
 											<Select
+												onChange={(value: string | number) =>
+													handleFormInputs('project_name', value)
+												}
+												showSearch={true}
+												optionFilterProp='children'
 												size='large'
 												placeholder='Search for a Project Name'>
 												{projects ? (
@@ -157,13 +183,17 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 										</Form.Item>
 
 										<Form.Item
-											name='client'
 											label={
 												<strong>
 													Client <span className='text-danger'>*</span>
 												</strong>
 											}>
 											<Select
+												onChange={(value: string | number) =>
+													handleFormInputs('client_name', value)
+												}
+												showSearch={true}
+												optionFilterProp='children'
 												size='large'
 												placeholder='Search for a Project Name'>
 												{clients ? (
@@ -191,7 +221,11 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 													Request Type <span className='text-danger'>*</span>
 												</strong>
 											}>
-											<Radio.Group size='large'>
+											<Radio.Group
+												size='large'
+												onChange={(e) =>
+													handleFormInputs('request_type', e.target.value)
+												}>
 												<Radio key='product' value='Product'>
 													{' '}
 													<strong>Product</strong>
@@ -205,11 +239,11 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 
 										<Row gutter={50}>
 											<Col span={6}>
-												<button
-													onClick={next}
-													className='btn-xlg site blue text-white'>
+												<Button
+													onClick={() => handleSubmit(formState)}
+													className='btn-xlg'>
 													Continue
-												</button>
+												</Button>
 											</Col>
 										</Row>
 									</Form>
