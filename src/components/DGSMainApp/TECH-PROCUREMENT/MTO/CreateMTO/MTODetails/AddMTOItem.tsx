@@ -1,13 +1,15 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Form, Input, Select, Row, Col, Empty } from 'antd';
+import { Form, Input, Select, Row, Col, Empty, message } from 'antd';
 import {
 	getAllStates,
 	getAllCountry,
 	getAllCities,
 } from 'appRedux/actions/MiscellaneousActions';
+import { addMtoStorageItem } from 'appRedux/actions/mtoActions';
 import { RootStore } from 'appRedux/Store';
 import { numberWithCommas } from 'utils/numberWithCommas';
+import { MtoStorageItemI } from 'appRedux/types/mtoTypes';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -18,23 +20,9 @@ const formLayout = {
 	},
 };
 
-interface MTOITEMSI {
-	description: string;
-	voltage: string | number;
-	unit: string | number;
-	qty_required: number;
-	qty_required_to_buy: number;
-	sellers_country: string | number;
-	sellers_state: string | number;
-	unit_price: number;
-	total_price: number;
-	sellers_city: string | number;
-	delivery_address: string | number;
-}
-
 const AddMTOItem = () => {
 	const dispatch = useDispatch();
-	const [mtoItem, setMtoItem] = useState<MTOITEMSI>({
+	const [mtoItem, setMtoItem] = useState<MtoStorageItemI>({
 		description: '',
 		voltage: '',
 		unit: '',
@@ -48,7 +36,7 @@ const AddMTOItem = () => {
 		delivery_address: 0,
 	});
 
-	const [mtoStorageItems, setMtoStorageItems] = useState<MTOITEMSI[]>([]);
+	const [mtoStorageItems, setMtoStorageItems] = useState<MtoStorageItemI[]>([]);
 
 	useEffect(() => {
 		(async () => {
@@ -60,11 +48,9 @@ const AddMTOItem = () => {
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
-	// This useEffect updates local storage when mtoStorage is updated
+	// This useEffect updates our redux mtoStorage
 	useEffect(() => {
-		localStorage.setItem('mtoStorageItems', JSON.stringify(mtoStorageItems));
-		const mtoStorageQty = mtoStorageItems.length;
-		localStorage.setItem('mtoStorageQty', JSON.stringify(mtoStorageQty));
+		dispatch(addMtoStorageItem(mtoStorageItems));
 
 		// eslint-disable-nextline react-hooks/exhaustive-deps
 	}, [mtoStorageItems]);
@@ -77,11 +63,25 @@ const AddMTOItem = () => {
 		setMtoItem({ ...mtoItem, [key]: value });
 	};
 
-	const handleSubmitItem = (newItem: MTOITEMSI) => {
+	const handleSubmitItem = (newItem: MtoStorageItemI) => {
 		setMtoStorageItems((mtoStorageItems) => [newItem, ...mtoStorageItems]);
+		message.success('MTO Item Added Successfully');
+		setMtoItem({
+			description: '',
+			voltage: '',
+			unit: '',
+			qty_required: 0,
+			qty_required_to_buy: 0,
+			sellers_country: '',
+			sellers_state: '',
+			unit_price: 0,
+			total_price: 0,
+			sellers_city: '',
+			delivery_address: 0,
+		});
 	};
 
-	const calcTotalPrice = (item: MTOITEMSI) => {
+	const calcTotalPrice = (item: MtoStorageItemI) => {
 		const totalPrice = item.unit_price * item.qty_required_to_buy;
 		const updatedItem = Object.assign({}, mtoItem, { total_price: totalPrice });
 		setMtoItem(updatedItem);
@@ -215,7 +215,6 @@ const AddMTOItem = () => {
 									label={<strong>Total Price</strong>}
 									rules={[{ required: true }]}>
 									<Input
-										disabled
 										size='large'
 										onChange={(e) =>
 											handleFormChange('total_price', e.currentTarget.value)

@@ -3,6 +3,8 @@ import {
 	ADD_PROJECT_INFO,
 	MtoDispatchTypes,
 	ProjectInfoI,
+	MtoStorageItemI,
+	ADD_MTOSTORAGE_ITEM,
 } from '../types/mtoTypes';
 
 export const addProjectInfo = (
@@ -15,4 +17,13 @@ export const addProjectInfo = (
 			payload: projectInfo,
 		});
 	};
+};
+
+export const addMtoStorageItem = (storageItem: MtoStorageItemI[]) => (
+	dispatch: Dispatch<MtoDispatchTypes>
+) => {
+	dispatch({
+		type: ADD_MTOSTORAGE_ITEM,
+		payload: storageItem,
+	});
 };

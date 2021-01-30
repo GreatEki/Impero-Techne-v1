@@ -1,11 +1,9 @@
-import {
-	ADD_PROJECT_INFO,
-	ProjectInfoI,
-	MtoDispatchTypes,
-} from 'appRedux/types/mtoTypes';
+import { addMtoStorageItem } from 'appRedux/actions/mtoActions';
+import * as MtoT from 'appRedux/types/mtoTypes';
 
 interface StateI {
-	projectInfo: ProjectInfoI;
+	projectInfo: MtoT.ProjectInfoI;
+	mtoStorageItems: MtoT.MtoStorageItemI[];
 }
 
 const INITIAL_STATE: StateI = {
@@ -17,16 +15,25 @@ const INITIAL_STATE: StateI = {
 		discipline_subType: '',
 		request_formName: '',
 	},
+
+	mtoStorageItems: [],
 };
 
 const mtoReducer = (
 	state = INITIAL_STATE,
-	action: MtoDispatchTypes
+	action: MtoT.MtoDispatchTypes
 ): StateI => {
 	switch (action.type) {
-		case ADD_PROJECT_INFO:
+		case MtoT.ADD_PROJECT_INFO:
 			return {
+				...state,
 				projectInfo: action.payload,
+			};
+
+		case MtoT.ADD_MTOSTORAGE_ITEM:
+			return {
+				...state,
+				mtoStorageItems: action.payload,
 			};
 
 		default:

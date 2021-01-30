@@ -1,4 +1,5 @@
 export const ADD_PROJECT_INFO = 'ADD_PROJECT_INFO';
+export const ADD_MTOSTORAGE_ITEM = 'ADD_MTOSTORAGE_ITEM';
 
 export interface ProjectInfoI {
 	project_name: string;
@@ -14,4 +15,25 @@ export interface AddProjectInfoDispatch {
 	payload: ProjectInfoI;
 }
 
-export type MtoDispatchTypes = AddProjectInfoDispatch;
+export interface MtoStorageItemI {
+	description: string;
+	voltage: string | number;
+	unit: string | number;
+	qty_required: number;
+	qty_required_to_buy: number;
+	sellers_country: string | number;
+	sellers_state: string | number;
+	unit_price: number;
+	total_price: number;
+	sellers_city: string | number;
+	delivery_address: string | number;
+}
+
+export interface AddMtoStorageItemDispatch {
+	type: typeof ADD_MTOSTORAGE_ITEM;
+	payload: MtoStorageItemI[];
+}
+
+export type MtoDispatchTypes =
+	| AddProjectInfoDispatch
+	| AddMtoStorageItemDispatch;
