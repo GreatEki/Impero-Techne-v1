@@ -1,7 +1,20 @@
-import React from 'react';
-import { Pagination, Row, Col } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Pagination, Row, Col, Empty } from 'antd';
+import { ProductStorageItemI } from 'appRedux/types/userRequisitionTypes';
+import { RootStore } from 'appRedux/Store';
+import { numberWithCommas } from 'utils/numberWithCommas';
 
 const AddedProductsPanel = () => {
+	const [storeItems, setStoreItems] = useState<ProductStorageItemI[]>([]);
+
+	const { productStorageItems } = useSelector(
+		(state: RootStore) => state.userRequisition
+	);
+
+	useEffect(() => {
+		setStoreItems(productStorageItems);
+	}, [productStorageItems]);
 	return (
 		<div className='table-responsive'>
 			<table className='table table-borderless table-striped'>
@@ -14,32 +27,41 @@ const AddedProductsPanel = () => {
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td style={{ width: '30rem' }}>
-							<span className='text-muted'>Description</span>
-							<br />
-							<strong className='word-break word-wrap'>
-								{' '}
-								Procurement & Supply of Condensate Tank & 4 Actuated Ball Valves
-								& Fittings for Pipeline System
-							</strong>
-						</td>
-						<td>
-							<span className='text-muted'>Quantity</span>
-							<br />
-							<strong>100</strong>
-						</td>
-						<td>
-							<span className='text-muted'>Unit</span>
-							<br />
-							<strong>100</strong>
-						</td>
-						<td>
-							<span className='text-muted'>Estimated Cost</span>
-							<br />
-							<strong>938</strong>
-						</td>
-					</tr>
+					{storeItems ? (
+						storeItems.map((item) => (
+							<tr key={item.itemId}>
+								<td style={{ width: '30rem' }}>
+									<span className='text-muted'>Description</span>
+									<br />
+									<strong className='word-break word-wrap'>
+										{' '}
+										{item.description}
+									</strong>
+								</td>
+								<td>
+									<span className='text-muted'>Quantity</span>
+									<br />
+									<strong>{item.quantity}</strong>
+								</td>
+								<td>
+									<span className='text-muted'>Unit</span>
+									<br />
+									<strong>{item.unit}</strong>
+								</td>
+								<td>
+									<span className='text-muted'>Estimated Cost</span>
+									<br />
+									<strong>{numberWithCommas(item.estimated_cost)}</strong>
+								</td>
+							</tr>
+						))
+					) : (
+						<tr>
+							<td>
+								<Empty />
+							</td>
+						</tr>
+					)}
 				</tbody>
 			</table>
 
