@@ -96,7 +96,6 @@ export const getAllCities = () => async (
 	try {
 		const { data } = await AuthAxios.get('/api/v1/miscellaneous/GetAllCity');
 
-		console.log(data);
 		dispatch({
 			type: GET_ALL_CITIES,
 			payload: data.data,

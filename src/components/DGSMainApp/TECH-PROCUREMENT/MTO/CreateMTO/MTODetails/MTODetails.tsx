@@ -17,12 +17,17 @@ import MTOFormDetails from './MTOFormDetails';
 import AddMTOItem from './AddMTOItem';
 import AddedItemsPanel from './AddedItemsPanel';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
+import * as BsIcon from 'react-icons/bs';
+
+import { useSelector } from 'react-redux';
+import { RootStore } from 'appRedux/Store';
 
 const { Header, Content } = Layout;
 
 const { Panel } = Collapse;
 
 const MTODetails: React.FC = () => {
+	const { mtoStorageItems } = useSelector((state: RootStore) => state.mto);
 	return (
 		<>
 			<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -85,7 +90,14 @@ const MTODetails: React.FC = () => {
 						<Collapse
 							expandIconPosition='right'
 							defaultActiveKey={['projectInfo']}>
-							<Panel className='my-3' header='Project Info' key='projectInfo'>
+							<Panel
+								className='my-3'
+								header={
+									<span>
+										<BsIcon.BsDot className='site-dot' /> Project Info{' '}
+									</span>
+								}
+								key='projectInfo'>
 								<ProjectInfo />
 							</Panel>
 						</Collapse>
@@ -93,14 +105,25 @@ const MTODetails: React.FC = () => {
 						<Collapse expandIconPosition='right'>
 							<Panel
 								className='my-3'
-								header='MTO Form Details'
+								header={
+									<span>
+										<BsIcon.BsDot className='site-dot' /> MTO Form Details{' '}
+									</span>
+								}
 								key='mtoFormDetail'>
 								<MTOFormDetails />
 							</Panel>
 						</Collapse>
 
 						<Collapse expandIconPosition='right'>
-							<Panel className='my-3' header='Add MTO Item' key='addMTOItem'>
+							<Panel
+								className='my-3'
+								header={
+									<span>
+										<BsIcon.BsDot className='site-dot' /> Add MTO Item{' '}
+									</span>
+								}
+								key='addMTOItem'>
 								<AddMTOItem />
 							</Panel>
 						</Collapse>
@@ -108,7 +131,12 @@ const MTODetails: React.FC = () => {
 						<Collapse expandIconPosition='right'>
 							<Panel
 								className='my-3'
-								header='Added Items (1 items Added)'
+								header={
+									<span>
+										<BsIcon.BsDot className='site-dot' /> Added MTO Items{' '}
+										{mtoStorageItems.length}{' '}
+									</span>
+								}
 								key='addedItemsPanel'>
 								<AddedItemsPanel />
 							</Panel>

@@ -16,6 +16,7 @@ export interface AddProjectInfoDispatch {
 }
 
 export interface MtoStorageItemI {
+	itemId: string;
 	description: string;
 	voltage: string | number;
 	unit: string | number;

@@ -31,7 +31,7 @@ const AddedItemsPanel = () => {
 				<tbody>
 					{store ? (
 						store.map((item: MtoStorageItemI) => (
-							<tr>
+							<tr key={item.itemId}>
 								<td style={{ width: '20rem' }}>
 									<span className='text-muted'>Item Description</span>
 									<br />

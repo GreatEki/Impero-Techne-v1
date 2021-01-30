@@ -10,6 +10,7 @@ import { addMtoStorageItem } from 'appRedux/actions/mtoActions';
 import { RootStore } from 'appRedux/Store';
 import { numberWithCommas } from 'utils/numberWithCommas';
 import { MtoStorageItemI } from 'appRedux/types/mtoTypes';
+import { v4 as uuidv4 } from 'uuid';
 
 const { Option } = Select;
 const { TextArea } = Input;
@@ -20,9 +21,10 @@ const formLayout = {
 	},
 };
 
-const AddMTOItem = () => {
+const AddMTOItem: React.FC = () => {
 	const dispatch = useDispatch();
 	const [mtoItem, setMtoItem] = useState<MtoStorageItemI>({
+		itemId: '',
 		description: '',
 		voltage: '',
 		unit: '',
@@ -63,10 +65,13 @@ const AddMTOItem = () => {
 		setMtoItem({ ...mtoItem, [key]: value });
 	};
 
-	const handleSubmitItem = (newItem: MtoStorageItemI) => {
-		setMtoStorageItems((mtoStorageItems) => [newItem, ...mtoStorageItems]);
+	const handleSubmitItem = (theItem: MtoStorageItemI) => {
+		const itemId = uuidv4();
+		const updatedItem = Object.assign({}, theItem, { itemId });
+		setMtoStorageItems((mtoStorageItems) => [updatedItem, ...mtoStorageItems]);
 		message.success('MTO Item Added Successfully');
 		setMtoItem({
+			itemId: '',
 			description: '',
 			voltage: '',
 			unit: '',
@@ -82,7 +87,8 @@ const AddMTOItem = () => {
 	};
 
 	const calcTotalPrice = (item: MtoStorageItemI) => {
-		const totalPrice = item.unit_price * item.qty_required_to_buy;
+		const totalPrice =
+			Number(item.unit_price) * Number(item.qty_required_to_buy);
 		const updatedItem = Object.assign({}, mtoItem, { total_price: totalPrice });
 		setMtoItem(updatedItem);
 		return totalPrice;
@@ -102,10 +108,10 @@ const AddMTOItem = () => {
 						<Row gutter={100}>
 							<Col span={24}>
 								<Form.Item
-									name='description'
 									label={<strong>Item Description</strong>}
 									rules={[{ required: true }]}>
 									<Input
+										value={mtoItem.description}
 										onChange={(e) =>
 											handleFormChange('description', e.currentTarget.value)
 										}
@@ -120,10 +126,10 @@ const AddMTOItem = () => {
 							justify='space-between'>
 							<Col span={12}>
 								<Form.Item
-									name='volatge'
 									label={<strong>Volatge (Volts)</strong>}
 									rules={[{ required: true }]}>
 									<Input
+										value={mtoItem.voltage}
 										onChange={(e) =>
 											handleFormChange('voltage', e.currentTarget.value)
 										}
@@ -134,10 +140,10 @@ const AddMTOItem = () => {
 
 							<Col span={12}>
 								<Form.Item
-									name='unit'
 									label={<strong>Unit </strong>}
 									rules={[{ required: true }]}>
 									<Select
+										value={mtoItem.unit}
 										showSearch={true}
 										optionFilterProp='children'
 										onChange={(value: string | number) =>
@@ -155,10 +161,10 @@ const AddMTOItem = () => {
 							justify='space-between'>
 							<Col span={12}>
 								<Form.Item
-									name='qty_required'
 									label={<strong>Quantity of Item Required </strong>}
 									rules={[{ required: true }]}>
 									<Input
+										value={mtoItem.qty_required}
 										onChange={(e) =>
 											handleFormChange('qty_required', e.currentTarget.value)
 										}
@@ -169,10 +175,10 @@ const AddMTOItem = () => {
 
 							<Col span={12}>
 								<Form.Item
-									name='qty_required_to_buy'
 									label={<strong>Quantity of Item Rquired to Buy </strong>}
 									rules={[{ required: true }]}>
 									<Input
+										value={mtoItem.qty_required_to_buy}
 										onChange={(e) =>
 											handleFormChange(
 												'qty_required_to_buy',
@@ -193,18 +199,15 @@ const AddMTOItem = () => {
 							justify='space-between'>
 							<Col span={12}>
 								<Form.Item
-									name='unit_price'
 									label={<strong>Unit Price</strong>}
 									rules={[{ required: true }]}>
 									<Input
 										prefix={'$'}
 										size='large'
+										value={mtoItem.unit_price}
 										onBlur={() => calcTotalPrice(mtoItem)}
 										onChange={(e) =>
-											handleFormChange(
-												'unit_price',
-												parseInt(e.currentTarget.value)
-											)
+											handleFormChange('unit_price', e.currentTarget.value)
 										}
 									/>
 								</Form.Item>
@@ -231,10 +234,10 @@ const AddMTOItem = () => {
 							justify='space-between'>
 							<Col span={12}>
 								<Form.Item
-									name='sellers-country'
 									label={<strong>Seller's Country</strong>}
 									rules={[{ required: true }]}>
 									<Select
+										value={mtoItem.sellers_country}
 										size='large'
 										showSearch={true}
 										optionFilterProp='children'
@@ -260,10 +263,10 @@ const AddMTOItem = () => {
 
 							<Col span={12}>
 								<Form.Item
-									name='sellers_state'
 									label={<strong>Seller's State</strong>}
 									rules={[{ required: true }]}>
 									<Select
+										value={mtoItem.sellers_state}
 										showSearch={true}
 										optionFilterProp='children'
 										onChange={(value: string | number) =>
@@ -295,10 +298,10 @@ const AddMTOItem = () => {
 							justify='space-between'>
 							<Col span={12}>
 								<Form.Item
-									name='sellers_city'
 									label={<strong>Seller's City</strong>}
 									rules={[{ required: true }]}>
 									<Select
+										value={mtoItem.sellers_city}
 										size='large'
 										onChange={(value: string | number) =>
 											handleFormChange('sellers_city', value)
@@ -328,10 +331,10 @@ const AddMTOItem = () => {
 
 							<Col span={12}>
 								<Form.Item
-									name='delivery_address'
 									label={<strong>Delivery Address</strong>}
 									rules={[{ required: true }]}>
 									<TextArea
+										value={mtoItem.delivery_address}
 										rows={7}
 										onChange={(e) =>
 											handleFormChange(
