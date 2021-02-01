@@ -27,11 +27,11 @@ const ConfimSubmissionModal: React.FC<Props> = ({ visible, setVisible }) => {
 				minHeight: '200px',
 			}}
 			visible={visible}
-			width={500}
+			width={550}
 			closable={false}
 			footer={[
-				<Row gutter={50} justify='space-between'>
-					<Col span={8}>
+				<Row style={{ padding: '1rem 0.5rem' }} justify='space-between'>
+					<Col span={10}>
 						<button
 							className='site-btn-danger'
 							key='back'
@@ -39,7 +39,7 @@ const ConfimSubmissionModal: React.FC<Props> = ({ visible, setVisible }) => {
 							Cancel
 						</button>
 					</Col>
-					<Col span={8}>
+					<Col span={10}>
 						<Button className='btn-xlg' key='submit' onClick={handleOk}>
 							Submit
 						</Button>

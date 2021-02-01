@@ -85,7 +85,7 @@ const RequisitionDetails: React.FC = () => {
 						</Collapse>
 
 						<Collapse expandIconPosition='right'>
-							{userReq_ProjectInfo.request_type === 'product' || 'Product' ? (
+							{userReq_ProjectInfo.request_type === 'Product' ? (
 								<Panel
 									className='my-3'
 									header={
@@ -107,7 +107,7 @@ const RequisitionDetails: React.FC = () => {
 						</Collapse>
 
 						<Collapse expandIconPosition='right'>
-							{userReq_ProjectInfo.request_type === 'service' || 'Service' ? (
+							{userReq_ProjectInfo.request_type === 'Service' ? (
 								<Panel
 									className='my-3'
 									header={
@@ -116,7 +116,16 @@ const RequisitionDetails: React.FC = () => {
 									key='service-view'>
 									<ServiceDetailsView />
 								</Panel>
-							) : null}
+							) : (
+								<Panel
+									className='my-3'
+									header={
+										<label className='muted-font'>Added Product Details </label>
+									}
+									key='added-prod-service'>
+									<AddedProductsPanel />
+								</Panel>
+							)}
 						</Collapse>
 
 						<Collapse expandIconPosition='right'>
@@ -137,16 +146,7 @@ const RequisitionDetails: React.FC = () => {
 							</Panel>
 						</Collapse>
 
-						<Collapse expandIconPosition='right'>
-							<Panel
-								className='my-3'
-								header={
-									<label className='muted-font'>Added Product Details </label>
-								}
-								key='added-prod-service'>
-								<AddedProductsPanel />
-							</Panel>
-						</Collapse>
+						<Collapse expandIconPosition='right'></Collapse>
 					</div>
 				</Content>
 			</Layout>
