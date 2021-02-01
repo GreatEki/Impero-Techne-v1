@@ -72,7 +72,7 @@ const AddMTOItem: React.FC = () => {
 		const updatedItem = Object.assign({}, theItem, { itemId });
 		// Add item to MTO Storage.
 		setMtoStorageItems((mtoStorageItems) => [updatedItem, ...mtoStorageItems]);
-		message.success('MTO Item Added Successfully');
+		message.success('Item Added, you can add more items to the list');
 		setMtoItem({
 			itemId: '',
 			description: '',

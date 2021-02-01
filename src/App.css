@@ -75,9 +75,10 @@ a {
 }
 
 .site-btn-sm {
-	background: var(--site-primary);
+	background: var(--site-primary) !important;
 	border: none;
-	padding: 0.3rem 1rem;
+	padding: 0 1rem !important;
+	color: white !important;
 }
 
 .site-btn-danger {

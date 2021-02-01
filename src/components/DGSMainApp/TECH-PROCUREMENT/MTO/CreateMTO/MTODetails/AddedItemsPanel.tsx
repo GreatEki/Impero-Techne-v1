@@ -5,11 +5,14 @@ import { FiMinusSquare } from 'react-icons/fi';
 import { RootStore } from 'appRedux/Store';
 import { MtoStorageItemI } from 'appRedux/types/mtoTypes';
 import { removeMtoStorageItem } from 'appRedux/actions/mtoActions';
+import ConfirmSubmissionModal from './ConfimSubmissionModal';
 
 const AddedItemsPanel = () => {
 	const dispatch = useDispatch();
 	const [store, setStore] = useState<MtoStorageItemI[]>([]);
 	const { mtoStorageItems } = useSelector((state: RootStore) => state.mto);
+
+	const [submissionVisible, setSubmissionVisible] = useState(false);
 
 	useEffect(() => {
 		setStore(mtoStorageItems);
@@ -22,6 +25,11 @@ const AddedItemsPanel = () => {
 		);
 		dispatch(removeMtoStorageItem(filteredItems));
 	};
+
+	const showSubmission = () => {
+		setSubmissionVisible(true);
+	};
+
 	return (
 		<div className='table-responsive'>
 			<table className='table table-borderless table-striped'>
@@ -96,9 +104,17 @@ const AddedItemsPanel = () => {
 
 			<Row>
 				<Col span={6}>
-					<button className='btn-xlg'> Submit </button>
+					<button onClick={showSubmission} className='btn-xlg'>
+						{' '}
+						Submit{' '}
+					</button>
 				</Col>
 			</Row>
+
+			<ConfirmSubmissionModal
+				visible={submissionVisible}
+				setVisible={setSubmissionVisible}
+			/>
 		</div>
 	);
 };
