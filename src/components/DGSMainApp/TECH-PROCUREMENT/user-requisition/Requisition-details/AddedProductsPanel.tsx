@@ -7,7 +7,10 @@ import { numberWithCommas } from 'utils/numberWithCommas';
 import { FiMinusSquare } from 'react-icons/fi';
 import { removeItemfromProductStorageItems } from 'appRedux/actions/userRequisitionActions';
 
-const AddedProductsPanel = () => {
+interface Props {
+	next: () => void;
+}
+const AddedProductsPanel: React.FC<Props> = ({ next }) => {
 	const dispatch = useDispatch();
 	const [storeItems, setStoreItems] = useState<ProductStorageItemI[]>([]);
 
@@ -89,7 +92,10 @@ const AddedProductsPanel = () => {
 
 			<Row>
 				<Col span={6}>
-					<button className='btn-xlg'> Submit </button>
+					<button onClick={next} className='btn-xlg'>
+						{' '}
+						Continue{' '}
+					</button>
 				</Col>
 			</Row>
 		</div>

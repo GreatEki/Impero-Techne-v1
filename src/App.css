@@ -79,6 +79,8 @@ a {
 	border: none;
 	padding: 0 1rem !important;
 	color: white !important;
+	border-radius: 0.3rem !important;
+	height: 2rem !important;
 }
 
 .site-btn-danger {

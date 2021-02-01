@@ -237,7 +237,7 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 													onChange={(e) =>
 														handleFormInputs('discipline', e.target.value)
 													}>
-													<Radio key='electrical-mto' value='electrical mto'>
+													<Radio key='electrical-mto' value='Electrical MTO'>
 														{' '}
 														<strong>Electrical MTO</strong>{' '}
 													</Radio>
@@ -245,7 +245,7 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 														{' '}
 														<strong>Piping MTO</strong>{' '}
 													</Radio>
-													<Radio key='civil-mto' value='Civil MTo'>
+													<Radio key='civil-mto' value='Civil MTO'>
 														{' '}
 														<strong>Civil MTo</strong>{' '}
 													</Radio>

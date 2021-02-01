@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Input, Select, Radio, DatePicker, Form, Table, Row, Col } from 'antd';
 import * as FaIcons from 'react-icons/fa';
 
@@ -11,7 +11,43 @@ const formLayout = {
 	},
 };
 
+interface ServiceDtailsI {
+	intro_and_desc: string;
+	scope_of_works: string;
+	reference_code_and_stds: string;
+	detailed_desc_of_work_and_specs: string;
+	technical_eval_req: string;
+	reference_drawings: string;
+	work_schedule: string;
+	commercial: string;
+	terms_and_conditions: string;
+	payment_terms: string;
+	renumeration: string;
+	validity_period: string;
+	delivery_address: string;
+	special_instructions: string;
+	date_required_on_site: string | Date;
+}
+
 const ServiceDetailFormPanel = () => {
+	const [formState, setFormState] = useState<ServiceDtailsI>({
+		intro_and_desc: '',
+		scope_of_works: '',
+		reference_code_and_stds: '',
+		detailed_desc_of_work_and_specs: '',
+		technical_eval_req: '',
+		reference_drawings: '',
+		work_schedule: '',
+		commercial: '',
+		terms_and_conditions: '',
+		payment_terms: '',
+		renumeration: '',
+		validity_period: '',
+		delivery_address: '',
+		special_instructions: '',
+		date_required_on_site: '',
+	});
+
 	const dataSource = [
 		{
 			key: 1,
@@ -21,13 +57,32 @@ const ServiceDetailFormPanel = () => {
 			total_cost: 2_234_557,
 		},
 		{
-			key: 1,
+			key: 2,
 			name: 'Cable Gland & Cable Lug',
 			serial_no: 'LKJY5451278744',
 			items: 15,
 			total_cost: 2_234_557,
 		},
 	];
+
+	const handleFormChange = (key: string, value: string) => {
+		setFormState({ ...formState, [key]: value });
+	};
+
+	// const handleFiles = (e: any) => {
+	// 	console.log(e.target.files[0].name);
+	// };
+
+	const onSubmit = (formState: ServiceDtailsI) => {
+		let formdata = new FormData();
+
+		for (const [key, value] of Object.entries(formState)) {
+			formdata.append(key, value);
+			console.log(key, value);
+		}
+		console.log(formdata);
+	};
+
 	return (
 		<div>
 			<Row>
@@ -41,7 +96,12 @@ const ServiceDetailFormPanel = () => {
 									</strong>
 								</label>
 							}>
-							<TextArea rows={4} />
+							<TextArea
+								rows={4}
+								onChange={(e) =>
+									handleFormChange('intro_and_desc', e.currentTarget.value)
+								}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -50,7 +110,12 @@ const ServiceDetailFormPanel = () => {
 									<strong>Scope of Works</strong>
 								</label>
 							}>
-							<TextArea rows={4} />
+							<TextArea
+								rows={4}
+								onChange={(e) =>
+									handleFormChange('scope_of_works', e.currentTarget.value)
+								}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -59,7 +124,15 @@ const ServiceDetailFormPanel = () => {
 									<strong>Reference Codes & Standards</strong>
 								</label>
 							}>
-							<TextArea rows={4} />
+							<TextArea
+								rows={4}
+								onChange={(e) =>
+									handleFormChange(
+										'reference_code_and_stds',
+										e.currentTarget.value
+									)
+								}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -70,7 +143,15 @@ const ServiceDetailFormPanel = () => {
 									</strong>
 								</label>
 							}>
-							<TextArea rows={4} />
+							<TextArea
+								rows={4}
+								onChange={(e) =>
+									handleFormChange(
+										'detailed_desc_of_work_and_specs',
+										e.currentTarget.value
+									)
+								}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -79,7 +160,12 @@ const ServiceDetailFormPanel = () => {
 									<strong>Technical Evaluation Requirement</strong>
 								</label>
 							}>
-							<TextArea rows={4} />
+							<TextArea
+								rows={4}
+								onChange={(e) =>
+									handleFormChange('technical_eval_req', e.currentTarget.value)
+								}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -88,7 +174,13 @@ const ServiceDetailFormPanel = () => {
 									<strong>Reference Drawings</strong>
 								</label>
 							}>
-							<Input type='file' prefix={<FaIcons.FaPaperclip />} />
+							<Input
+								type='file'
+								onChange={(e: any) =>
+									handleFormChange('reference_drawings', e.target.files[0].name)
+								}
+								prefix={<FaIcons.FaPaperclip />}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -98,6 +190,9 @@ const ServiceDetailFormPanel = () => {
 								</label>
 							}>
 							<Input
+								onChange={(e: any) =>
+									handleFormChange('work_schedule', e.target.files[0].name)
+								}
 								type='file'
 								placeholder='Attach a file'
 								prefix={<FaIcons.FaPaperclip />}
@@ -111,6 +206,9 @@ const ServiceDetailFormPanel = () => {
 								</label>
 							}>
 							<Input
+								onChange={(e: any) =>
+									handleFormChange('commercial', e.target.files[0].name)
+								}
 								type='file'
 								placeholder='Attach a file'
 								prefix={<FaIcons.FaPaperclip />}
@@ -124,6 +222,12 @@ const ServiceDetailFormPanel = () => {
 								</label>
 							}>
 							<Input
+								onChange={(e: any) =>
+									handleFormChange(
+										'terms_and_conditions',
+										e.target.files[0].name
+									)
+								}
 								type='file'
 								placeholder='Attach a file'
 								prefix={<FaIcons.FaPaperclip />}
@@ -136,7 +240,12 @@ const ServiceDetailFormPanel = () => {
 									<strong>Payment Terms </strong>
 								</label>
 							}>
-							<Input size='large' />
+							<Input
+								size='large'
+								onChange={(e) =>
+									handleFormChange('payment_terms', e.currentTarget.value)
+								}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -145,7 +254,12 @@ const ServiceDetailFormPanel = () => {
 									<strong>Renumeration</strong>
 								</label>
 							}>
-							<Input size='large' placeholder='Attach a file' />
+							<Input
+								size='large'
+								onChange={(e) =>
+									handleFormChange('renumeration', e.currentTarget.value)
+								}
+							/>
 						</Form.Item>
 
 						<Row>
@@ -169,7 +283,12 @@ const ServiceDetailFormPanel = () => {
 									<strong>Delivery Address</strong>
 								</label>
 							}>
-							<Input size='large' />
+							<Input
+								size='large'
+								onChange={(e) =>
+									handleFormChange('delivery_address', e.currentTarget.value)
+								}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -178,7 +297,15 @@ const ServiceDetailFormPanel = () => {
 									<strong>Special Instructions</strong>
 								</label>
 							}>
-							<Input size='large' />
+							<Input
+								size='large'
+								onChange={(e) =>
+									handleFormChange(
+										'special_instructions',
+										e.currentTarget.value
+									)
+								}
+							/>
 						</Form.Item>
 
 						<Row>
@@ -297,7 +424,9 @@ const ServiceDetailFormPanel = () => {
 					{/* === Submit === */}
 					<Row>
 						<Col span={6}>
-							<button className='btn-xlg'>Submit</button>
+							<button onClick={() => onSubmit(formState)} className='btn-xlg'>
+								Submit
+							</button>
 						</Col>
 					</Row>
 				</Col>

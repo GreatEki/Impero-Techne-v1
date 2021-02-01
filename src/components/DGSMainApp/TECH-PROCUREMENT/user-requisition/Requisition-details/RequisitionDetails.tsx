@@ -19,7 +19,10 @@ const { Header, Content } = Layout;
 
 const { Panel } = Collapse;
 
-const RequisitionDetails: React.FC = () => {
+interface Props {
+	next: () => void;
+}
+const RequisitionDetails: React.FC<Props> = ({ next }) => {
 	const { userReq_ProjectInfo } = useSelector(
 		(state: RootStore) => state.userRequisition
 	);
@@ -91,7 +94,7 @@ const RequisitionDetails: React.FC = () => {
 									header={
 										<label className='muted-font'>Product Details </label>
 									}
-									key='product-detail'>
+									key='prod-details'>
 									<ProductDetailsPanel />
 								</Panel>
 							) : (
@@ -100,7 +103,7 @@ const RequisitionDetails: React.FC = () => {
 									header={
 										<label className='muted-font'>Service Details </label>
 									}
-									key='service-detail-form'>
+									key='service-details'>
 									<ServiceDetailFormPanel />
 								</Panel>
 							)}
@@ -113,7 +116,7 @@ const RequisitionDetails: React.FC = () => {
 									header={
 										<label className='muted-font'>Service Details </label>
 									}
-									key='service-view'>
+									key='service-list'>
 									<ServiceDetailsView />
 								</Panel>
 							) : (
@@ -122,8 +125,8 @@ const RequisitionDetails: React.FC = () => {
 									header={
 										<label className='muted-font'>Added Product Details </label>
 									}
-									key='added-prod-service'>
-									<AddedProductsPanel />
+									key='product-list'>
+									<AddedProductsPanel next={next} />
 								</Panel>
 							)}
 						</Collapse>
@@ -145,8 +148,6 @@ const RequisitionDetails: React.FC = () => {
 								<AddedMTOPanel />
 							</Panel>
 						</Collapse>
-
-						<Collapse expandIconPosition='right'></Collapse>
 					</div>
 				</Content>
 			</Layout>
