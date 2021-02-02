@@ -20,6 +20,7 @@ const MTO: React.FC = () => {
 	const history = useHistory();
 	const dataSource = [
 		{
+			id: 1,
 			project_name:
 				'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
 			project_no: 'GEJJR2962986219 ',
@@ -28,6 +29,7 @@ const MTO: React.FC = () => {
 			status: 'Approved',
 		},
 		{
+			id: 2,
 			project_name:
 				'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
 			project_no: 'GEJJR2962986219 ',
@@ -36,6 +38,7 @@ const MTO: React.FC = () => {
 			status: 'Queried',
 		},
 		{
+			id: 3,
 			project_name:
 				'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
 			project_no: 'GEJJR2962986219 ',
@@ -161,15 +164,28 @@ const MTO: React.FC = () => {
 										return (
 											<tr key={index}>
 												<th scope='row' style={{ width: '25rem' }}>
-													<span className='word-break word-wrap'>
-														{proj.project_name}
-													</span>
+													<Link
+														to={`/app/tech-procurement/view-mto/${proj.id}`}>
+														<span className='word-break word-wrap'>
+															{proj.project_name}
+														</span>
+													</Link>
 												</th>
 
 												<td>{proj.project_no}</td>
 												<td>{proj.form_type}</td>
 												<td>{proj.no_of_items}</td>
 												<td className='p-3'>
+													{/* <div
+														className={
+															proj.status === 'Approved'
+																? 'tag-approved'
+																: proj.status === 'Queried'
+																? 'tag-queried'
+																: 'tag-rejected'
+														}>
+														{proj.status}
+													</div> */}
 													<Tag
 														className='tags'
 														color={getTagColor(proj.status)}>

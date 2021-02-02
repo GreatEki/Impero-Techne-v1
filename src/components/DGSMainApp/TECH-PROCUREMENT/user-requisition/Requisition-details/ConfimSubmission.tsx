@@ -27,7 +27,7 @@ const ConfimSubmissionModal: React.FC<Props> = ({ visible, setVisible }) => {
 				minHeight: '200px',
 			}}
 			visible={visible}
-			width={550}
+			width={600}
 			closable={false}
 			footer={[
 				<Row style={{ padding: '1rem 0.5rem' }} justify='space-between'>
@@ -46,11 +46,10 @@ const ConfimSubmissionModal: React.FC<Props> = ({ visible, setVisible }) => {
 					</Col>
 				</Row>,
 			]}>
-			<strong>You are about to submit this MTO form approval.</strong>
-			<br />
 			<strong className='word-break word-wrap text-center'>
-				Click 'Submit' to send MTO for approval if not click 'cancel' to close
-				modal
+				Submitting this requisition means that it will be sent for approval, you
+				can check the User Requisition history for status, Click Cancel to
+				review form before Submission.
 			</strong>
 		</Modal>
 	);

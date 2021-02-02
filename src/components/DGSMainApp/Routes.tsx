@@ -24,6 +24,14 @@ const Routes = () => {
 						() => import('./TECH-PROCUREMENT/MTO/CreateMTO/CreateMtoIIndex')
 					)}
 				/>
+
+				<Route
+					exact
+					path={`${match.url}/tech-procurement/view-mto/:id`}
+					component={asyncComponent(
+						() => import('./TECH-PROCUREMENT/MTO/ViewMTO/ViewMTO')
+					)}
+				/>
 				<Route
 					exact
 					path={`${match.url}/tech-procurement/user-requisition`}
