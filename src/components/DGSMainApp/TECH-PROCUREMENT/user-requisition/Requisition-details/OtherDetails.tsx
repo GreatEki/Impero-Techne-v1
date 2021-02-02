@@ -1,5 +1,18 @@
-import React from 'react';
-import { Input, Row, Col, Select, Button, Checkbox, Form, Radio } from 'antd';
+import React, { useState } from 'react';
+import {
+	Input,
+	Row,
+	Col,
+	Select,
+	Button,
+	Checkbox,
+	Form,
+	Radio,
+	DatePicker,
+	Table,
+} from 'antd';
+import AddMTOInfo from './AddMTOInfo';
+import ConfirmSubmissionModal from './ConfimSubmission';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -10,9 +23,64 @@ const formLayout = {
 	},
 };
 
-const plainOptions = ['Spares Required', 'After Sales required'];
+// const plainOptions = ['Spares Required', 'After Sales required'];
+
+interface OtherDetailsI {
+	detailed_spec: string;
+	ref_code: string;
+	terms_and_cond: string;
+	sellers_country: string;
+	sellers_state: string;
+	sellers_city: string;
+	delivery_address: string;
+	date_req_onsite: string;
+	other_info: string;
+	del_special_instruction: string;
+	other_special_instructions: string;
+	spares_required: boolean;
+	after_sales: boolean;
+}
 
 const OtherDetails: React.FC = () => {
+	const [sparedReq, setSparesReq] = useState(false);
+	const [afterSales, setAfterSaales] = useState(false);
+	const [formState, setFormState] = useState<OtherDetailsI>({
+		detailed_spec: '',
+		ref_code: '',
+		terms_and_cond: '',
+		sellers_country: '',
+		sellers_state: '',
+		sellers_city: '',
+		delivery_address: '',
+		date_req_onsite: '',
+		other_info: '',
+		del_special_instruction: '',
+		other_special_instructions: '',
+		spares_required: false,
+		after_sales: false,
+	});
+
+	const [ConfirmSubVisible, setConfirmSubVisible] = useState(false);
+
+	const showConfirmSubModal = () => {
+		setConfirmSubVisible(true);
+	};
+
+	const handleChange = (key: string, value: string) => {
+		setFormState({ ...formState, [key]: value });
+	};
+
+	const onFinish = () => {
+		let otherDetails = {
+			...formState,
+			spares_required: sparedReq,
+			after_sales: afterSales,
+		};
+
+		console.log(otherDetails);
+		showConfirmSubModal();
+	};
+
 	return (
 		<div>
 			<Row gutter={50}>
@@ -24,7 +92,12 @@ const OtherDetails: React.FC = () => {
 									<strong>Detailed Specifications</strong>
 								</label>
 							}>
-							<TextArea rows={4} />
+							<TextArea
+								rows={4}
+								onChange={(e) =>
+									handleChange('detailed_spec', e.currentTarget.value)
+								}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -33,7 +106,12 @@ const OtherDetails: React.FC = () => {
 									<strong>Reference Code Standards</strong>
 								</label>
 							}>
-							<TextArea rows={4} />
+							<TextArea
+								rows={4}
+								onChange={(e) =>
+									handleChange('ref_code', e.currentTarget.value)
+								}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -42,7 +120,12 @@ const OtherDetails: React.FC = () => {
 									<strong>Terms and Conditions</strong>
 								</label>
 							}>
-							<TextArea rows={4} />
+							<TextArea
+								rows={4}
+								onChange={(e) =>
+									handleChange('terms_and_cond', e.currentTarget.value)
+								}
+							/>
 						</Form.Item>
 
 						<strong> Delivery Information </strong>
@@ -54,7 +137,11 @@ const OtherDetails: React.FC = () => {
 											<strong>Sellers Country </strong>
 										</label>
 									}>
-									<Select size='large'>
+									<Select
+										size='large'
+										onChange={(value: string) =>
+											handleChange('sellers_country', value)
+										}>
 										<Option value='Nigeria'> Nigeria x</Option>
 									</Select>
 								</Form.Item>
@@ -67,7 +154,11 @@ const OtherDetails: React.FC = () => {
 											<strong>Sellers State </strong>
 										</label>
 									}>
-									<Select size='large'>
+									<Select
+										size='large'
+										onChange={(value: string) =>
+											handleChange('sellers_state', value)
+										}>
 										<Option value='Ikeja'> Ikeja x</Option>
 									</Select>
 								</Form.Item>
@@ -82,7 +173,11 @@ const OtherDetails: React.FC = () => {
 											<strong>Sellers City </strong>
 										</label>
 									}>
-									<Select size='large'>
+									<Select
+										size='large'
+										onChange={(value: string) =>
+											handleChange('sellers_city', value)
+										}>
 										<Option value='Alausa'> Alausa </Option>
 									</Select>
 								</Form.Item>
@@ -95,7 +190,12 @@ const OtherDetails: React.FC = () => {
 									<strong>Delivery Address </strong>
 								</label>
 							}>
-							<Input size='large' />
+							<Input
+								size='large'
+								onChange={(e) =>
+									handleChange('delivery_address', e.currentTarget.value)
+								}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -104,7 +204,13 @@ const OtherDetails: React.FC = () => {
 									<strong>Special Instructions</strong>
 								</label>
 							}>
-							<Input size='large' placeholder='e.g Packaging, Storage' />
+							<Input
+								size='large'
+								placeholder='e.g Packaging, Storage'
+								onChange={(e) =>
+									handleChange('del_special_instruction', e.currentTarget.value)
+								}
+							/>
 						</Form.Item>
 
 						<Form.Item
@@ -114,18 +220,30 @@ const OtherDetails: React.FC = () => {
 								</label>
 							}>
 							<Row gutter={50}>
-								<Col span={3}>
-									<Select size='large' defaultValue='1'>
+								<Col span={5}>
+									<Select
+										style={{ width: '100%' }}
+										// onChange={(value: string) =>
+										// 	handleChange('', value)
+										// }
+										size='large'
+										defaultValue='1'>
 										<Option value='1'>1</Option>
 									</Select>
 								</Col>
 								<Col span={5}>
-									<Select size='large' defaultValue='January'>
+									<Select
+										size='large'
+										defaultValue='January'
+										style={{ width: '100%' }}>
 										<Option value='January'>January</Option>
 									</Select>
 								</Col>
-								<Col span={3}>
-									<Select size='large' defaultValue='2021'>
+								<Col span={5}>
+									<Select
+										size='large'
+										defaultValue='2021'
+										style={{ width: '100%' }}>
 										<Option value='2020'>2020</Option>
 									</Select>
 								</Col>
@@ -141,7 +259,14 @@ const OtherDetails: React.FC = () => {
 							</small>
 							<br />
 							<br />
-							<Checkbox.Group options={plainOptions} />
+							<Checkbox onChange={(e) => setSparesReq(!sparedReq)}>
+								{' '}
+								Spares Required{' '}
+							</Checkbox>
+							<Checkbox onChange={(e) => setAfterSaales(!afterSales)}>
+								{' '}
+								After Sales Required{' '}
+							</Checkbox>
 						</Form.Item>
 
 						<Form.Item
@@ -150,66 +275,38 @@ const OtherDetails: React.FC = () => {
 									<strong>Special Instructions</strong>
 								</label>
 							}>
-							<Input size='large' placeholder='e.g Packaging, Storage' />
+							<Input
+								onChange={(e) =>
+									handleChange(
+										'other_special_instructions',
+										e.currentTarget.value
+									)
+								}
+								size='large'
+								placeholder='e.g Packaging, Storage'
+							/>
 						</Form.Item>
 
-						<strong className='muted-font'>Add MTO Information </strong>
-						<Form.Item
-							label={
-								<label>
-									<strong>Discipline</strong>
-								</label>
-							}>
-							<Radio.Group size='large'>
-								<Radio
-									key='Electrical MTO'
-									value='PElectrical MTOrElectrical MTOoduct'>
-									{' '}
-									<strong>Electrical MTO</strong>
-								</Radio>
-								<Radio key='Piping MTO' value='Piping MTO'>
-									{' '}
-									<strong>Piping MTO</strong>
-								</Radio>
-								<Radio key='Civil MTO' value='Civil MTO'>
-									{' '}
-									<strong>Civil MTO</strong>
-								</Radio>
-								<Radio key='Instrumentation MTO' value='Instrumentation MTO'>
-									{' '}
-									<strong>Instrumentation MTO</strong>
-								</Radio>
-							</Radio.Group>
-						</Form.Item>
+						{/* ==== MTO Information */}
+						<AddMTOInfo />
 
-						<Form.Item
-							label={
-								<label>
-									<strong>Sub-discipline</strong>
-								</label>
-							}>
-							<Select size='large' placeholder='Search'>
-								<Option value='Sub-Discipline 1'> Sub Discipline 1</Option>
-							</Select>
-						</Form.Item>
-
-						<Form.Item
-							label={
-								<label>
-									<strong>MTO Form Name</strong>
-								</label>
-							}>
-							<Select size='large'>
-								<Option value='forn name 1'> Form Name 1</Option>
-							</Select>
-						</Form.Item>
-
-						<Form.Item>
-							<Button className='site-btn-sm'> Add </Button>
-						</Form.Item>
+						<Row>
+							<Col span={5}>
+								<Form.Item>
+									<Button onClick={onFinish} className='btn-xlg'>
+										Submit
+									</Button>
+								</Form.Item>
+							</Col>
+						</Row>
 					</Form>
 				</Col>
 			</Row>
+
+			<ConfirmSubmissionModal
+				visible={ConfirmSubVisible}
+				setVisible={setConfirmSubVisible}
+			/>
 		</div>
 	);
 };

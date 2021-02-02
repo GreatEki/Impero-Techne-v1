@@ -4,7 +4,6 @@ import { Row, Col, Input, Select, Form, Button, message } from 'antd';
 import { ProductStorageItemI } from 'appRedux/types/userRequisitionTypes';
 import { v4 as uuidv4 } from 'uuid';
 import { addItemToProductStorageItems } from 'appRedux/actions/userRequisitionActions';
-import { numberWithCommas } from 'utils/numberWithCommas';
 
 const { Option } = Select;
 
@@ -54,7 +53,7 @@ const ProductDetailsPanel = () => {
 			updatedItem,
 			...productStorageItems,
 		]);
-		message.success('Product Added. You can add more items to the list');
+		message.success('Product Added Successfully');
 		setFormState({
 			itemId: '',
 			description: '',
@@ -159,7 +158,7 @@ const ProductDetailsPanel = () => {
 									}>
 									<Input
 										size='large'
-										value={numberWithCommas(formState.estimated_cost)}
+										value={formState.estimated_cost}
 										className='round'
 									/>
 								</Form.Item>

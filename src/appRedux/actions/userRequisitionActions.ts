@@ -6,6 +6,8 @@ import {
 	ADD_PRODUCTSTORAGE_ITEM,
 	REMOVE_PRODUCTSTORAGE_ITEM,
 	ProductStorageItemI,
+	RemoveProductStorageItemDispatch,
+	AddProductStorageItemDispatch,
 } from '../types/userRequisitionTypes';
 
 export const addUserReqProjectInfo = (projectInfo: userReq_ProjectInfoI) => (
@@ -19,7 +21,7 @@ export const addUserReqProjectInfo = (projectInfo: userReq_ProjectInfoI) => (
 
 export const addItemToProductStorageItems = (
 	storageItems: ProductStorageItemI[]
-) => (dispatch: Dispatch<userRequisitionDispatchTypes>) => {
+) => (dispatch: Dispatch<AddProductStorageItemDispatch>) => {
 	dispatch({
 		type: ADD_PRODUCTSTORAGE_ITEM,
 		payload: storageItems,
@@ -28,7 +30,7 @@ export const addItemToProductStorageItems = (
 
 export const removeItemfromProductStorageItems = (
 	storageItems: ProductStorageItemI[]
-) => (dispatch: Dispatch<userRequisitionDispatchTypes>) => {
+) => (dispatch: Dispatch<RemoveProductStorageItemDispatch>) => {
 	dispatch({
 		type: REMOVE_PRODUCTSTORAGE_ITEM,
 		payload: storageItems,

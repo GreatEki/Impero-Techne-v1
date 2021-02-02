@@ -11,6 +11,7 @@ import ServiceDetailsView from './ServiceDetailsView';
 import DeliveryInfoPanel from './DeliveryInfoPanel';
 import AddedMTOPanel from './AddedMTOPanel';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
+import { ProductStorageItemI } from 'appRedux/types/userRequisitionTypes';
 
 import { useSelector } from 'react-redux';
 import { RootStore } from 'appRedux/Store';
@@ -129,24 +130,6 @@ const RequisitionDetails: React.FC<Props> = ({ next }) => {
 									<AddedProductsPanel next={next} />
 								</Panel>
 							)}
-						</Collapse>
-
-						<Collapse expandIconPosition='right'>
-							<Panel
-								className='my-3'
-								header={<label className='muted-font'>Delivery Info</label>}
-								key='delivery-info'>
-								<DeliveryInfoPanel />
-							</Panel>
-						</Collapse>
-
-						<Collapse expandIconPosition='right'>
-							<Panel
-								className='my-3'
-								header={<label className='muted-font'>Added MTO</label>}
-								key='added-mto'>
-								<AddedMTOPanel />
-							</Panel>
 						</Collapse>
 					</div>
 				</Content>

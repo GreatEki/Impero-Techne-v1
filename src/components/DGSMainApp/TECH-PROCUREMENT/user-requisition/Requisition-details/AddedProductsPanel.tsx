@@ -20,13 +20,13 @@ const AddedProductsPanel: React.FC<Props> = ({ next }) => {
 
 	useEffect(() => {
 		setStoreItems(productStorageItems);
+		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [productStorageItems]);
 
 	const removeItem = (theItem: ProductStorageItemI) => {
-		const filteredItems = storeItems.filter(
-			(item) => item.itemId !== theItem.itemId
-		);
-		dispatch(removeItemfromProductStorageItems(filteredItems));
+		console.log(theItem);
+		setStoreItems(storeItems.filter((item) => item.itemId !== theItem.itemId));
+		dispatch(removeItemfromProductStorageItems(storeItems));
 	};
 	return (
 		<div className='table-responsive'>
