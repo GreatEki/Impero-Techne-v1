@@ -29,11 +29,11 @@ export const addMtoStorageItem = (storageItem: MtoStorageItemI[]) => (
 	});
 };
 
-export const removeMtoStorageItem = (storageItem: MtoStorageItemI[]) => (
+export const removeMtoStorageItem = (id: string) => (
 	dispatch: Dispatch<MtoDispatchTypes>
 ) => {
 	dispatch({
 		type: REMOVE_MTOSTORAGE_ITEM,
-		payload: storageItem,
+		payload: id,
 	});
 };

@@ -38,7 +38,9 @@ const mtoReducer = (
 		case MtoT.REMOVE_MTOSTORAGE_ITEM:
 			return {
 				...state,
-				mtoStorageItems: action.payload,
+				mtoStorageItems: state.mtoStorageItems.filter(
+					(item) => item.itemId !== action.payload
+				),
 			};
 
 		default:

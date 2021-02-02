@@ -4,16 +4,12 @@ import { useSelector } from 'react-redux';
 // import { RootStore } from 'appRedux/Store'
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-	const { user } = useSelector((state) => state.user);
+	const token = localStorage.getItem('token');
 	return (
 		<Route
 			{...rest}
 			render={(props) =>
-				user.token ? (
-					<Component {...props} />
-				) : (
-					<Redirect to={{ pathname: '/' }} />
-				)
+				token ? <Component {...props} /> : <Redirect to={{ pathname: '/' }} />
 			}
 		/>
 	);

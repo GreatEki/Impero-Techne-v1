@@ -46,8 +46,25 @@ a {
 	padding: 0;
 }
 
+.site-admin-menu {
+	color: black;
+	border-bottom: 1px solid lightgrey !important;
+	padding: 0 1rem 2.5rem 1rem !important;
+}
+
+.site-admin-menu:focus {
+	color: #1f45fc !important;
+}
+
 .site-menu:focus {
 	color: var(--site-primary) !important;
+}
+
+.admin-menuItem {
+	background: white !important;
+}
+.admin-menuItem:focus {
+	border-right: white !important;
 }
 
 .site-bg-primary {

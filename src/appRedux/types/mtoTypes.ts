@@ -38,7 +38,7 @@ export interface AddMtoStorageItemDispatch {
 
 export interface RemoveMtoStorageItemDispatch {
 	type: typeof REMOVE_MTOSTORAGE_ITEM;
-	payload: MtoStorageItemI[];
+	payload: string;
 }
 
 export type MtoDispatchTypes =

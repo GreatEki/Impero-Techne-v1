@@ -19,11 +19,11 @@ const AddedItemsPanel = () => {
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [mtoStorageItems]);
 
-	const removeItem = (theItem: MtoStorageItemI) => {
-		const filteredItems = store.filter(
-			(item) => item.itemId !== theItem.itemId
-		);
-		dispatch(removeMtoStorageItem(filteredItems));
+	const removeItem = (id: string) => {
+		// const filteredItems = store.filter(
+		// 	(item) => item.itemId !== theItem.itemId
+		// );
+		dispatch(removeMtoStorageItem(id));
 	};
 
 	const showSubmission = () => {
@@ -81,7 +81,7 @@ const AddedItemsPanel = () => {
 									<br />
 									<strong>$ {item.total_price}</strong>
 								</td>
-								<td onClick={() => removeItem(item)}>
+								<td onClick={() => removeItem(item.itemId)}>
 									<span className='text-muted'></span>
 									<br />
 									<FiMinusSquare className='site-danger' />
