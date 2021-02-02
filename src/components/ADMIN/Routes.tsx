@@ -10,7 +10,9 @@ const Routes = () => {
 				<Route
 					exact
 					path={`${match.url}`}
-					component={asyncComponent(() => import('./SiteReport/SiteReport'))}
+					component={asyncComponent(
+						() => import('./RegisterUser/RegisterUser')
+					)}
 				/>
 			</Switch>
 		</div>

@@ -60,11 +60,13 @@ a {
 	color: var(--site-primary) !important;
 }
 
-.admin-menuItem {
-	background: white !important;
+.adminInput {
+	background-color: #ebf4fa !important;
 }
-.admin-menuItem:focus {
-	border-right: white !important;
+.adminInput:focus {
+	border: none !important;
+	outline: none !important;
+	background-color: #c6deff !important;
 }
 
 .site-bg-primary {
