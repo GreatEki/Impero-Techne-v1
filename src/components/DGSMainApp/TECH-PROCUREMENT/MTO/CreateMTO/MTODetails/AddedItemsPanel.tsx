@@ -96,11 +96,11 @@ const AddedItemsPanel = () => {
 				</tbody>
 			</table>
 
-			<section
+			{/* <section
 				className='my-5'
 				style={{ display: 'flex', justifyContent: 'center' }}>
 				<Pagination defaultCurrent={1} total={50} />
-			</section>
+			</section> */}
 
 			<Row>
 				<Col span={6}>

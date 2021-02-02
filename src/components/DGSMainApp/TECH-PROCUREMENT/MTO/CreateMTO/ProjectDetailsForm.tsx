@@ -49,6 +49,15 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 		request_formName: '',
 	});
 
+	const [errors, setErrors] = useState<ProjectInfoI | null>({
+		project_name: '',
+		client_name: '',
+		company_name: '',
+		discipline: '',
+		discipline_subType: '',
+		request_formName: '',
+	});
+
 	const dispatch = useDispatch();
 	useEffect(() => {
 		(async () => {
@@ -68,6 +77,50 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 	// Load in AllClients from redux store to display in form fields
 	const { clients } = useSelector((state: RootStore) => state.adminModule);
 
+	const validation = (projectInfo: ProjectInfoI) => {
+		let errors: ProjectInfoI | null = {
+			project_name: '',
+			client_name: '',
+			company_name: '',
+			discipline: '',
+			discipline_subType: '',
+			request_formName: '',
+		};
+
+		if (!projectInfo.project_name) {
+			errors.project_name = 'Project Name is required';
+		}
+		if (!projectInfo.client_name) {
+			errors.client_name = 'Client Name is required';
+		}
+		if (!projectInfo.company_name) {
+			errors.company_name = 'Company Name is required';
+		}
+		if (!projectInfo.discipline) {
+			errors.discipline = 'Discipline is required is required';
+		}
+
+		if (!projectInfo.discipline_subType) {
+			errors.discipline_subType = 'Enter Discipline Subtype';
+		}
+		if (!projectInfo.request_formName) {
+			errors.request_formName = 'Enter a Form Name';
+		}
+
+		if (
+			projectInfo.project_name &&
+			projectInfo.client_name &&
+			projectInfo.company_name &&
+			projectInfo.discipline &&
+			projectInfo.discipline_subType &&
+			projectInfo.request_formName
+		) {
+			errors = null;
+		}
+
+		return errors;
+	};
+
 	// Method handles the data entries of the form
 	const handleFormInputs = (key: string, value: string | number) => {
 		setProjectInfo({ ...projectInfo, [key]: value });
@@ -76,8 +129,14 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 	// handles submit action
 	const handleSubmit = (projectInfo: ProjectInfoI) => {
 		// console.log(projectInfo);
-		dispatch(addProjectInfo(projectInfo, dispatch));
-		next();
+
+		const valErrors = validation(projectInfo);
+		if (valErrors) {
+			setErrors(valErrors);
+		} else {
+			dispatch(addProjectInfo(projectInfo, dispatch));
+			next();
+		}
 	};
 	return (
 		<div>
@@ -142,7 +201,7 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 											</p>
 
 											<Form.Item
-												name='project_name'
+												// name='project_name'
 												label={<strong> Project Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
@@ -169,11 +228,17 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 														</>
 													)}
 												</Select>
+												{errors?.project_name && (
+													<span className='text-danger'>
+														{' '}
+														{errors.project_name}
+													</span>
+												)}
 											</Form.Item>
 
 											{/*  */}
 											<Form.Item
-												name='client_name'
+												// name='client_name'
 												label={<strong> Client's Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
@@ -199,11 +264,14 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 														</>
 													)}
 												</Select>
+												{errors?.client_name && (
+													<p className='text-danger'> {errors.client_name}</p>
+												)}
 											</Form.Item>
 
 											{/*  */}
 											<Form.Item
-												name='company_name'
+												// name='company_name'
 												label={<strong> Company Name </strong>}
 												rules={[{ required: true }]}>
 												<Select
@@ -229,9 +297,12 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 														</>
 													)}
 												</Select>
+												{errors?.company_name && (
+													<p className='text-danger'> {errors.company_name}</p>
+												)}
 											</Form.Item>
 
-											<Form.Item name='discipline' label='Discipline'>
+											<Form.Item label='Discipline'>
 												<Radio.Group
 													size='large'
 													onChange={(e) =>
@@ -256,11 +327,14 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 														<strong>Instrumentation MTO</strong>{' '}
 													</Radio>
 												</Radio.Group>
+												{errors?.discipline && (
+													<p className='text-danger'> {errors.discipline} </p>
+												)}
 											</Form.Item>
 
 											{/*  */}
 											<Form.Item
-												name='discipline_subType'
+												// name='discipline_subType'
 												label={<strong> Discipline Sub Type </strong>}
 												rules={[{ required: true }]}>
 												<Select
@@ -280,11 +354,17 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 														sub-discipline1
 													</Option>
 												</Select>
+												{errors?.discipline_subType && (
+													<p className='text-danger'>
+														{' '}
+														{errors.discipline_subType}{' '}
+													</p>
+												)}
 											</Form.Item>
 
 											{/*  */}
 											<Form.Item
-												name='requestForm_name'
+												// name='requestForm_name'
 												label={<strong> Name this Request Form </strong>}
 												rules={[{ required: true }]}>
 												<Input
@@ -296,6 +376,12 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 														)
 													}
 												/>
+												{errors?.request_formName && (
+													<p className='text-danger'>
+														{' '}
+														{errors.request_formName}{' '}
+													</p>
+												)}
 											</Form.Item>
 
 											<Row>

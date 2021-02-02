@@ -154,6 +154,9 @@ const AddMTOItem: React.FC = () => {
 										}
 										size='large'>
 										<Option value='unit1'>unit 1</Option>
+										<Option value='watts'>watts</Option>
+										<Option value='jolues'>joules</Option>
+										<Option value='mhhz'>MHz</Option>
 									</Select>
 								</Form.Item>
 							</Col>

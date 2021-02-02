@@ -180,14 +180,20 @@ const MTOFormDetails = () => {
 					<Card>
 						<Steps progressDot direction='vertical'>
 							<Step
+								// status='finish'
+								icon={<BsIcon.BsDot className='site-dot' />}
 								title={<span className='site-primary'> You Initiated </span>}
 								description={showInitiated()}
 							/>
 							<Step
+								// status='finish'
+								icon={<BsIcon.BsDot className='site-dot' />}
 								title={<span className='site-primary'> Checked</span>}
 								description={showChecked()}
 							/>
 							<Step
+								// status='finish'
+								icon={<BsIcon.BsDot className='site-dot' />}
 								title={<span className='site-primary'> Authenticated</span>}
 								description={showAuthenticated()}
 							/>
