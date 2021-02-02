@@ -8,6 +8,8 @@ import {
 	ProductStorageItemI,
 	RemoveProductStorageItemDispatch,
 	AddProductStorageItemDispatch,
+	ADD_SERVICEDETAIL,
+	ServiceDetailsI,
 } from '../types/userRequisitionTypes';
 
 export const addUserReqProjectInfo = (projectInfo: userReq_ProjectInfoI) => (
@@ -34,5 +36,14 @@ export const removeItemfromProductStorageItems = (
 	dispatch({
 		type: REMOVE_PRODUCTSTORAGE_ITEM,
 		payload: storageItems,
+	});
+};
+
+export const addServiceDetail = (
+	serviceDetail: ServiceDetailsI,
+) => (dispatch: Dispatch<userRequisitionDispatchTypes>) => {
+	dispatch({
+		type: ADD_SERVICEDETAIL,
+		payload: serviceDetail,
 	});
 };

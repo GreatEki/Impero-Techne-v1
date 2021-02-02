@@ -1,6 +1,7 @@
 export const ADD_PROJECT_INFO = 'ADD_PROJECT_INFO';
 export const ADD_PRODUCTSTORAGE_ITEM = 'ADD_PRODUCTSTORAGE_ITEM';
 export const REMOVE_PRODUCTSTORAGE_ITEM = 'REMOVE_PRODUCTSTORAGE_ITEM';
+export const ADD_SERVICEDETAIL = 'ADD_SERVICEDETAIL';
 
 export interface userReq_ProjectInfoI {
 	request_title: string;
@@ -33,7 +34,31 @@ export interface RemoveProductStorageItemDispatch {
 	payload: ProductStorageItemI[];
 }
 
+export interface ServiceDetailsI {
+	intro_and_desc: string;
+	scope_of_works: string;
+	reference_code_and_stds: string;
+	detailed_desc_of_work_and_specs: string;
+	technical_eval_req: string;
+	reference_drawings: string;
+	work_schedule: string;
+	commercial: string;
+	terms_and_conditions: string;
+	payment_terms: string;
+	renumeration: string;
+	validity_period: string;
+	delivery_address: string;
+	special_instructions: string;
+	date_required_on_site: string | Date;
+}
+
+export interface AddServiceDetailDispatch {
+	type: typeof ADD_SERVICEDETAIL;
+	payload: ServiceDetailsI;
+}
+
 export type userRequisitionDispatchTypes =
 	| AddProjectInfoDispatch
 	| AddProductStorageItemDispatch
-	| RemoveProductStorageItemDispatch;
+	| RemoveProductStorageItemDispatch
+	| AddServiceDetailDispatch;

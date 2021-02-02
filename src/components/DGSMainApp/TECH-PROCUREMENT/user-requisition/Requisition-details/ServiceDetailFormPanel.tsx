@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Input, Select, Radio, DatePicker, Form, Table, Row, Col } from 'antd';
 import * as FaIcons from 'react-icons/fa';
+import { addServiceDetail } from 'appRedux/actions/userRequisitionActions';
+import { useDispatch } from 'react-redux';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -11,7 +13,7 @@ const formLayout = {
 	},
 };
 
-interface ServiceDtailsI {
+interface ServiceDetailsI {
 	intro_and_desc: string;
 	scope_of_works: string;
 	reference_code_and_stds: string;
@@ -30,7 +32,8 @@ interface ServiceDtailsI {
 }
 
 const ServiceDetailFormPanel = () => {
-	const [formState, setFormState] = useState<ServiceDtailsI>({
+	const dispatch = useDispatch();
+	const [formState, setFormState] = useState<ServiceDetailsI>({
 		intro_and_desc: '',
 		scope_of_works: '',
 		reference_code_and_stds: '',
@@ -47,6 +50,7 @@ const ServiceDetailFormPanel = () => {
 		special_instructions: '',
 		date_required_on_site: '',
 	});
+	const [validityPeriod, setValidityPeriod] = useState('');
 
 	const dataSource = [
 		{
@@ -69,18 +73,17 @@ const ServiceDetailFormPanel = () => {
 		setFormState({ ...formState, [key]: value });
 	};
 
-	// const handleFiles = (e: any) => {
-	// 	console.log(e.target.files[0].name);
-	// };
+	const handleDate = (date: any, dateString: string) => {
+		setFormState({ ...formState, validity_period: dateString });
+	};
 
-	const onSubmit = (formState: ServiceDtailsI) => {
+	const onSubmit = (formState: ServiceDetailsI) => {
 		let formdata = new FormData();
 
 		for (const [key, value] of Object.entries(formState)) {
 			formdata.append(key, value);
-			console.log(key, value);
 		}
-		console.log(formdata);
+		dispatch(addServiceDetail(formState));
 	};
 
 	return (
@@ -270,7 +273,7 @@ const ServiceDetailFormPanel = () => {
 											<strong>Validity Period</strong>
 										</label>
 									}>
-									<DatePicker />
+									<DatePicker onChange={handleDate} />
 								</Form.Item>
 							</Col>
 						</Row>
@@ -381,7 +384,7 @@ const ServiceDetailFormPanel = () => {
 					</Form>
 
 					<section className='mt-5'>
-						<Table dataSource={dataSource} scroll={{ x: 1000 }} bordered>
+						<Table dataSource={dataSource} size='small' bordered>
 							<Table.Column
 								dataIndex='name'
 								title={<small>Name</small>}
