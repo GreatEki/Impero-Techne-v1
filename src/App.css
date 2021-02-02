@@ -203,7 +203,7 @@ a {
 }
 
 .card-modal {
-	min-width: 40% !important;
+	min-width: 35% !important;
 	padding: 2rem !important;
 	z-index: 2;
 }

@@ -106,7 +106,7 @@ const SlideMenu = () => {
 					</strong>
 				}>
 				<Menu.Item key='register user'>
-					<Link to='#' className='site-menu'>
+					<Link to='/admin' className='site-menu'>
 						<span style={{ padding: '15px' }}> Register User </span>{' '}
 					</Link>
 				</Menu.Item>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Card, Row, Col, Divider, Input, Form, Select, Button } from 'antd';
 
 const { Option } = Select;
@@ -9,7 +9,38 @@ const formLayout = {
 	},
 };
 
+interface UserI {
+	firstName: string;
+	lastName: string;
+	emal: string;
+	phoneNumber: string;
+	password: string;
+	confirmPassword: string;
+	staffNumber: string;
+	companyId: number;
+	roleId: number;
+}
 const RegisterUser = () => {
+	const [user, setUser] = useState<UserI>({
+		firstName: '',
+		lastName: '',
+		emal: '',
+		phoneNumber: '',
+		password: '',
+		confirmPassword: '',
+		staffNumber: '',
+		companyId: 0,
+		roleId: 0,
+	});
+
+	const handleChange = (key: string, value: string | number) => {
+		setUser({ ...user, [key]: value });
+	};
+
+	const handleSubmit = (user: UserI) => {
+		console.log(user);
+	};
+
 	return (
 		<div>
 			<Card>
@@ -24,6 +55,9 @@ const RegisterUser = () => {
 						<Col span={12}>
 							<Form.Item label={<label className='fw-bold'>FirstName</label>}>
 								<Input
+									onChange={(e) =>
+										handleChange('firstName', e.currentTarget.value)
+									}
 									className='adminInput'
 									size='large'
 									placeholder='firstName'
@@ -33,6 +67,9 @@ const RegisterUser = () => {
 						<Col span={12}>
 							<Form.Item label={<label className='fw-bold'>LastName</label>}>
 								<Input
+									onChange={(e) =>
+										handleChange('lastName', e.currentTarget.value)
+									}
 									className='adminInput'
 									size='large'
 									placeholder='lastName'
@@ -45,6 +82,7 @@ const RegisterUser = () => {
 						<Col span={12}>
 							<Form.Item label={<label className='fw-bold'>Email </label>}>
 								<Input
+									onChange={(e) => handleChange('email', e.currentTarget.value)}
 									className='adminInput'
 									size='large'
 									placeholder='email'
@@ -55,6 +93,9 @@ const RegisterUser = () => {
 							<Form.Item
 								label={<label className='fw-bold'>Phone Number</label>}>
 								<Input
+									onChange={(e) =>
+										handleChange('phoneNumber', e.currentTarget.value)
+									}
 									className='adminInput'
 									size='large'
 									placeholder='Phone number'
@@ -66,14 +107,20 @@ const RegisterUser = () => {
 					<Row gutter={50}>
 						<Col span={12}>
 							<Form.Item label={<label className='fw-bold'>Company </label>}>
-								<Select size='large' className='adminInput'>
-									<Option value='DGS'>DGS Integrated Services</Option>
+								<Select
+									onChange={(value: number) => handleChange('companyId', value)}
+									size='large'
+									className='adminInput'>
+									<Option value={0}>DGS Integrated Services</Option>
 								</Select>
 							</Form.Item>
 						</Col>
 						<Col span={12}>
 							<Form.Item label={<label className='fw-bold'>Role</label>}>
-								<Select size='large' className='adminInput'>
+								<Select
+									onChange={(value: number) => handleChange('roleId', value)}
+									size='large'
+									className='adminInput'>
 									<Option value='DGS'>Admin</Option>
 									<Option value='Checker'>Checker</Option>
 									<Option value='Staff'>Staff</Option>
@@ -89,9 +136,13 @@ const RegisterUser = () => {
 						<Col span={12}>
 							<Form.Item label={<label className='fw-bold'>Password </label>}>
 								<Input
+									onChange={(e) =>
+										handleChange('password', e.currentTarget.value)
+									}
+									type='password'
 									className='adminInput'
 									size='large'
-									placeholder='Enter Password'
+									placeholder='Enter Passwor#ebf4fad'
 								/>
 							</Form.Item>
 						</Col>
@@ -99,6 +150,10 @@ const RegisterUser = () => {
 							<Form.Item
 								label={<label className='fw-bold'>Confirm Password</label>}>
 								<Input
+									onChange={(e) =>
+										handleChange('confirmPassword', e.currentTarget.value)
+									}
+									type='password'
 									className='adminInput'
 									size='large'
 									placeholder='Confirm Password'
@@ -112,6 +167,9 @@ const RegisterUser = () => {
 							<Form.Item
 								label={<label className='fw-bold'>Staff Number </label>}>
 								<Input
+									onChange={(e) =>
+										handleChange('staffNumber', e.currentTarget.value)
+									}
 									className='adminInput'
 									size='large'
 									placeholder='staffNumber'
@@ -123,6 +181,7 @@ const RegisterUser = () => {
 					<Row gutter={50} className='mt-3'>
 						<Col span={5}>
 							<Button
+								onClick={() => handleSubmit(user)}
 								style={{
 									backgroundColor: '#ebf4fa',
 									border: 'none',
@@ -131,7 +190,7 @@ const RegisterUser = () => {
 									borderRadius: '0.3rem',
 								}}>
 								{' '}
-								SUBMIT{' '}
+								Submit{' '}
 							</Button>
 						</Col>
 					</Row>
