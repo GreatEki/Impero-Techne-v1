@@ -1,5 +1,4 @@
 import React, { useEffect, useState, Fragment } from 'react';
-import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Row, Col, Empty } from 'antd';
 import { FiMinusSquare } from 'react-icons/fi';
@@ -10,7 +9,7 @@ import ConfirmSubmissionModal from './ConfimSubmissionModal';
 
 const AddedItemsPanel = () => {
 	const dispatch = useDispatch();
-	const history = useHistory();
+
 	const [store, setStore] = useState<MtoStorageItemI[]>([]);
 	const { mtoStorageItems } = useSelector((state: RootStore) => state.mto);
 

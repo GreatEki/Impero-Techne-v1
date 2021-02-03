@@ -17,11 +17,7 @@ import {
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
-import {
-	getAllProjects,
-	getAllCompanies,
-} from 'appRedux/actions/MiscellaneousActions';
-import { getAllClients } from 'appRedux/actions/adminModuleActions';
+import { getAllCompanies } from 'appRedux/actions/MiscellaneousActions';
 import { RootStore } from 'appRedux/Store';
 import { addProjectInfo } from 'appRedux/actions/mtoActions';
 import { ProjectInfoI } from 'appRedux/types/mtoTypes';
@@ -61,21 +57,50 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 	const dispatch = useDispatch();
 	useEffect(() => {
 		(async () => {
-			await dispatch(getAllProjects());
-			await dispatch(getAllClients());
 			await dispatch(getAllCompanies());
+			// await dispatch(getAllProjects());
+			// await dispatch(getAllClients());
 		})();
 
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	// Load in AllProject and AllCompanies from redux store display in form fields
-	const { projects, companies } = useSelector(
-		(state: RootStore) => state.miscellaneous
-	);
+	const { companies } = useSelector((state: RootStore) => state.miscellaneous);
 
-	// Load in AllClients from redux store to display in form fields
-	const { clients } = useSelector((state: RootStore) => state.adminModule);
+	const projects = [
+		{
+			projectId: '1',
+			projectName: 'Igando Housing Block',
+		},
+		{
+			projectId: '2',
+			projectName: 'Twin Tower',
+		},
+		{
+			projectId: '3',
+			projectName: 'Lukas Office Suites',
+		},
+		{
+			projectId: '4',
+			projectName: 'Midas Road Constructions',
+		},
+	];
+
+	const clients = [
+		{
+			clientId: '1',
+			clientName: 'Apex Limited',
+		},
+		{
+			clientId: '2',
+			clientName: 'Total',
+		},
+		{
+			clientId: '3',
+			clientName: 'Simplex Solutions',
+		},
+	];
 
 	const validation = (projectInfo: ProjectInfoI) => {
 		let errors: ProjectInfoI | null = {

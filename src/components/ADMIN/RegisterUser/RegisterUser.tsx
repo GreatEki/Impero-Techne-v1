@@ -38,7 +38,7 @@ const RegisterUser = () => {
 		password: '',
 		confirmPassword: '',
 		staffNumber: '',
-		companyId: 0,
+		companyId: '',
 		roleId: 0,
 	});
 	const [validationErrors, setValidationErrors] = useState<RegUserI | null>({

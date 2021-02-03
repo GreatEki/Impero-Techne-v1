@@ -4,7 +4,7 @@ import { Row, Col, Input, Select, Form, Button, message } from 'antd';
 import { ProductStorageItemI } from 'appRedux/types/userRequisitionTypes';
 import { v4 as uuidv4 } from 'uuid';
 import { addItemToProductStorageItems } from 'appRedux/actions/userRequisitionActions';
-
+import { numberWithCommas } from 'utils/numberWithCommas';
 const { Option } = Select;
 
 const formLayout = {
@@ -123,6 +123,10 @@ const ProductDetailsPanel = () => {
 										}
 										size='large'
 										style={{ width: '100%' }}>
+										<Option value='unit1'>unit 1</Option>
+										<Option value='watts'>watts</Option>
+										<Option value='jolues'>joules</Option>
+										<Option value='mhhz'>MHz</Option>
 										<Option value='kg'>Kilogram</Option>
 									</Select>
 								</Form.Item>
@@ -158,7 +162,7 @@ const ProductDetailsPanel = () => {
 									}>
 									<Input
 										size='large'
-										value={formState.estimated_cost}
+										value={numberWithCommas(formState.estimated_cost)}
 										className='round'
 									/>
 								</Form.Item>

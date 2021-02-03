@@ -87,7 +87,7 @@ const AddedProductsPanel: React.FC<Props> = ({ next }) => {
 			<section
 				className='my-5'
 				style={{ display: 'flex', justifyContent: 'center' }}>
-				<Pagination defaultCurrent={1} total={50} />
+				<Pagination defaultCurrent={1} total={1} />
 			</section>
 
 			<Row>

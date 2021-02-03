@@ -1,24 +1,16 @@
 import React, { useState } from 'react';
 import { Layout, Menu, Breadcrumb } from 'antd';
-import {
-	MenuUnfoldOutlined,
-	MenuFoldOutlined,
-	UserOutlined,
-	VideoCameraOutlined,
-	UploadOutlined,
-	AppstoreOutlined,
-	MailOutlined,
-	SettingOutlined,
-} from '@ant-design/icons';
+import { MenuUnfoldOutlined, MenuFoldOutlined } from '@ant-design/icons';
 import SideMenu from './SideMenu';
 import App from 'components/ADMIN/Routes';
 import * as AiIcon from 'react-icons/ai';
+import { logOut } from 'appRedux/actions/userActions';
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Header, Content, Sider } = Layout;
 
-const { SubMenu } = Menu;
+// const { SubMenu } = Menu;
 
-const Index: React.FC = () => {
+const Index: React.FC = (props) => {
 	const [collapsed, setCollapsed] = useState(false);
 
 	const toggle = () => {
@@ -54,7 +46,7 @@ const Index: React.FC = () => {
 					/>
 				</div>
 				<div>
-					<AiIcon.AiOutlinePoweroff />
+					<AiIcon.AiOutlinePoweroff onClick={() => logOut(props)} />
 				</div>
 			</Header>
 

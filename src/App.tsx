@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './App.css';
 import Login from './components/Auth/Login';
@@ -20,7 +20,7 @@ function App() {
 				<Switch>
 					<Route exact path='/' component={Login} />
 					<PrivateRoute path='/app' component={MainApp} />
-					<Route path='/admin' component={Admin} />
+					<PrivateRoute path='/admin' component={Admin} />
 				</Switch>
 			</BrowserRouter>
 		</div>

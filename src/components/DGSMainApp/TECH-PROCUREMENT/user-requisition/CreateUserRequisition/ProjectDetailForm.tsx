@@ -18,8 +18,6 @@ import {
 	Button,
 } from 'antd';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
-import { getAllClients } from 'appRedux/actions/adminModuleActions';
-import { getAllProjects } from 'appRedux/actions/MiscellaneousActions';
 import { RootStore } from 'appRedux/Store';
 import { userReq_ProjectInfoI } from 'appRedux/types/userRequisitionTypes';
 import { addUserReqProjectInfo } from 'appRedux/actions/userRequisitionActions';
@@ -47,21 +45,6 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 		request_type: '',
 	});
 
-	useEffect(() => {
-		(async () => {
-			await dispatch(getAllClients());
-			await dispatch(getAllProjects());
-		})();
-
-		//eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-	// Load in AllProject from redux store display in form fields
-	const { projects } = useSelector((state: RootStore) => state.miscellaneous);
-
-	// Load in AllClients from redux store to display in form fields
-	const { clients } = useSelector((state: RootStore) => state.adminModule);
-
 	// Method handles the data entries of the form
 	const handleFormInputs = (key: string, value: string | number) => {
 		setFormState({ ...formState, [key]: value });
@@ -71,6 +54,40 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 		dispatch(addUserReqProjectInfo(formState));
 		next();
 	};
+
+	const projects = [
+		{
+			projectId: '1',
+			projectName: 'Igando Housing Block',
+		},
+		{
+			projectId: '2',
+			projectName: 'Twin Tower',
+		},
+		{
+			projectId: '3',
+			projectName: 'Lukas Office Suites',
+		},
+		{
+			projectId: '4',
+			projectName: 'Midas Road Constructions',
+		},
+	];
+
+	const clients = [
+		{
+			clientId: '1',
+			clientName: 'Apex Limited',
+		},
+		{
+			clientId: '2',
+			clientName: 'Total',
+		},
+		{
+			clientId: '3',
+			clientName: 'Simplex Solutions',
+		},
+	];
 
 	return (
 		<Layout style={{ display: 'flex', minHeight: '100vh' }}>
