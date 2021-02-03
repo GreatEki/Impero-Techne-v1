@@ -12,6 +12,7 @@ import {
 } from '@ant-design/icons';
 import SideMenu from './SideMenu';
 import App from 'components/ADMIN/Routes';
+import * as AiIcon from 'react-icons/ai';
 
 const { Header, Content, Footer, Sider } = Layout;
 
@@ -28,21 +29,33 @@ const Index: React.FC = () => {
 			<Header
 				className='site-layout-background'
 				style={{
-					padding: 10,
+					padding: '0 3rem',
 					background: 'white',
 					position: 'fixed',
 					zIndex: 4,
 					width: '100%',
 					height: '100px',
 					boxShadow: '2px 2px lightgrey',
+					display: 'flex',
+					justifyContent: 'space-between',
 				}}>
-				{React.createElement(
-					collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
-					{
-						className: 'trigger',
-						onClick: toggle,
-					}
-				)}
+				<div>
+					{React.createElement(
+						collapsed ? MenuUnfoldOutlined : MenuFoldOutlined,
+						{
+							className: 'trigger',
+							onClick: toggle,
+						}
+					)}
+					<img
+						src='/icons/dgs-logo.svg'
+						style={{ marginLeft: '1rem' }}
+						alt='prop'
+					/>
+				</div>
+				<div>
+					<AiIcon.AiOutlinePoweroff />
+				</div>
 			</Header>
 
 			<Layout className='site-layout'>
