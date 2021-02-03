@@ -9,6 +9,7 @@ import {
 	Select,
 	Button,
 	Empty,
+	message,
 } from 'antd';
 import passwordValidator from 'password-validator';
 import { useDispatch, useSelector } from 'react-redux';
@@ -57,7 +58,7 @@ const RegisterUser = () => {
 		(state: RootStore) => state.miscellaneous
 	);
 
-	const { loading, error, message } = useSelector(
+	const { loading, error, apiMessage } = useSelector(
 		(state: RootStore) => state.user
 	);
 
@@ -149,14 +150,15 @@ const RegisterUser = () => {
 		setUser({ ...user, [key]: value });
 	};
 
-	const handleSubmit = (user: RegUserI) => {
+	const handleSubmit = async (user: RegUserI) => {
 		// Check for Errors
 		const valErrors = checkErrors(user);
 		if (valErrors) {
 			setValidationErrors(valErrors);
 		} else {
 			setValidationErrors(valErrors);
-			dispatch(registerUser(user));
+			await dispatch(registerUser(user));
+			message.success(apiMessage);
 			// console.log(user);
 			setUser({
 				firstName: '',
@@ -179,7 +181,6 @@ const RegisterUser = () => {
 					<strong> User Registration </strong>
 				</section>
 
-				{message && <strong className='text-success'>{message}</strong>}
 				<Divider />
 
 				<Form {...formLayout}>
@@ -386,7 +387,7 @@ const RegisterUser = () => {
 							</Button>
 						</Col>
 						<Col span={5}>
-							{error && <p className='text-danger text-break'> {error} </p>}
+							{/* {error && <p className='text-danger text-break'> {error} </p>} */}
 						</Col>
 					</Row>
 				</Form>

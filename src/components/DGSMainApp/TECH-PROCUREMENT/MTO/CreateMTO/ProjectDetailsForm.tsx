@@ -17,7 +17,7 @@ import {
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
-import { getAllCompanies } from 'appRedux/actions/MiscellaneousActions';
+// import { getAllCompanies } from 'appRedux/actions/MiscellaneousActions';
 import { RootStore } from 'appRedux/Store';
 import { addProjectInfo } from 'appRedux/actions/mtoActions';
 import { ProjectInfoI } from 'appRedux/types/mtoTypes';
@@ -55,18 +55,18 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 	});
 
 	const dispatch = useDispatch();
-	useEffect(() => {
-		(async () => {
-			await dispatch(getAllCompanies());
-			// await dispatch(getAllProjects());
-			// await dispatch(getAllClients());
-		})();
+	// useEffect(() => {
+	// 	(async () => {
+	// 		await dispatch(getAllCompanies());
+	// 		await dispatch(getAllProjects());
+	// 		await dispatch(getAllClients());
+	// 	})();
 
-		//eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	// 	//eslint-disable-next-line react-hooks/exhaustive-deps
+	// }, []);
 
 	// Load in AllProject and AllCompanies from redux store display in form fields
-	const { companies } = useSelector((state: RootStore) => state.miscellaneous);
+	// const { companies } = useSelector((state: RootStore) => state.miscellaneous);
 
 	const projects = [
 		{
@@ -99,6 +99,25 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 		{
 			clientId: '3',
 			clientName: 'Simplex Solutions',
+		},
+	];
+
+	const companies = [
+		{
+			companyId: 2,
+			companyName: 'DGS',
+		},
+		{
+			companyId: 3,
+			companyName: 'JPSAGE',
+		},
+		{
+			companyId: 4,
+			companyName: 'AMPS',
+		},
+		{
+			companyId: 5,
+			companyName: 'Dyna Torque',
 		},
 	];
 

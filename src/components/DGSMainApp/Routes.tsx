@@ -49,6 +49,11 @@ const Routes = () => {
 							)
 					)}
 				/>
+				<Route
+					exact
+					path={`${match.url}/tech-procurement/rfq`}
+					component={asyncComponent(() => import('./TECH-PROCUREMENT/RFQ/RFQ'))}
+				/>
 			</Switch>
 		</div>
 	);

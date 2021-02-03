@@ -47,6 +47,11 @@ const SlideMenu = () => {
 						<span style={{ padding: '15px' }}> User Requisition </span>{' '}
 					</Link>
 				</Menu.Item>
+				<Menu.Item key='/app/tech-procurement/rfq'>
+					<Link to='/app/tech-procurement/rfq' className='site-menu'>
+						<span style={{ padding: '15px' }}> RFQ </span>{' '}
+					</Link>
+				</Menu.Item>
 				<Menu.Item key='justification'>
 					<Link
 						to='/app/tech-procurement/justification-of-award'

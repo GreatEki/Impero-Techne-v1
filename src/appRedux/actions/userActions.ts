@@ -2,6 +2,7 @@ import { Dispatch } from 'redux';
 import axios from 'axios';
 import { baseUrl } from '../BaseUrl';
 import AuthAxios from 'config/AuthAxios';
+import { message } from 'antd';
 
 import {
 	UserDispatchTypes,
@@ -82,5 +83,7 @@ export const registerUser = (user: RegUserI) => async (
 			type: LOADING_FAIL,
 			payload: err.response ? err.response.data.message : err.message,
 		});
+
+		message.error(err.response ? err.response.data.message : err.message);
 	}
 };

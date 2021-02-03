@@ -14,40 +14,52 @@ import {
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 
+const dataSource = [
+	{
+		id: 1,
+		quotation_title:
+			'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
+		category: 'Product Vendors',
+		sub_category: 'Electrical',
+		specialization: 'Major, Minor',
+		rfq_type: 'Double',
+		status: 'Approved',
+	},
+	{
+		id: 2,
+		quotation_title:
+			'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
+		category: 'Product Vendors',
+		sub_category: 'Instrumentation',
+		specialization: 'Major, Minor',
+		rfq_type: 'Double',
+		status: 'Approved',
+	},
+	{
+		id: 3,
+		quotation_title:
+			'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
+		category: 'Product Vendors',
+		sub_category: 'Instrumentation',
+		specialization: 'Major, Minor',
+		rfq_type: 'Commercial',
+		status: 'Queried',
+	},
+	{
+		id: 4,
+		quotation_title:
+			'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
+		category: 'Product Vendors',
+		sub_category: 'Instrumentation',
+		specialization: 'Major, Minor',
+		rfq_type: 'Single',
+		status: 'Rejected',
+	},
+];
+
 const { Header, Content } = Layout;
-
-const MTO: React.FC = () => {
+const RFQ = () => {
 	const history = useHistory();
-	const dataSource = [
-		{
-			id: 1,
-			project_name:
-				'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
-			project_no: 'GEJJR2962986219 ',
-			form_type: 'Instrumentation',
-			no_of_items: 72,
-			status: 'Approved',
-		},
-		{
-			id: 2,
-			project_name:
-				'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
-			project_no: 'GEJJR2962986219 ',
-			form_type: 'Instrumentation',
-			no_of_items: 72,
-			status: 'Queried',
-		},
-		{
-			id: 3,
-			project_name:
-				'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
-			project_no: 'GEJJR2962986219 ',
-			form_type: 'Instrumentation',
-			no_of_items: 72,
-			status: 'Rejected',
-		},
-	];
-
 	return (
 		<>
 			<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -63,7 +75,7 @@ const MTO: React.FC = () => {
 						style={{ flex: 1, padding: '1.5rem 4rem' }}
 						className='d-flex justify-content-between'>
 						<div>
-							<h4>Material Take Off (MTO)</h4>
+							<h4> Request for Quotation </h4>
 						</div>
 
 						<strong className='hide'>
@@ -91,11 +103,9 @@ const MTO: React.FC = () => {
 					{/*  */}
 					<Row className='mt-3' justify='space-between' gutter={[50, 20]}>
 						<Col xs={18} sm={18} md={6} lg={4}>
-							<button
-								onClick={() => history.push(`/app/tech-procurement/create-mto`)}
-								className='btn-xlg'>
+							<button onClick={() => history.push(`/app/`)} className='btn-xlg'>
 								{' '}
-								Create MTO{' '}
+								Create Quotation{' '}
 							</button>
 						</Col>
 						<Col xs={24} sm={24} md={12} lg={12}>
@@ -122,17 +132,21 @@ const MTO: React.FC = () => {
 									<tr>
 										<th scope='col' className='txt-small'>
 											{' '}
-											Project Name
+											Quotation Title
 										</th>
 										<th scope='col' className='txt-small'>
-											Project Number
+											Category
 										</th>
 										<th scope='col' className='txt-small'>
-											Form Type
+											Sub-Category
 										</th>
 										<th scope='col' className='txt-small'>
 											{' '}
-											No of Items
+											Specialization
+										</th>
+										<th scope='col' className='txt-small'>
+											{' '}
+											RFQ Type{' '}
 										</th>
 										<th scope='col' className='txt-small'>
 											{' '}
@@ -149,14 +163,15 @@ const MTO: React.FC = () => {
 													<Link
 														to={`/app/tech-procurement/view-mto/${proj.id}`}>
 														<span className='word-break word-wrap'>
-															{proj.project_name}
+															{proj.quotation_title}
 														</span>
 													</Link>
 												</th>
 
-												<td>{proj.project_no}</td>
-												<td>{proj.form_type}</td>
-												<td>{proj.no_of_items}</td>
+												<td>{proj.category}</td>
+												<td>{proj.sub_category}</td>
+												<td>{proj.specialization}</td>
+												<td>{proj.rfq_type}</td>
 												<td className='p-3'>
 													<Tag
 														className='tags'
@@ -184,4 +199,4 @@ const MTO: React.FC = () => {
 	);
 };
 
-export default MTO;
+export default RFQ;

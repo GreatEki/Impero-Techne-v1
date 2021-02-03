@@ -5,7 +5,7 @@ interface STATE {
 	user?: UserT.USERI;
 	error: string | null;
 	loading: boolean;
-	message: string | null;
+	apiMessage: string | null;
 }
 
 const INITIAL_STATE: STATE = {
@@ -32,7 +32,7 @@ const INITIAL_STATE: STATE = {
 	},
 	error: null,
 	loading: false,
-	message: '',
+	apiMessage: '',
 };
 
 const userReducer = (
@@ -44,7 +44,7 @@ const userReducer = (
 			return {
 				...state,
 				loading: true,
-				message: null,
+				apiMessage: null,
 			};
 		case UserT.LOADING_FAIL:
 			return {
@@ -62,7 +62,7 @@ const userReducer = (
 				...state,
 				loading: false,
 				error: null,
-				message: action.payload,
+				apiMessage: action.payload,
 			};
 
 		case UserT.LOGIN_USER:
