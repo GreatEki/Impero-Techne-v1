@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import {
 	Layout,
@@ -10,9 +10,12 @@ import {
 	Tag,
 	Dropdown,
 	Space,
+	Button,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
+
+const { Header, Content } = Layout;
 
 const dataSource = [
 	{
@@ -57,7 +60,6 @@ const dataSource = [
 	},
 ];
 
-const { Header, Content } = Layout;
 const RFQ = () => {
 	const history = useHistory();
 	return (
@@ -103,10 +105,14 @@ const RFQ = () => {
 					{/*  */}
 					<Row className='mt-3' justify='space-between' gutter={[50, 20]}>
 						<Col xs={18} sm={18} md={6} lg={4}>
-							<button onClick={() => history.push(`/app/`)} className='btn-xlg'>
+							<Button
+								onClick={() =>
+									history.push(`/app/tech-procurement/create-quotation`)
+								}
+								className='btn-xlg'>
 								{' '}
 								Create Quotation{' '}
-							</button>
+							</Button>
 						</Col>
 						<Col xs={24} sm={24} md={12} lg={12}>
 							<section className='d-flex justify-content-between'>
@@ -160,8 +166,7 @@ const RFQ = () => {
 										return (
 											<tr key={index}>
 												<th scope='row' style={{ width: '25rem' }}>
-													<Link
-														to={`/app/tech-procurement/view-mto/${proj.id}`}>
+													<Link to={`#`}>
 														<span className='word-break word-wrap'>
 															{proj.quotation_title}
 														</span>

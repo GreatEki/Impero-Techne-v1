@@ -121,38 +121,6 @@ a {
 	font-size: 16px !important;
 }
 
-.tag-approved {
-	display: flex;
-	justify-content: center;
-	padding: 0.3em 0.5em !important;
-	font-size: 14px !important;
-	min-width: 1em !important;
-	border-radius: 0.5em !important;
-	background: #adf802 !important;
-	/* color: var(--site-success) !important; */
-}
-
-.tag-queried {
-	display: flex;
-	justify-content: center;
-	padding: 0.3em 0.5em !important;
-	font-size: 14px !important;
-	min-width: 2em !important;
-	border-radius: 0.5em !important;
-	background: var(--site-warning) !important;
-	/* color: var(--site-warning) !important; */
-}
-.tag-rejected {
-	display: flex;
-	justify-content: center;
-	padding: 0.3em 0.5em !important;
-	font-size: 14px !important;
-	min-width: 2em !important;
-	border-radius: 0.5em !important;
-	background: var(--site-danger) !important;
-	/* color: var(--site-danger) !important; */
-}
-
 .fs-16 {
 	font-size: 16px !important;
 }

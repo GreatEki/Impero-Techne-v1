@@ -54,6 +54,13 @@ const Routes = () => {
 					path={`${match.url}/tech-procurement/rfq`}
 					component={asyncComponent(() => import('./TECH-PROCUREMENT/RFQ/RFQ'))}
 				/>
+				<Route
+					exact
+					path={`${match.url}/tech-procurement/create-quotation`}
+					component={asyncComponent(
+						() => import('./TECH-PROCUREMENT/RFQ/CreateQuotation/Index')
+					)}
+				/>
 			</Switch>
 		</div>
 	);
