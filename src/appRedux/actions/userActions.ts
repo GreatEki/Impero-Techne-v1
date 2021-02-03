@@ -1,6 +1,7 @@
 import { Dispatch } from 'redux';
 import axios from 'axios';
 import { baseUrl } from '../BaseUrl';
+import AuthAxios from 'config/AuthAxios';
 
 import {
 	UserDispatchTypes,
@@ -8,6 +9,8 @@ import {
 	LOADING,
 	LOADING_FAIL,
 	CLEAR_ERRORS,
+	RegUserI,
+	LOADING_SUCCESS,
 } from '../types/userTypes';
 
 export const signIn = (
@@ -51,4 +54,33 @@ export const logOut = (props: any) => {
 	localStorage.removeItem('theUser');
 
 	props.history.push('/');
+};
+
+export const registerUser = (user: RegUserI) => async (
+	dispatch: Dispatch<UserDispatchTypes>
+) => {
+	try {
+		dispatch({
+			type: CLEAR_ERRORS,
+		});
+
+		dispatch({
+			type: LOADING,
+		});
+		const { data } = await AuthAxios.post(`/api/v1/users/register`, user);
+
+		// console.log(data);
+		dispatch({
+			type: LOADING_SUCCESS,
+			payload: data.message,
+		});
+	} catch (err) {
+		if (err.response) {
+			console.log(err.response);
+		}
+		dispatch({
+			type: LOADING_FAIL,
+			payload: err.response ? err.response.data.message : err.message,
+		});
+	}
 };

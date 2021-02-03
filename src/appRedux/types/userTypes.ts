@@ -2,6 +2,7 @@ export const LOGIN_USER = 'LOGIN_USER';
 export const LOADING = 'LOADING';
 export const LOADING_FAIL = 'LOADING_FAIL';
 export const CLEAR_ERRORS = 'CLEAR_ERROR';
+export const LOADING_SUCCESS = 'LOADING_SUCCESS';
 
 export type ROLES =
 	| 'Admin'
@@ -51,8 +52,26 @@ export interface LoginUserDispatch {
 	payload: USERI;
 }
 
+export interface LoadingSuccessDispatch {
+	type: typeof LOADING_SUCCESS;
+	payload: string;
+}
+
+export interface RegUserI {
+	firstName: string;
+	lastName: string;
+	email: string;
+	phoneNumber: string;
+	password: string;
+	confirmPassword: string;
+	staffNumber: string;
+	companyId: number | string;
+	roleId: number | undefined | string;
+}
+
 export type UserDispatchTypes =
 	| LoginUserDispatch
 	| LoadingDispatch
 	| LoadingFailDispatch
-	| ClearErrorsDispatch;
+	| ClearErrorsDispatch
+	| LoadingSuccessDispatch;

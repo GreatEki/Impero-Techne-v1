@@ -8,6 +8,7 @@ interface STATEI {
 	companies: MiscT.CompaniesI[];
 	states: MiscT.States[];
 	cities: MiscT.CitiesI[];
+	roles: MiscT.RolesI[];
 }
 
 const INITIAL_STATE: STATEI = {
@@ -18,6 +19,7 @@ const INITIAL_STATE: STATEI = {
 	companies: [],
 	states: [],
 	cities: [],
+	roles: [],
 };
 
 const miscellaneousReducer = (
@@ -51,6 +53,11 @@ const miscellaneousReducer = (
 			return {
 				...state,
 				cities: action.payload,
+			};
+		case MiscT.GET_ALL_ROLES:
+			return {
+				...state,
+				roles: action.payload,
 			};
 		default:
 			return state;

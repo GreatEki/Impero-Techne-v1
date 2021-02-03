@@ -18,7 +18,7 @@ const SideMenu = () => {
 				style={{
 					background: 'white',
 				}}>
-				<Link to='#' className='site-admin-menu'>
+				<Link to='/app' className='site-admin-menu'>
 					{/*  */}
 					<strong>
 						<BsIcon.BsHouseDoor />
@@ -28,7 +28,7 @@ const SideMenu = () => {
 			</Menu.Item>
 
 			<SubMenu
-				key='tech_procurement'
+				key='site-report'
 				title={
 					<strong className='site-admin-menu'>
 						<FiIcon.FiShoppingCart />
@@ -36,7 +36,7 @@ const SideMenu = () => {
 					</strong>
 				}>
 				<Menu.Item
-					key='User_Requisition'
+					key='daily-report'
 					style={{
 						background: 'white',
 					}}>
@@ -45,7 +45,7 @@ const SideMenu = () => {
 					</Link>
 				</Menu.Item>
 				<Menu.Item
-					key='justification'
+					key='construction-report'
 					style={{
 						background: 'white',
 					}}>
@@ -54,7 +54,7 @@ const SideMenu = () => {
 					</Link>
 				</Menu.Item>
 				<Menu.Item
-					key='MTO'
+					key='non-conformance-report'
 					style={{
 						background: 'white',
 					}}>
@@ -65,7 +65,7 @@ const SideMenu = () => {
 			</SubMenu>
 
 			<Menu.Item
-				key='user'
+				key='register-user'
 				style={{
 					background: 'white',
 				}}>

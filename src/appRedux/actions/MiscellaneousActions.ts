@@ -4,6 +4,7 @@ import {
 	GET_ALL_COMPANIES,
 	GET_ALL_COUNTRY,
 	GET_ALL_PROJECTS,
+	GET_ALL_ROLES,
 	GET_ALL_STATES,
 	MiscellaneousDispatchTypes,
 } from '../types/miscellaneousTypes';
@@ -98,6 +99,22 @@ export const getAllCities = () => async (
 
 		dispatch({
 			type: GET_ALL_CITIES,
+			payload: data.data,
+		});
+	} catch (err) {
+		dispatch({
+			type: LOADING_FAIL,
+			payload: err.response ? err.response.data.message : err.message,
+		});
+	}
+};
+
+export const getAllRoles = () => async (dispatch: Dispatch) => {
+	try {
+		const { data } = await AuthAxios.get('/api/v1/miscellaneous/getRoles');
+
+		dispatch({
+			type: GET_ALL_ROLES,
 			payload: data.data,
 		});
 	} catch (err) {

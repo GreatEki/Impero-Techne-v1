@@ -6,6 +6,7 @@ export const GET_ALL_PROJECTS = 'GET_ALL_PROJECTS';
 export const GET_ALL_COMPANIES = 'GET_ALL_COMPANIES';
 export const GET_ALL_STATES = 'GET_ALL_STATES';
 export const GET_ALL_CITIES = 'GET_ALL_CITIES';
+export const GET_ALL_ROLES = 'GET_ALL_ROLES';
 
 export interface LoadingDispatch {
 	type: typeof LOADING;
@@ -71,6 +72,16 @@ export interface GetAllCompaniesDispatch {
 	payload: CompaniesI[];
 }
 
+export interface RolesI {
+	id: string | number;
+	name: string;
+}
+
+export interface GetAllRolesDispatch {
+	type: typeof GET_ALL_ROLES;
+	payload: RolesI[];
+}
+
 export type MiscellaneousDispatchTypes =
 	| GetAllCountriesDispatch
 	| LoadingDispatch
@@ -79,4 +90,5 @@ export type MiscellaneousDispatchTypes =
 	| GetAllProjectsDispatch
 	| GetAllCompaniesDispatch
 	| GetAllStatesDispatch
-	| GetAllCitiesDispatch;
+	| GetAllCitiesDispatch
+	| GetAllRolesDispatch;

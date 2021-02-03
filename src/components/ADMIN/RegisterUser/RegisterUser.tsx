@@ -1,6 +1,24 @@
-import React, { useState } from 'react';
-import { Card, Row, Col, Divider, Input, Form, Select, Button } from 'antd';
+import React, { useState, useEffect, Fragment } from 'react';
+import {
+	Card,
+	Row,
+	Col,
+	Divider,
+	Input,
+	Form,
+	Select,
+	Button,
+	Empty,
+} from 'antd';
 import passwordValidator from 'password-validator';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+	getAllCompanies,
+	getAllRoles,
+} from 'appRedux/actions/MiscellaneousActions';
+import { RootStore } from 'appRedux/Store';
+import { RegUserI } from 'appRedux/types/userTypes';
+import { registerUser } from 'appRedux/actions/userActions';
 
 const { Option } = Select;
 
@@ -10,19 +28,9 @@ const formLayout = {
 	},
 };
 
-interface UserI {
-	firstName: string;
-	lastName: string;
-	email: string;
-	phoneNumber: string;
-	password: string;
-	confirmPassword: string;
-	staffNumber: string;
-	companyId: number | string;
-	roleId: number | string;
-}
 const RegisterUser = () => {
-	const [user, setUser] = useState<UserI>({
+	const dispatch = useDispatch();
+	const [user, setUser] = useState<RegUserI>({
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -33,7 +41,7 @@ const RegisterUser = () => {
 		companyId: 0,
 		roleId: 0,
 	});
-	const [validationErrors, setValidationErrors] = useState<UserI | null>({
+	const [validationErrors, setValidationErrors] = useState<RegUserI | null>({
 		firstName: '',
 		lastName: '',
 		email: '',
@@ -45,8 +53,25 @@ const RegisterUser = () => {
 		roleId: '',
 	});
 
-	const checkErrors = (user: UserI) => {
-		let errors: UserI | null = {
+	const { companies, roles } = useSelector(
+		(state: RootStore) => state.miscellaneous
+	);
+
+	const { loading, error, message } = useSelector(
+		(state: RootStore) => state.user
+	);
+
+	useEffect(() => {
+		(async () => {
+			await dispatch(getAllCompanies());
+			dispatch(getAllRoles());
+		})();
+
+		//eslint-disable-next-line react-hooks/exhaustive-deps
+	}, []);
+
+	const checkErrors = (user: RegUserI) => {
+		let errors: RegUserI | null = {
 			firstName: '',
 			lastName: '',
 			email: '',
@@ -124,14 +149,26 @@ const RegisterUser = () => {
 		setUser({ ...user, [key]: value });
 	};
 
-	const handleSubmit = (user: UserI) => {
+	const handleSubmit = (user: RegUserI) => {
 		// Check for Errors
 		const valErrors = checkErrors(user);
 		if (valErrors) {
 			setValidationErrors(valErrors);
 		} else {
 			setValidationErrors(valErrors);
-			console.log(user);
+			dispatch(registerUser(user));
+			// console.log(user);
+			setUser({
+				firstName: '',
+				lastName: '',
+				email: '',
+				phoneNumber: '',
+				password: '',
+				confirmPassword: '',
+				staffNumber: '',
+				companyId: '',
+				roleId: 0,
+			});
 		}
 	};
 
@@ -142,6 +179,7 @@ const RegisterUser = () => {
 					<strong> User Registration </strong>
 				</section>
 
+				{message && <strong className='text-success'>{message}</strong>}
 				<Divider />
 
 				<Form {...formLayout}>
@@ -152,6 +190,7 @@ const RegisterUser = () => {
 									onChange={(e) =>
 										handleChange('firstName', e.currentTarget.value)
 									}
+									value={user.firstName}
 									className='adminInput'
 									size='large'
 									placeholder='firstName'
@@ -164,6 +203,7 @@ const RegisterUser = () => {
 						<Col span={12}>
 							<Form.Item label={<label className='fw-bold'>LastName</label>}>
 								<Input
+									value={user.lastName}
 									onChange={(e) =>
 										handleChange('lastName', e.currentTarget.value)
 									}
@@ -182,6 +222,7 @@ const RegisterUser = () => {
 						<Col span={12}>
 							<Form.Item label={<label className='fw-bold'>Email </label>}>
 								<Input
+									value={user.email}
 									onChange={(e) => handleChange('email', e.currentTarget.value)}
 									className='adminInput'
 									size='large'
@@ -196,6 +237,7 @@ const RegisterUser = () => {
 							<Form.Item
 								label={<label className='fw-bold'>Phone Number</label>}>
 								<Input
+									value={user.phoneNumber}
 									onChange={(e) =>
 										handleChange('phoneNumber', e.currentTarget.value)
 									}
@@ -214,12 +256,25 @@ const RegisterUser = () => {
 						<Col span={12}>
 							<Form.Item label={<label className='fw-bold'>Company </label>}>
 								<Select
+									value={user.companyId}
+									showSearch={true}
+									optionFilterProp='children'
 									onChange={(value: string | number) =>
 										handleChange('companyId', value)
 									}
 									size='large'
 									className='adminInput'>
-									<Option value='1'>DGS Integrated Services</Option>
+									{companies ? (
+										companies.map((company) => (
+											<Option value={company.companyId} key={company.companyId}>
+												{company.companyName}
+											</Option>
+										))
+									) : (
+										<Fragment>
+											<Empty />
+										</Fragment>
+									)}
 								</Select>
 								{validationErrors?.companyId && (
 									<p className='text-danger'>{validationErrors.companyId}</p>
@@ -229,15 +284,23 @@ const RegisterUser = () => {
 						<Col span={12}>
 							<Form.Item label={<label className='fw-bold'>Role</label>}>
 								<Select
+									// value={user.roleId}
+									showSearch={true}
+									optionFilterProp='children'
 									onChange={(value: number) => handleChange('roleId', value)}
 									size='large'
 									className='adminInput'>
-									<Option value='Admin'>Admin</Option>
-									<Option value='Checker'>Checker</Option>
-									<Option value='Staff'>Staff</Option>
-									<Option value='Authorizer'>Authorizer</Option>
-									<Option value='VendorAdmin'>VendorAdmin</Option>
-									<Option value='Vendor'>Vendor</Option>
+									{roles ? (
+										roles.map((role) => (
+											<Option value={role.id} key={role.id}>
+												{role.name}
+											</Option>
+										))
+									) : (
+										<Fragment>
+											<Empty />
+										</Fragment>
+									)}
 								</Select>
 								{validationErrors?.roleId && (
 									<p className='text-danger'>{validationErrors.roleId}</p>
@@ -250,13 +313,14 @@ const RegisterUser = () => {
 						<Col span={12}>
 							<Form.Item label={<label className='fw-bold'>Password </label>}>
 								<Input
+									value={user.password}
 									onChange={(e) =>
 										handleChange('password', e.currentTarget.value)
 									}
 									type='password'
 									className='adminInput'
 									size='large'
-									placeholder='Enter Passwor#ebf4fad'
+									placeholder='Enter Password'
 								/>
 								{validationErrors?.password && (
 									<small className='text-danger'>
@@ -269,6 +333,7 @@ const RegisterUser = () => {
 							<Form.Item
 								label={<label className='fw-bold'>Confirm Password</label>}>
 								<Input
+									value={user.confirmPassword}
 									onChange={(e) =>
 										handleChange('confirmPassword', e.currentTarget.value)
 									}
@@ -291,6 +356,7 @@ const RegisterUser = () => {
 							<Form.Item
 								label={<label className='fw-bold'>Staff Number </label>}>
 								<Input
+									value={user.staffNumber}
 									onChange={(e) =>
 										handleChange('staffNumber', e.currentTarget.value)
 									}
@@ -305,6 +371,8 @@ const RegisterUser = () => {
 					<Row gutter={50} className='mt-3'>
 						<Col span={5}>
 							<Button
+								size='large'
+								loading={loading}
 								onClick={() => handleSubmit(user)}
 								style={{
 									backgroundColor: '#ebf4fa',
@@ -316,6 +384,9 @@ const RegisterUser = () => {
 								{' '}
 								Submit{' '}
 							</Button>
+						</Col>
+						<Col span={5}>
+							{error && <p className='text-danger text-break'> {error} </p>}
 						</Col>
 					</Row>
 				</Form>
