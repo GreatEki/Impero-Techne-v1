@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Pagination, Row, Col, Empty } from 'antd';
 import { FiMinusSquare } from 'react-icons/fi';
@@ -9,6 +10,7 @@ import ConfirmSubmissionModal from './ConfimSubmissionModal';
 
 const AddedItemsPanel = () => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const [store, setStore] = useState<MtoStorageItemI[]>([]);
 	const { mtoStorageItems } = useSelector((state: RootStore) => state.mto);
 
@@ -26,7 +28,7 @@ const AddedItemsPanel = () => {
 		dispatch(removeMtoStorageItem(id));
 	};
 
-	const showSubmission = () => {
+	const submit = () => {
 		setSubmissionVisible(true);
 	};
 
@@ -104,7 +106,7 @@ const AddedItemsPanel = () => {
 
 			<Row>
 				<Col span={6}>
-					<button onClick={showSubmission} className='btn-xlg'>
+					<button onClick={submit} className='btn-xlg'>
 						{' '}
 						Submit{' '}
 					</button>

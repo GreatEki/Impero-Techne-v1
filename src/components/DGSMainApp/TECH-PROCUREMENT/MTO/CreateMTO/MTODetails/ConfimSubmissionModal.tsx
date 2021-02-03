@@ -1,5 +1,6 @@
 import React from 'react';
 import { Modal, Button, Row, Col } from 'antd';
+import { useHistory } from 'react-router-dom';
 
 interface Props {
 	visible: boolean;
@@ -7,8 +8,10 @@ interface Props {
 }
 
 const ConfimSubmissionModal: React.FC<Props> = ({ visible, setVisible }) => {
+	const history = useHistory();
 	const handleOk = () => {
 		setVisible(false);
+		history.push('/app/tech-procurement/mto');
 	};
 
 	const handleCancel = () => {

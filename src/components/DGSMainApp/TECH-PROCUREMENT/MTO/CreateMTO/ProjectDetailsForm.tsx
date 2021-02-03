@@ -351,7 +351,7 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 													</Option>
 													<Option value='sub-discipline2'>
 														{' '}
-														sub-discipline1
+														sub-discipline2
 													</Option>
 												</Select>
 												{errors?.discipline_subType && (
