@@ -76,6 +76,7 @@ export interface OtherDetailsI {
 }
 
 export type StatusI = 'Opened' | 'Approved' | 'Queried' | 'Rejected';
+
 export interface RequisitionsI {
 	project_info: userReq_ProjectInfoI;
 	products: ProductStorageItemI[] | null;

@@ -45,25 +45,6 @@ const UserRequisition: React.FC = () => {
 		return color;
 	};
 
-	const dataSource = [
-		{
-			title: 'Personnel Protective Equipment (PPE)',
-			project_name: 'Sapele Gas Plant',
-			client: 'SEPLAT',
-			form_type: 'Product',
-			no_of_items: 72,
-			status: 'Approved',
-		},
-		{
-			title: 'Personnel Protective Equipment (PPE)',
-			project_name: 'Sapele Gas Plant',
-			client: 'SEPLAT',
-			form_type: 'Product',
-			no_of_items: 72,
-			status: 'Approved',
-		},
-	];
-
 	return (
 		<Layout style={{ display: 'flex', minHeight: '100vh' }}>
 			<Header
@@ -165,36 +146,54 @@ const UserRequisition: React.FC = () => {
 							</thead>
 
 							<tbody>
-								{dataSource.map((proj, index) => {
-									return (
-										<tr key={index}>
-											<th scope='row' style={{ width: '20rem' }}>
-												<span className='word-break word-wrap'>
-													{proj.title}
-												</span>
-											</th>
+								{requisitions ? (
+									requisitions.map((req, index) => {
+										return (
+											<tr key={index}>
+												<th scope='row' style={{ width: '20rem' }}>
+													<span className='word-break word-wrap'>
+														{req.project_info.request_title}
+													</span>
+												</th>
 
-											<td>
-												<strong>{proj.project_name}</strong>
-											</td>
-											<td>
-												<strong>{proj.client}</strong>
-											</td>
-											<td>
-												<strong>{proj.form_type}</strong>
-											</td>
-											<td>
-												<strong>{proj.no_of_items}</strong>
-											</td>
-											<td className='p-3'>
-												<Tag className='tags' color={getTagColor(proj.status)}>
-													{' '}
-													{proj.status}
-												</Tag>{' '}
-											</td>
-										</tr>
-									);
-								})}
+												<td>
+													<strong>{req.project_info.project_name}</strong>
+												</td>
+												<td>
+													<strong>{req.project_info.client_name}</strong>
+												</td>
+												<td>
+													<strong>{req.project_info.request_type}</strong>
+												</td>
+												<td>
+													<strong>
+														{req.products ? req.products.length : 0}
+													</strong>
+												</td>
+												<td className='p-3'>
+													<Tag
+														className='tags'
+														color={
+															req.status === 'Approved'
+																? 'green'
+																: req.status === 'Rejected'
+																? 'red'
+																: req.status === 'Queried'
+																? 'orange'
+																: 'blue'
+														}>
+														{' '}
+														{req.status}
+													</Tag>{' '}
+												</td>
+											</tr>
+										);
+									})
+								) : (
+									<tr>
+										<td colSpan={5}>No Reqistions Available</td>
+									</tr>
+								)}
 							</tbody>
 						</table>
 					</section>
