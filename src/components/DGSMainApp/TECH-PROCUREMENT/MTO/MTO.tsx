@@ -11,6 +11,7 @@ import {
 	Tag,
 	Dropdown,
 	Space,
+	Empty,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
@@ -147,38 +148,50 @@ const MTO: React.FC = () => {
 								</thead>
 
 								<tbody>
-									{dataSource.map((proj, index) => {
-										return (
-											<tr key={index}>
-												<th scope='row' style={{ width: '25rem' }}>
-													<Link
-														to={`/app/tech-procurement/view-mto/${proj.id}`}>
-														<span className='word-break word-wrap'>
-															{proj.project_name}
-														</span>
-													</Link>
-												</th>
+									{mtoList ? (
+										mtoList.map((proj, index) => {
+											return (
+												<tr key={index}>
+													<th scope='row' style={{ width: '25rem' }}>
+														<Link
+															to={`/app/tech-procurement/view-mto/${proj.projectInfo.project_id}`}>
+															<span className='word-break word-wrap'>
+																{proj.projectInfo.project_name}
+															</span>
+														</Link>
+													</th>
 
-												<td>{proj.project_no}</td>
-												<td>{proj.form_type}</td>
-												<td>{proj.no_of_items}</td>
-												<td className='p-3'>
-													<Tag
-														className='tags'
-														color={
-															proj.status === 'Approved'
-																? 'green'
-																: proj.status === 'Rejected'
-																? 'red'
-																: 'orange'
-														}>
-														{' '}
-														{proj.status}
-													</Tag>{' '}
-												</td>
-											</tr>
-										);
-									})}
+													<td>{proj.projectInfo.project_id}</td>
+													<td>{proj.projectInfo.discipline}</td>
+													<td>
+														{proj.addedItems ? proj.addedItems.length : 0}
+													</td>
+													<td className='p-3'>
+														<Tag
+															className='tags'
+															color={
+																proj.projectInfo.status === 'Approved'
+																	? 'green'
+																	: proj.projectInfo.status === 'Rejected'
+																	? 'red'
+																	: proj.projectInfo.status === 'Queried'
+																	? 'orange'
+																	: 'blue'
+															}>
+															{' '}
+															{proj.projectInfo.status}
+														</Tag>{' '}
+													</td>
+												</tr>
+											);
+										})
+									) : (
+										<tr>
+											<td colSpan={4}>
+												<Empty />
+											</td>
+										</tr>
+									)}
 								</tbody>
 							</table>
 						</section>

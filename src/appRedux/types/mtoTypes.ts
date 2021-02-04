@@ -3,13 +3,17 @@ export const ADD_MTOSTORAGE_ITEM = 'ADD_MTOSTORAGE_ITEM';
 export const REMOVE_MTOSTORAGE_ITEM = 'REMOVE_MTOSTORAGE_ITEM';
 export const ADD_MTO = 'ADD_MTO';
 
+export type StatusT = 'Opened' | 'Approved' | 'Queried' | 'Rejected';
+
 export interface ProjectInfoI {
+	project_id: string;
 	project_name: string;
 	client_name: string;
 	company_name: string;
 	discipline: string;
 	discipline_subType: string;
 	request_formName: string;
+	status: StatusT;
 }
 
 export interface AddProjectInfoDispatch {

@@ -8,12 +8,14 @@ interface StateI {
 
 const INITIAL_STATE: StateI = {
 	projectInfo: {
+		project_id: '',
 		project_name: '',
 		client_name: '',
 		company_name: '',
 		discipline: '',
 		discipline_subType: '',
 		request_formName: '',
+		status: 'Opened',
 	},
 
 	mtoStorageItems: [],

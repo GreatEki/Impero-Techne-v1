@@ -21,6 +21,7 @@ import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 import { RootStore } from 'appRedux/Store';
 import { addProjectInfo } from 'appRedux/actions/mtoActions';
 import { ProjectInfoI } from 'appRedux/types/mtoTypes';
+import { v4 as uuidv4 } from 'uuid';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -37,21 +38,25 @@ const formLayout = {
 
 const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 	const [projectInfo, setProjectInfo] = useState<ProjectInfoI>({
+		project_id: '',
 		project_name: '',
 		client_name: '',
 		company_name: '',
 		discipline: '',
 		discipline_subType: '',
 		request_formName: '',
+		status: 'Opened',
 	});
 
 	const [errors, setErrors] = useState<ProjectInfoI | null>({
+		project_id: '',
 		project_name: '',
 		client_name: '',
 		company_name: '',
 		discipline: '',
 		discipline_subType: '',
 		request_formName: '',
+		status: 'Opened',
 	});
 
 	const dispatch = useDispatch();
@@ -123,12 +128,14 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 
 	const validation = (projectInfo: ProjectInfoI) => {
 		let errors: ProjectInfoI | null = {
+			project_id: '',
 			project_name: '',
 			client_name: '',
 			company_name: '',
 			discipline: '',
 			discipline_subType: '',
 			request_formName: '',
+			status: 'Opened',
 		};
 
 		if (!projectInfo.project_name) {
@@ -178,7 +185,10 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 		if (valErrors) {
 			setErrors(valErrors);
 		} else {
-			dispatch(addProjectInfo(projectInfo, dispatch));
+			// Generate id
+			const project_id = uuidv4();
+			const updatedProjectInfo = Object.assign({}, projectInfo, { project_id });
+			dispatch(addProjectInfo(updatedProjectInfo, dispatch));
 			next();
 		}
 	};

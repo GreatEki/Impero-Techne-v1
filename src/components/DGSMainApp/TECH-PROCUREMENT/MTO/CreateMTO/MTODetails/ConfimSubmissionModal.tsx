@@ -19,15 +19,15 @@ const ConfimSubmissionModal: React.FC<Props> = ({ visible, setVisible }) => {
 		(state: RootStore) => state.mto
 	);
 
-	const handleOk = () => {
+	const handleOk = async () => {
 		const newMto = {
 			projectInfo,
 			addedItems: mtoStorageItems,
 		};
 
-		dispatch(addMto(newMto));
+		await dispatch(addMto(newMto));
 		setVisible(false);
-		// history.push('/app/tech-procurement/mto');
+		history.push('/app/tech-procurement/mto');
 	};
 
 	const handleCancel = () => {
