@@ -38,8 +38,6 @@ const AddMTOItem: React.FC = () => {
 		delivery_address: 0,
 	});
 
-	const [mtoStorageItems, setMtoStorageItems] = useState<MtoStorageItemI[]>([]);
-
 	useEffect(() => {
 		(async () => {
 			await dispatch(getAllCountry());
@@ -49,13 +47,6 @@ const AddMTOItem: React.FC = () => {
 
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
-
-	// This useEffect updates our redux mtoStorage
-	useEffect(() => {
-		dispatch(addMtoStorageItem(mtoStorageItems));
-
-		//eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [mtoStorageItems]);
 
 	const { states, countries, cities } = useSelector(
 		(state: RootStore) => state.miscellaneous
@@ -70,8 +61,8 @@ const AddMTOItem: React.FC = () => {
 		const itemId = uuidv4();
 		// Update the item with the id
 		const updatedItem = Object.assign({}, theItem, { itemId });
-		// Add item to MTO Storage.
-		setMtoStorageItems((mtoStorageItems) => [updatedItem, ...mtoStorageItems]);
+		//add the item to redux mtoStorageItems
+		dispatch(addMtoStorageItem(updatedItem));
 		message.success('Item Added, you can add more items to the list');
 		setMtoItem({
 			itemId: '',

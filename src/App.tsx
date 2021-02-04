@@ -19,7 +19,7 @@ function App() {
 			<BrowserRouter>
 				<Switch>
 					<Route exact path='/' component={Login} />
-					<PrivateRoute path='/app' component={MainApp} />
+					<Route path='/app' component={MainApp} />
 					<PrivateRoute path='/admin' component={Admin} />
 				</Switch>
 			</BrowserRouter>

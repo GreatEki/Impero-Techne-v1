@@ -20,7 +20,7 @@ export const addProjectInfo = (
 	};
 };
 
-export const addMtoStorageItem = (storageItem: MtoStorageItemI[]) => (
+export const addMtoStorageItem = (storageItem: MtoStorageItemI) => (
 	dispatch: Dispatch<MtoDispatchTypes>
 ) => {
 	dispatch({

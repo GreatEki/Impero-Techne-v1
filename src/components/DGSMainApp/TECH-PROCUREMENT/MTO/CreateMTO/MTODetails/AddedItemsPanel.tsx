@@ -10,21 +10,19 @@ import ConfirmSubmissionModal from './ConfimSubmissionModal';
 const AddedItemsPanel = () => {
 	const dispatch = useDispatch();
 
-	const [store, setStore] = useState<MtoStorageItemI[]>([]);
+	const [store, setStore] = useState<MtoStorageItemI[] | null>([]);
 	const { mtoStorageItems } = useSelector((state: RootStore) => state.mto);
 
 	const [submissionVisible, setSubmissionVisible] = useState(false);
 
 	useEffect(() => {
 		setStore(mtoStorageItems);
+
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [mtoStorageItems]);
 
-	const removeItem = (id: string) => {
-		// const filteredItems = store.filter(
-		// 	(item) => item.itemId !== theItem.itemId
-		// );
-		dispatch(removeMtoStorageItem(id));
+	const removeItem = async (id: string) => {
+		await dispatch(removeMtoStorageItem(id));
 	};
 
 	const submit = () => {

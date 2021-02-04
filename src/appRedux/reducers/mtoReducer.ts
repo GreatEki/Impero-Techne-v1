@@ -32,7 +32,7 @@ const mtoReducer = (
 		case MtoT.ADD_MTOSTORAGE_ITEM:
 			return {
 				...state,
-				mtoStorageItems: action.payload,
+				mtoStorageItems: [action.payload, ...state.mtoStorageItems],
 			};
 
 		case MtoT.REMOVE_MTOSTORAGE_ITEM:
