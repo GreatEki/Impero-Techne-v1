@@ -1,6 +1,8 @@
 import React from 'react';
 import { Modal, Button, Row, Col } from 'antd';
 import { useHistory } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { RootStore } from 'appRedux/Store';
 
 interface Props {
 	visible: boolean;
@@ -9,9 +11,19 @@ interface Props {
 
 const ConfimSubmissionModal: React.FC<Props> = ({ visible, setVisible }) => {
 	const history = useHistory();
+	const { projectInfo, mtoStorageItems } = useSelector(
+		(state: RootStore) => state.mto
+	);
+
 	const handleOk = () => {
+		const newMto = {
+			...projectInfo,
+			addedItems: mtoStorageItems,
+		};
+
+		console.log(newMto);
 		setVisible(false);
-		history.push('/app/tech-procurement/mto');
+		// history.push('/app/tech-procurement/mto');
 	};
 
 	const handleCancel = () => {

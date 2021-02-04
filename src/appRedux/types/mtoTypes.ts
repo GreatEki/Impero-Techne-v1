@@ -41,6 +41,17 @@ export interface RemoveMtoStorageItemDispatch {
 	payload: string;
 }
 
+export interface MTOI {
+	project_name: string;
+	project_id: string | number;
+	company_name: string;
+	client_name: string;
+	form_name: string;
+	form_category: string;
+	form_subcategory: string;
+	addedItems: MtoStorageItemI[];
+}
+
 export type MtoDispatchTypes =
 	| AddProjectInfoDispatch
 	| AddMtoStorageItemDispatch

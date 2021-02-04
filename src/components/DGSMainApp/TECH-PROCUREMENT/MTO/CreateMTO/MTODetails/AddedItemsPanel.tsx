@@ -21,11 +21,11 @@ const AddedItemsPanel = () => {
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [mtoStorageItems]);
 
-	const removeItem = async (id: string) => {
-		await dispatch(removeMtoStorageItem(id));
+	const removeItem = (id: string) => {
+		dispatch(removeMtoStorageItem(id));
 	};
 
-	const submit = () => {
+	const showConfimationModal = () => {
 		setSubmissionVisible(true);
 	};
 
@@ -103,7 +103,7 @@ const AddedItemsPanel = () => {
 
 			<Row>
 				<Col span={6}>
-					<button onClick={submit} className='btn-xlg'>
+					<button onClick={showConfimationModal} className='btn-xlg'>
 						{' '}
 						Submit{' '}
 					</button>

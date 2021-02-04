@@ -3,6 +3,7 @@ import * as MtoT from 'appRedux/types/mtoTypes';
 interface StateI {
 	projectInfo: MtoT.ProjectInfoI;
 	mtoStorageItems: MtoT.MtoStorageItemI[];
+	MtoList: MtoT.MTOI[];
 }
 
 const INITIAL_STATE: StateI = {
@@ -16,6 +17,7 @@ const INITIAL_STATE: StateI = {
 	},
 
 	mtoStorageItems: [],
+	MtoList: [],
 };
 
 const mtoReducer = (
