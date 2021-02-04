@@ -1,5 +1,15 @@
 import React, { useState } from 'react';
-import { Input, Select, Radio, DatePicker, Form, Table, Row, Col } from 'antd';
+import {
+	Input,
+	Select,
+	Radio,
+	DatePicker,
+	Form,
+	Table,
+	Row,
+	Col,
+	message,
+} from 'antd';
 import * as FaIcons from 'react-icons/fa';
 import { addServiceDetail } from 'appRedux/actions/userRequisitionActions';
 import { useDispatch } from 'react-redux';
@@ -50,7 +60,6 @@ const ServiceDetailFormPanel = () => {
 		special_instructions: '',
 		date_required_on_site: '',
 	});
-	const [validityPeriod, setValidityPeriod] = useState('');
 
 	const dataSource = [
 		{
@@ -84,6 +93,7 @@ const ServiceDetailFormPanel = () => {
 			formdata.append(key, value);
 		}
 		dispatch(addServiceDetail(formState));
+		message.success('Service Details Added, View in bottom panel');
 	};
 
 	return (
