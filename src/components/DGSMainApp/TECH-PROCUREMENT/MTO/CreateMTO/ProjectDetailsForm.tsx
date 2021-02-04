@@ -45,7 +45,6 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 		discipline: '',
 		discipline_subType: '',
 		request_formName: '',
-		status: 'Opened',
 	});
 
 	const [errors, setErrors] = useState<ProjectInfoI | null>({
@@ -56,7 +55,6 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 		discipline: '',
 		discipline_subType: '',
 		request_formName: '',
-		status: 'Opened',
 	});
 
 	const dispatch = useDispatch();
@@ -135,7 +133,6 @@ const ProjectDetailsForm: React.FC<Props> = ({ next }) => {
 			discipline: '',
 			discipline_subType: '',
 			request_formName: '',
-			status: 'Opened',
 		};
 
 		if (!projectInfo.project_name) {

@@ -13,7 +13,6 @@ export interface ProjectInfoI {
 	discipline: string;
 	discipline_subType: string;
 	request_formName: string;
-	status: StatusT;
 }
 
 export interface AddProjectInfoDispatch {
@@ -49,6 +48,7 @@ export interface RemoveMtoStorageItemDispatch {
 export interface MTOI {
 	projectInfo: ProjectInfoI;
 	addedItems: MtoStorageItemI[];
+	status: StatusT;
 }
 
 export interface AddMtoDispatch {

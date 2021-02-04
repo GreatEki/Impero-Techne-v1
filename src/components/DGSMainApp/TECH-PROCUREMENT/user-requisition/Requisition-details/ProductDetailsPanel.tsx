@@ -24,16 +24,6 @@ const ProductDetailsPanel = () => {
 		estimated_cost: 0,
 	});
 
-	const [productStorageItems, setProductStorageItems] = useState<
-		ProductStorageItemI[]
-	>([]);
-
-	useEffect(() => {
-		dispatch(addItemToProductStorageItems(productStorageItems));
-
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [productStorageItems]);
-
 	const calcEstimatedCost = (formState: ProductStorageItemI) => {
 		const total = Number(formState.unit_cost) * Number(formState.quantity);
 		setFormState({ ...formState, estimated_cost: total });
@@ -49,10 +39,8 @@ const ProductDetailsPanel = () => {
 		const id = uuidv4();
 		// update the item with the id
 		const updatedItem = Object.assign({}, formState, { itemId: id });
-		setProductStorageItems((productStorageItems) => [
-			updatedItem,
-			...productStorageItems,
-		]);
+		dispatch(addItemToProductStorageItems(updatedItem));
+
 		message.success('Product Added Successfully');
 		setFormState({
 			itemId: '',

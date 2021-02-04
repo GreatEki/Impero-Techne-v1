@@ -15,7 +15,6 @@ const INITIAL_STATE: StateI = {
 		discipline: '',
 		discipline_subType: '',
 		request_formName: '',
-		status: 'Opened',
 	},
 
 	mtoStorageItems: [],

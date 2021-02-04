@@ -21,6 +21,7 @@ import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 import { RootStore } from 'appRedux/Store';
 import { userReq_ProjectInfoI } from 'appRedux/types/userRequisitionTypes';
 import { addUserReqProjectInfo } from 'appRedux/actions/userRequisitionActions';
+import { v4 as uuidv4 } from 'uuid';
 
 const { Header, Content } = Layout;
 const { Option } = Select;
@@ -39,6 +40,7 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 	const dispatch = useDispatch();
 
 	const [formState, setFormState] = useState<userReq_ProjectInfoI>({
+		project_id: '',
 		request_title: '',
 		project_name: '',
 		client_name: '',
@@ -51,7 +53,9 @@ const ProjectDetailForm: React.FC<Props> = ({ next }) => {
 	};
 
 	const handleSubmit = (formState: userReq_ProjectInfoI) => {
-		dispatch(addUserReqProjectInfo(formState));
+		const id = uuidv4();
+		const updatedItem = Object.assign({}, formState, { project_id: id });
+		dispatch(addUserReqProjectInfo(updatedItem));
 		next();
 	};
 

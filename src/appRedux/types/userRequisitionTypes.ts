@@ -4,6 +4,7 @@ export const REMOVE_PRODUCTSTORAGE_ITEM = 'REMOVE_PRODUCTSTORAGE_ITEM';
 export const ADD_SERVICEDETAIL = 'ADD_SERVICEDETAIL';
 
 export interface userReq_ProjectInfoI {
+	project_id: string | number;
 	request_title: string;
 	project_name: string;
 	client_name: string;
@@ -26,12 +27,12 @@ export interface ProductStorageItemI {
 
 export interface AddProductStorageItemDispatch {
 	type: typeof ADD_PRODUCTSTORAGE_ITEM;
-	payload: ProductStorageItemI[];
+	payload: ProductStorageItemI;
 }
 
 export interface RemoveProductStorageItemDispatch {
 	type: typeof REMOVE_PRODUCTSTORAGE_ITEM;
-	payload: ProductStorageItemI[];
+	payload: string;
 }
 
 export interface ServiceDetailsI {

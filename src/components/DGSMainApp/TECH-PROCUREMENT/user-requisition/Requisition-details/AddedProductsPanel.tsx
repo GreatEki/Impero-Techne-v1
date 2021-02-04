@@ -23,10 +23,8 @@ const AddedProductsPanel: React.FC<Props> = ({ next }) => {
 		//eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [productStorageItems]);
 
-	const removeItem = (theItem: ProductStorageItemI) => {
-		console.log(theItem);
-		setStoreItems(storeItems.filter((item) => item.itemId !== theItem.itemId));
-		dispatch(removeItemfromProductStorageItems(storeItems));
+	const removeItem = (id: string) => {
+		dispatch(removeItemfromProductStorageItems(id));
 	};
 	return (
 		<div className='table-responsive'>
@@ -67,7 +65,7 @@ const AddedProductsPanel: React.FC<Props> = ({ next }) => {
 									<br />
 									<strong>{numberWithCommas(item.estimated_cost)}</strong>
 								</td>
-								<td onClick={() => removeItem(item)}>
+								<td onClick={() => removeItem(item.itemId)}>
 									<span className='text-muted'></span>
 									<br />
 									<FiMinusSquare className='site-danger' />

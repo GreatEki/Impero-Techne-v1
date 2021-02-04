@@ -23,7 +23,7 @@ const ProjectInfo = () => {
 					<Row gutter={50} className='my-2'>
 						<Col sm={{ span: 12 }} md={{ span: 12 }} lg={{ span: 8 }}>
 							<p className='txt-small'>Project ID</p>
-							<strong>LKJBJ18965575</strong>
+							<strong>{projectInfo.project_id}</strong>
 						</Col>
 						<Col sm={{ span: 12 }} md={{ span: 12 }} lg={{ span: 8 }}>
 							<p className='txt-small'>Client</p>

@@ -8,6 +8,7 @@ interface StateI {
 
 const INITIAL_STATE: StateI = {
 	userReq_ProjectInfo: {
+		project_id: '',
 		request_title: '',
 		project_name: '',
 		client_name: '',
@@ -47,13 +48,15 @@ const userRequisitionReducer = (
 		case userReqT.REMOVE_PRODUCTSTORAGE_ITEM:
 			return {
 				...state,
-				productStorageItems: action.payload,
+				productStorageItems: state.productStorageItems.filter(
+					(item) => item.itemId !== action.payload
+				),
 			};
 
 		case userReqT.ADD_PRODUCTSTORAGE_ITEM:
 			return {
 				...state,
-				productStorageItems: action.payload,
+				productStorageItems: [action.payload, ...state.productStorageItems],
 			};
 
 		case userReqT.ADD_SERVICEDETAIL:

@@ -53,7 +53,6 @@ const MTO: React.FC = () => {
 
 	const { mtoList } = useSelector((state: RootStore) => state.mto);
 
-	console.log(mtoList);
 	return (
 		<>
 			<Layout style={{ display: 'flex', minHeight: '100vh' }}>
@@ -170,16 +169,16 @@ const MTO: React.FC = () => {
 														<Tag
 															className='tags'
 															color={
-																proj.projectInfo.status === 'Approved'
+																proj.status === 'Approved'
 																	? 'green'
-																	: proj.projectInfo.status === 'Rejected'
+																	: proj.status === 'Rejected'
 																	? 'red'
-																	: proj.projectInfo.status === 'Queried'
+																	: proj.status === 'Queried'
 																	? 'orange'
 																	: 'blue'
 															}>
 															{' '}
-															{proj.projectInfo.status}
+															{proj.status}
 														</Tag>{' '}
 													</td>
 												</tr>

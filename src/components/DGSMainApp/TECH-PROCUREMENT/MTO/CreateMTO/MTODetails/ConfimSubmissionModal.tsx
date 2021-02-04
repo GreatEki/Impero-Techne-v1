@@ -23,6 +23,7 @@ const ConfimSubmissionModal: React.FC<Props> = ({ visible, setVisible }) => {
 		const newMto = {
 			projectInfo,
 			addedItems: mtoStorageItems,
+			status: 'Opened' as 'Opened',
 		};
 
 		await dispatch(addMto(newMto));

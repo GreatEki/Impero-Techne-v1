@@ -22,7 +22,7 @@ export const addUserReqProjectInfo = (projectInfo: userReq_ProjectInfoI) => (
 };
 
 export const addItemToProductStorageItems = (
-	storageItems: ProductStorageItemI[]
+	storageItems: ProductStorageItemI
 ) => (dispatch: Dispatch<AddProductStorageItemDispatch>) => {
 	dispatch({
 		type: ADD_PRODUCTSTORAGE_ITEM,
@@ -30,18 +30,18 @@ export const addItemToProductStorageItems = (
 	});
 };
 
-export const removeItemfromProductStorageItems = (
-	storageItems: ProductStorageItemI[]
-) => (dispatch: Dispatch<RemoveProductStorageItemDispatch>) => {
+export const removeItemfromProductStorageItems = (itemId: string) => (
+	dispatch: Dispatch<RemoveProductStorageItemDispatch>
+) => {
 	dispatch({
 		type: REMOVE_PRODUCTSTORAGE_ITEM,
-		payload: storageItems,
+		payload: itemId,
 	});
 };
 
-export const addServiceDetail = (
-	serviceDetail: ServiceDetailsI,
-) => (dispatch: Dispatch<userRequisitionDispatchTypes>) => {
+export const addServiceDetail = (serviceDetail: ServiceDetailsI) => (
+	dispatch: Dispatch<userRequisitionDispatchTypes>
+) => {
 	dispatch({
 		type: ADD_SERVICEDETAIL,
 		payload: serviceDetail,
