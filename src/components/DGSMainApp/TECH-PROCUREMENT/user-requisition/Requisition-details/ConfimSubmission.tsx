@@ -1,14 +1,43 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { Modal, Button, Row, Col } from 'antd';
+import { createRequisition } from 'appRedux/actions/userRequisitionActions';
+import { RootStore } from 'appRedux/Store';
+import { OtherDetailsI } from 'appRedux/types/userRequisitionTypes';
 
 interface Props {
 	visible: boolean;
 	setVisible: React.Dispatch<React.SetStateAction<boolean>>;
+	otherDetails: OtherDetailsI;
 }
 
-const ConfimSubmissionModal: React.FC<Props> = ({ visible, setVisible }) => {
-	const handleOk = () => {
+const ConfimSubmissionModal: React.FC<Props> = ({
+	visible,
+	setVisible,
+	otherDetails,
+}) => {
+	const dispatch = useDispatch();
+	const history = useHistory();
+
+	const {
+		userReq_ProjectInfo,
+		productStorageItems,
+		serviceDetail,
+	} = useSelector((state: RootStore) => state.userRequisition);
+
+	const handleOk = async () => {
+		const requisition = {
+			project_info: userReq_ProjectInfo,
+			products: productStorageItems,
+			service: serviceDetail,
+			otherDetails,
+			status: 'Opened' as 'Opened',
+		};
+
+		await dispatch(createRequisition(requisition));
 		setVisible(false);
+		history.push('/app/tech-procurement/user-requisition');
 	};
 
 	const handleCancel = () => {

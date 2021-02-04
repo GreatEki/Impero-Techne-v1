@@ -7,12 +7,11 @@ import {
 	Button,
 	Checkbox,
 	Form,
-	Radio,
 	DatePicker,
-	Table,
 } from 'antd';
 import AddMTOInfo from './AddMTOInfo';
 import ConfirmSubmissionModal from './ConfimSubmission';
+import { OtherDetailsI } from 'appRedux/types/userRequisitionTypes';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -22,24 +21,6 @@ const formLayout = {
 		span: 24,
 	},
 };
-
-// const plainOptions = ['Spares Required', 'After Sales required'];
-
-interface OtherDetailsI {
-	detailed_spec: string;
-	ref_code: string;
-	terms_and_cond: string;
-	sellers_country: string;
-	sellers_state: string;
-	sellers_city: string;
-	delivery_address: string;
-	date_req_onsite: string;
-	other_info: string;
-	del_special_instruction: string;
-	other_special_instructions: string;
-	spares_required: boolean;
-	after_sales: boolean;
-}
 
 const OtherDetails: React.FC = () => {
 	const [sparedReq, setSparesReq] = useState(false);
@@ -70,6 +51,10 @@ const OtherDetails: React.FC = () => {
 		setFormState({ ...formState, [key]: value });
 	};
 
+	const handleDate = (date: any, dateString: string) => {
+		setFormState({ ...formState, date_req_onsite: dateString });
+	};
+
 	const onFinish = () => {
 		let otherDetails = {
 			...formState,
@@ -77,7 +62,9 @@ const OtherDetails: React.FC = () => {
 			after_sales: afterSales,
 		};
 
-		console.log(otherDetails);
+		const updatedDetails = Object.assign({}, formState, otherDetails);
+		// Updating our formstate because we're passing it into the ConfirmSubmission Component
+		setFormState(updatedDetails);
 		showConfirmSubModal();
 	};
 
@@ -220,32 +207,12 @@ const OtherDetails: React.FC = () => {
 								</label>
 							}>
 							<Row gutter={50}>
-								<Col span={5}>
-									<Select
+								<Col span={10}>
+									<DatePicker
+										onChange={handleDate}
 										style={{ width: '100%' }}
-										// onChange={(value: string) =>
-										// 	handleChange('', value)
-										// }
-										size='large'
-										defaultValue='1'>
-										<Option value='1'>1</Option>
-									</Select>
-								</Col>
-								<Col span={5}>
-									<Select
-										size='large'
-										defaultValue='January'
-										style={{ width: '100%' }}>
-										<Option value='January'>January</Option>
-									</Select>
-								</Col>
-								<Col span={5}>
-									<Select
-										size='large'
-										defaultValue='2021'
-										style={{ width: '100%' }}>
-										<Option value='2020'>2020</Option>
-									</Select>
+										placeholder='Select Date'
+									/>
 								</Col>
 							</Row>
 						</Form.Item>
@@ -287,8 +254,9 @@ const OtherDetails: React.FC = () => {
 							/>
 						</Form.Item>
 
-						{/* ==== MTO Information */}
+						{/* ==== MTO Information ===== */}
 						<AddMTOInfo />
+						{/* ==== MTO Information ===== */}
 
 						<Row>
 							<Col span={5}>
@@ -304,6 +272,7 @@ const OtherDetails: React.FC = () => {
 			</Row>
 
 			<ConfirmSubmissionModal
+				otherDetails={formState}
 				visible={ConfirmSubVisible}
 				setVisible={setConfirmSubVisible}
 			/>

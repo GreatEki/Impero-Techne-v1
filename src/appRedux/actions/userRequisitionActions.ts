@@ -10,6 +10,9 @@ import {
 	AddProductStorageItemDispatch,
 	ADD_SERVICEDETAIL,
 	ServiceDetailsI,
+	OtherDetailsI,
+	RequisitionsI,
+	CREATE_REQUISITION,
 } from '../types/userRequisitionTypes';
 
 export const addUserReqProjectInfo = (projectInfo: userReq_ProjectInfoI) => (
@@ -45,5 +48,14 @@ export const addServiceDetail = (serviceDetail: ServiceDetailsI) => (
 	dispatch({
 		type: ADD_SERVICEDETAIL,
 		payload: serviceDetail,
+	});
+};
+
+export const createRequisition = (requisition: RequisitionsI) => (
+	dispatch: Dispatch<userRequisitionDispatchTypes>
+) => {
+	dispatch({
+		type: CREATE_REQUISITION,
+		payload: requisition,
 	});
 };

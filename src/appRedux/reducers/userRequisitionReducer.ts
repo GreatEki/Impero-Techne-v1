@@ -4,6 +4,8 @@ interface StateI {
 	userReq_ProjectInfo: userReqT.userReq_ProjectInfoI;
 	productStorageItems: userReqT.ProductStorageItemI[];
 	serviceDetail: userReqT.ServiceDetailsI;
+	requisitions: userReqT.RequisitionsI[];
+	otherDetails: userReqT.OtherDetailsI;
 }
 
 const INITIAL_STATE: StateI = {
@@ -32,6 +34,22 @@ const INITIAL_STATE: StateI = {
 		special_instructions: '',
 		date_required_on_site: '',
 	},
+	otherDetails: {
+		detailed_spec: '',
+		ref_code: '',
+		terms_and_cond: '',
+		sellers_country: '',
+		sellers_state: '',
+		sellers_city: '',
+		delivery_address: '',
+		date_req_onsite: '',
+		other_info: '',
+		del_special_instruction: '',
+		other_special_instructions: '',
+		spares_required: false,
+		after_sales: false,
+	},
+	requisitions: [],
 };
 
 const userRequisitionReducer = (
@@ -63,6 +81,12 @@ const userRequisitionReducer = (
 			return {
 				...state,
 				serviceDetail: action.payload,
+			};
+
+		case userReqT.CREATE_REQUISITION:
+			return {
+				...state,
+				requisitions: [action.payload, ...state.requisitions],
 			};
 
 		default:
