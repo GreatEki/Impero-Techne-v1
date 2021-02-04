@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react';
+import { useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import {
 	Layout,
@@ -13,6 +14,7 @@ import {
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
+import { RootStore } from 'appRedux/Store';
 
 const { Header, Content } = Layout;
 
@@ -48,6 +50,9 @@ const MTO: React.FC = () => {
 		},
 	];
 
+	const { mtoList } = useSelector((state: RootStore) => state.mto);
+
+	console.log(mtoList);
 	return (
 		<>
 			<Layout style={{ display: 'flex', minHeight: '100vh' }}>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Modal, Button, Row, Col } from 'antd';
 import { useHistory } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootStore } from 'appRedux/Store';
+import { addMto } from 'appRedux/actions/mtoActions';
 
 interface Props {
 	visible: boolean;
@@ -10,18 +11,21 @@ interface Props {
 }
 
 const ConfimSubmissionModal: React.FC<Props> = ({ visible, setVisible }) => {
+	const dispatch = useDispatch();
 	const history = useHistory();
+
+	// Bringing in projectInfo and mtoStorageItems from redux store
 	const { projectInfo, mtoStorageItems } = useSelector(
 		(state: RootStore) => state.mto
 	);
 
 	const handleOk = () => {
 		const newMto = {
-			...projectInfo,
+			projectInfo,
 			addedItems: mtoStorageItems,
 		};
 
-		console.log(newMto);
+		dispatch(addMto(newMto));
 		setVisible(false);
 		// history.push('/app/tech-procurement/mto');
 	};

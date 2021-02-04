@@ -3,7 +3,7 @@ import * as MtoT from 'appRedux/types/mtoTypes';
 interface StateI {
 	projectInfo: MtoT.ProjectInfoI;
 	mtoStorageItems: MtoT.MtoStorageItemI[];
-	MtoList: MtoT.MTOI[];
+	mtoList: MtoT.MTOI[];
 }
 
 const INITIAL_STATE: StateI = {
@@ -17,11 +17,11 @@ const INITIAL_STATE: StateI = {
 	},
 
 	mtoStorageItems: [],
-	MtoList: [],
+	mtoList: [],
 };
 
 const mtoReducer = (
-	state = INITIAL_STATE,
+	state: StateI = INITIAL_STATE,
 	action: MtoT.MtoDispatchTypes
 ): StateI => {
 	switch (action.type) {
@@ -43,6 +43,12 @@ const mtoReducer = (
 				mtoStorageItems: state.mtoStorageItems.filter(
 					(item) => item.itemId !== action.payload
 				),
+			};
+
+		case MtoT.ADD_MTO:
+			return {
+				...state,
+				mtoList: [action.payload, ...state.mtoList],
 			};
 
 		default:

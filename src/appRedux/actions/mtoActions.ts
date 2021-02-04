@@ -6,6 +6,8 @@ import {
 	MtoStorageItemI,
 	ADD_MTOSTORAGE_ITEM,
 	REMOVE_MTOSTORAGE_ITEM,
+	MTOI,
+	ADD_MTO,
 } from '../types/mtoTypes';
 
 export const addProjectInfo = (
@@ -35,5 +37,12 @@ export const removeMtoStorageItem = (id: string) => (
 	dispatch({
 		type: REMOVE_MTOSTORAGE_ITEM,
 		payload: id,
+	});
+};
+
+export const addMto = (mto: MTOI) => (dispatch: Dispatch<MtoDispatchTypes>) => {
+	dispatch({
+		type: ADD_MTO,
+		payload: mto,
 	});
 };
