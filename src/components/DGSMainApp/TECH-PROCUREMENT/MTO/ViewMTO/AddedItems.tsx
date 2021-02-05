@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Col, Pagination, Empty } from 'antd';
+import { Pagination, Empty } from 'antd';
 import { MTOI } from 'appRedux/types/mtoTypes';
 import { numberWithCommas } from 'utils/numberWithCommas';
 
@@ -25,7 +25,7 @@ const AddedMTOPanel: React.FC<Props> = ({ theMto }) => {
 					{theMto?.addedItems ? (
 						theMto.addedItems.map((item) => (
 							<tr key={item.itemId}>
-								<td style={{ width: '15rem' }}>
+								<td style={{ width: '20rem' }}>
 									<span className='text-muted'>Item Description</span>
 									<br />
 									<strong className='word-break word-wrap'>
@@ -78,18 +78,9 @@ const AddedMTOPanel: React.FC<Props> = ({ theMto }) => {
 
 			<section
 				className='my-5'
-				style={{ display: 'flex', justifyContent: 'center' }}>
-				<Pagination defaultCurrent={1} total={50} />
+				style={{ display: 'flex', justifyContent: 'flex-end' }}>
+				<Pagination defaultCurrent={1} total={1} />
 			</section>
-
-			<Row>
-				<Col span={6}>
-					<button className='btn-xlg site-bg-primary text-white'>
-						{' '}
-						Submit{' '}
-					</button>
-				</Col>
-			</Row>
 		</div>
 	);
 };

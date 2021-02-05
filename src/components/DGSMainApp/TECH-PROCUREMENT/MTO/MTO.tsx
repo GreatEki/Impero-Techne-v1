@@ -21,35 +21,6 @@ const { Header, Content } = Layout;
 
 const MTO: React.FC = () => {
 	const history = useHistory();
-	const dataSource = [
-		{
-			id: 1,
-			project_name:
-				'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
-			project_no: 'GEJJR2962986219 ',
-			form_type: 'Instrumentation',
-			no_of_items: 72,
-			status: 'Approved',
-		},
-		{
-			id: 2,
-			project_name:
-				'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
-			project_no: 'GEJJR2962986219 ',
-			form_type: 'Instrumentation',
-			no_of_items: 72,
-			status: 'Queried',
-		},
-		{
-			id: 3,
-			project_name:
-				'Engineering, Procurement and Construction of 10 Gas Pipelines from PAOC to Oredo Flow Station',
-			project_no: 'GEJJR2962986219 ',
-			form_type: 'Instrumentation',
-			no_of_items: 72,
-			status: 'Rejected',
-		},
-	];
 
 	const { mtoList } = useSelector((state: RootStore) => state.mto);
 
@@ -147,7 +118,7 @@ const MTO: React.FC = () => {
 								</thead>
 
 								<tbody>
-									{mtoList ? (
+									{mtoList.length ? (
 										mtoList.map((proj, index) => {
 											return (
 												<tr key={index}>
@@ -186,7 +157,7 @@ const MTO: React.FC = () => {
 										})
 									) : (
 										<tr>
-											<td colSpan={4}>
+											<td className='text-center' colSpan={5}>
 												<Empty />
 											</td>
 										</tr>

@@ -10,7 +10,7 @@ import {
 	Input,
 	Tag,
 	Dropdown,
-	Menu,
+	Empty,
 	Space,
 } from 'antd';
 import * as AntIcons from 'react-icons/ai';
@@ -146,7 +146,7 @@ const UserRequisition: React.FC = () => {
 							</thead>
 
 							<tbody>
-								{requisitions ? (
+								{requisitions.length ? (
 									requisitions.map((req, index) => {
 										return (
 											<tr key={index}>
@@ -191,7 +191,9 @@ const UserRequisition: React.FC = () => {
 									})
 								) : (
 									<tr>
-										<td colSpan={5}>No Reqistions Available</td>
+										<td className='text-center' colSpan={6}>
+											<Empty />
+										</td>
 									</tr>
 								)}
 							</tbody>

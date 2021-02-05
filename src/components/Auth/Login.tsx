@@ -96,7 +96,7 @@ const Login: React.FC = (props) => {
 				<section>
 					<Form {...formLayout}>
 						{error && <p className='text-danger text-break'> {error} </p>}
-						<Form.Item name='email' label={<strong>Email</strong>}>
+						<Form.Item label={<strong>Email</strong>}>
 							<Input
 								type='email'
 								placeholder='yourmail@dgslimited.com'
@@ -112,7 +112,7 @@ const Login: React.FC = (props) => {
 							)}
 						</Form.Item>
 
-						<Form.Item name='password' label={<strong>Password</strong>}>
+						<Form.Item label={<strong>Password</strong>}>
 							<Input
 								type='password'
 								placeholder='Password'
