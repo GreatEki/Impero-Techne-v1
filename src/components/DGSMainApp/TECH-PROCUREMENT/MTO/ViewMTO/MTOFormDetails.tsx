@@ -1,12 +1,17 @@
 import React from 'react';
-import { Card, Row, Col, Tabs, Steps } from 'antd';
+import { Card, Row, Col, Steps } from 'antd';
 import * as BsIcon from 'react-icons/bs';
-
-const { TabPane } = Tabs;
+import { MTOI } from 'appRedux/types/mtoTypes';
 
 const { Step } = Steps;
 
-const MTOFormDetails = () => {
+interface Props {
+	mtoId: string;
+	theMto: MTOI | undefined;
+}
+
+const MTOFormDetails: React.FC<Props> = ({ mtoId, theMto }) => {
+	console.log(theMto);
 	const showInitiated = () => {
 		return (
 			<>
@@ -123,8 +128,7 @@ const MTOFormDetails = () => {
 								<small className='muted-font'>Project Name </small>
 								<br />
 								<strong>
-									Procurement & Supply of Condensate Tank and 4 Actuated Ball
-									Valves & Fittings for Pipeline Sysytem
+									{theMto ? theMto.projectInfo.project_name : null}
 								</strong>
 							</Col>
 						</Row>
@@ -133,7 +137,10 @@ const MTOFormDetails = () => {
 							<Col>
 								<small className='muted-font'>Project ID</small>
 								<br />
-								<strong> LKBD6474373747MN </strong>
+								<strong>
+									{' '}
+									{theMto ? theMto.projectInfo.project_id : null}{' '}
+								</strong>
 							</Col>
 						</Row>
 
@@ -141,7 +148,10 @@ const MTOFormDetails = () => {
 							<Col>
 								<small className='muted-font'>Company</small>
 								<br />
-								<strong>DGS Integrated Products Limited</strong>
+								<strong>
+									{' '}
+									{theMto ? theMto.projectInfo.company_name : null}{' '}
+								</strong>
 							</Col>
 						</Row>
 
@@ -149,21 +159,30 @@ const MTOFormDetails = () => {
 							<Col>
 								<small className='muted-font'>Client</small>
 								<br />
-								<strong>Nigerian Gas Company</strong>
+								<strong>
+									{' '}
+									{theMto ? theMto.projectInfo.client_name : null}{' '}
+								</strong>
 							</Col>
 						</Row>
 						<Row gutter={50} className='my-3'>
 							<Col>
 								<small className='muted-font'>Form Name </small>
 								<br />
-								<strong>Wall Socket andf Fittings</strong>
+								<strong>
+									{' '}
+									{theMto ? theMto.projectInfo.request_formName : null}{' '}
+								</strong>
 							</Col>
 						</Row>
 						<Row gutter={50} className='my-3'>
 							<Col>
-								<small className='muted-font'>Form Category</small>
+								<small className='muted-font'> Form Category </small>
 								<br />
-								<strong>Electrical</strong>
+								<strong>
+									{' '}
+									{theMto ? theMto.projectInfo.discipline : null}{' '}
+								</strong>
 							</Col>
 						</Row>
 
@@ -171,7 +190,10 @@ const MTOFormDetails = () => {
 							<Col>
 								<small className='muted-font'>Form Sub-Category</small>
 								<br />
-								<strong>Electrical & Equipment & Accessories</strong>
+								<strong>
+									{' '}
+									{theMto ? theMto.projectInfo.discipline_subType : null}{' '}
+								</strong>
 							</Col>
 						</Row>
 					</Card>

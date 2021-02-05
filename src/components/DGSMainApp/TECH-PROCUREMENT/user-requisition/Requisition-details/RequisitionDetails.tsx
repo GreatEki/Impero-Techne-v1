@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as AntIcons from 'react-icons/ai';
+import * as BsIcon from 'react-icons/bs';
 import { Layout, Avatar, Dropdown, Collapse, Space } from 'antd';
 
 import FormDetailsPanel from './FormDetailsPanel';
@@ -8,10 +9,7 @@ import ProductDetailsPanel from './ProductDetailsPanel';
 import AddedProductsPanel from './AddedProductsPanel';
 import ServiceDetailFormPanel from './ServiceDetailFormPanel';
 import ServiceDetailsView from './ServiceDetailsView';
-import DeliveryInfoPanel from './DeliveryInfoPanel';
-import AddedMTOPanel from './AddedMTOPanel';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
-import { ProductStorageItemI } from 'appRedux/types/userRequisitionTypes';
 
 import { useSelector } from 'react-redux';
 import { RootStore } from 'appRedux/Store';
@@ -24,7 +22,7 @@ interface Props {
 	next: () => void;
 }
 const RequisitionDetails: React.FC<Props> = ({ next }) => {
-	const { userReq_ProjectInfo } = useSelector(
+	const { userReq_ProjectInfo, productStorageItems } = useSelector(
 		(state: RootStore) => state.userRequisition
 	);
 
@@ -82,7 +80,12 @@ const RequisitionDetails: React.FC<Props> = ({ next }) => {
 							defaultActiveKey='form-details'>
 							<Panel
 								className='my-3'
-								header={<label className='muted-font'>Form Details </label>}
+								header={
+									<label className='muted-font'>
+										{' '}
+										<BsIcon.BsDot className='site-dot' /> Form Details{' '}
+									</label>
+								}
 								key='form-details'>
 								<FormDetailsPanel />
 							</Panel>
@@ -93,7 +96,10 @@ const RequisitionDetails: React.FC<Props> = ({ next }) => {
 								<Panel
 									className='my-3'
 									header={
-										<label className='muted-font'>Product Details </label>
+										<label className='muted-font'>
+											{' '}
+											<BsIcon.BsDot className='site-dot' /> Product Details{' '}
+										</label>
 									}
 									key='prod-details'>
 									<ProductDetailsPanel />
@@ -102,7 +108,10 @@ const RequisitionDetails: React.FC<Props> = ({ next }) => {
 								<Panel
 									className='my-3'
 									header={
-										<label className='muted-font'>Service Details </label>
+										<label className='muted-font'>
+											{' '}
+											<BsIcon.BsDot className='site-dot' /> Service Details{' '}
+										</label>
 									}
 									key='service-details'>
 									<ServiceDetailFormPanel />
@@ -115,7 +124,10 @@ const RequisitionDetails: React.FC<Props> = ({ next }) => {
 								<Panel
 									className='my-3'
 									header={
-										<label className='muted-font'>Service Details </label>
+										<label className='muted-font'>
+											{' '}
+											<BsIcon.BsDot className='site-dot' /> Service Details{' '}
+										</label>
 									}
 									key='service-list'>
 									<ServiceDetailsView />
@@ -124,7 +136,11 @@ const RequisitionDetails: React.FC<Props> = ({ next }) => {
 								<Panel
 									className='my-3'
 									header={
-										<label className='muted-font'>Added Product Details </label>
+										<label className='muted-font'>
+											<BsIcon.BsDot className='site-dot' />
+											Added Product Details ( {productStorageItems.length} Items
+											){' '}
+										</label>
 									}
 									key='product-list'>
 									<AddedProductsPanel next={next} />

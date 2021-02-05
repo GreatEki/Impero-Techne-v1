@@ -166,7 +166,7 @@ const OtherDetails: React.FC = () => {
 														key={country.countryId}
 														value={country.countryName}>
 														{' '}
-														{country.countryName} x
+														{country.countryName}
 													</Option>
 												))
 											) : (
@@ -197,7 +197,7 @@ const OtherDetails: React.FC = () => {
 												states.map((state) => (
 													<Option key={state.stateId} value={state.stateName}>
 														{' '}
-														{state.stateName} x
+														{state.stateName}
 													</Option>
 												))
 											) : (

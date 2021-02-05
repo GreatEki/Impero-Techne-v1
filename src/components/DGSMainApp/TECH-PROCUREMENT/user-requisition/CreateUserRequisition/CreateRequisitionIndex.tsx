@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { Collapse, Row, Col } from 'antd';
 import OtherDetails from '../Requisition-details/OtherDetails';
 import RequisitionDetails from '../Requisition-details/RequisitionDetails';
-import DeliveryInfoPanel from '../Requisition-details/DeliveryInfoPanel';
-import AddedMTOPanel from '../Requisition-details/AddedMTOPanel';
 import ProjectDetailForm from './ProjectDetailForm';
-import { ProductStorageItemI } from 'appRedux/types/userRequisitionTypes';
 
 const { Panel } = Collapse;
 const CreateRequisitionIndex = () => {
@@ -38,24 +35,6 @@ const CreateRequisitionIndex = () => {
 								header={<label className='muted-font'>Other Details</label>}
 								key='other-details'>
 								<OtherDetails />
-							</Panel>
-						</Collapse>
-
-						<Collapse expandIconPosition='right'>
-							<Panel
-								className='my-3'
-								header={<label className='muted-font'>Delivery Info</label>}
-								key='delivery-info'>
-								<DeliveryInfoPanel />
-							</Panel>
-						</Collapse>
-
-						<Collapse expandIconPosition='right'>
-							<Panel
-								className='my-3'
-								header={<label className='muted-font'>Added MTO</label>}
-								key='added-mto'>
-								<AddedMTOPanel />
 							</Panel>
 						</Collapse>
 					</Col>
