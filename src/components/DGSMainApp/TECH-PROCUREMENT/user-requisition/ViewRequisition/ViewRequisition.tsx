@@ -11,6 +11,7 @@ import * as BsIcon from 'react-icons/bs';
 
 import FormDetails from './FormDetails';
 import Service from './Service';
+import DeliveryInfo from './DeliveryInfo';
 
 const { Header, Content } = Layout;
 const { Panel } = Collapse;
@@ -166,7 +167,7 @@ const ViewRequisition = (props: any) => {
 									</label>
 								}
 								key='3'>
-								<p> Delivery Information </p>
+								<DeliveryInfo theReq={theReq} />
 							</Panel>
 						</Collapse>
 
