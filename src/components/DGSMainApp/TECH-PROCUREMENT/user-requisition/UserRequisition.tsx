@@ -151,9 +151,12 @@ const UserRequisition: React.FC = () => {
 										return (
 											<tr key={index}>
 												<th scope='row' style={{ width: '20rem' }}>
-													<span className='word-break word-wrap'>
-														{req.project_info.request_title}
-													</span>
+													<Link
+														to={`/app/tech-procurement/view-requisition/${req.project_info.project_id}`}>
+														<span className='word-break word-wrap'>
+															{req.project_info.request_title}
+														</span>
+													</Link>
 												</th>
 
 												<td>
