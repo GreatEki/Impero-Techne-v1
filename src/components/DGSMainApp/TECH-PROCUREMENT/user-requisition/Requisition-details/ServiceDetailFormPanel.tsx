@@ -13,6 +13,7 @@ import {
 import * as FaIcons from 'react-icons/fa';
 import { addServiceDetail } from 'appRedux/actions/userRequisitionActions';
 import { useDispatch } from 'react-redux';
+import ConfirmSubmissionModal from './ConfimSubmission';
 
 const { TextArea } = Input;
 const { Option } = Select;
@@ -43,6 +44,9 @@ interface ServiceDetailsI {
 
 const ServiceDetailFormPanel = () => {
 	const dispatch = useDispatch();
+	const [confirmSubmissionVisible, setConfirmSubmissionVisible] = useState(
+		false
+	);
 	const [formState, setFormState] = useState<ServiceDetailsI>({
 		intro_and_desc: '',
 		scope_of_works: '',
@@ -86,14 +90,19 @@ const ServiceDetailFormPanel = () => {
 		setFormState({ ...formState, validity_period: dateString });
 	};
 
-	const onSubmit = (formState: ServiceDetailsI) => {
+	const showConfirmSubModal = () => {
+		setConfirmSubmissionVisible(true);
+	};
+
+	const onSubmit = async (formState: ServiceDetailsI) => {
 		let formdata = new FormData();
 
 		for (const [key, value] of Object.entries(formState)) {
 			formdata.append(key, value);
 		}
-		dispatch(addServiceDetail(formState));
-		message.success('Service Details Added, View in bottom panel');
+		await dispatch(addServiceDetail(formState));
+		showConfirmSubModal();
+		// message.success('Service Details Added, View in bottom panel');
 	};
 
 	return (
@@ -444,6 +453,11 @@ const ServiceDetailFormPanel = () => {
 					</Row>
 				</Col>
 			</Row>
+
+			<ConfirmSubmissionModal
+				visible={confirmSubmissionVisible}
+				setVisible={setConfirmSubmissionVisible}
+			/>
 		</div>
 	);
 };

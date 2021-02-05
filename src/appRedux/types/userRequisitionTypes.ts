@@ -81,7 +81,7 @@ export interface RequisitionsI {
 	project_info: userReq_ProjectInfoI;
 	products: ProductStorageItemI[] | null;
 	service: ServiceDetailsI | null;
-	otherDetails: OtherDetailsI;
+	otherDetails?: OtherDetailsI;
 	status: StatusI;
 }
 

@@ -9,7 +9,7 @@ import { OtherDetailsI } from 'appRedux/types/userRequisitionTypes';
 interface Props {
 	visible: boolean;
 	setVisible: React.Dispatch<React.SetStateAction<boolean>>;
-	otherDetails: OtherDetailsI;
+	otherDetails?: OtherDetailsI;
 }
 
 const ConfimSubmissionModal: React.FC<Props> = ({
