@@ -146,31 +146,48 @@ const ViewRequisition = (props: any) => {
 							</Panel>
 						</Collapse>
 
-						<Collapse expandIconPosition='right' className='mt-3'>
-							<Panel
-								header={
-									<label className='muted-font'>
-										{' '}
-										<BsIcon.BsDot className='site-dot' /> Service Details{' '}
-									</label>
-								}
-								key='2'>
-								<Service theReq={theReq} />
-							</Panel>
-						</Collapse>
+						{theReq?.project_info.request_type === 'Product' ? (
+							<Collapse expandIconPosition='right' className='mt-3'>
+								<Panel
+									header={
+										<label className='muted-font'>
+											{' '}
+											<BsIcon.BsDot className='site-dot' /> Added Products{' '}
+										</label>
+									}
+									key='3'>
+									<Products theReq={theReq} />
+								</Panel>
+							</Collapse>
+						) : (
+							<Collapse expandIconPosition='right' className='mt-3'>
+								<Panel
+									header={
+										<label className='muted-font'>
+											{' '}
+											<BsIcon.BsDot className='site-dot' /> Service Details{' '}
+										</label>
+									}
+									key='2'>
+									<Service theReq={theReq} />
+								</Panel>
+							</Collapse>
+						)}
 
-						<Collapse expandIconPosition='right' className='mt-3'>
-							<Panel
-								header={
-									<label className='muted-font'>
-										{' '}
-										<BsIcon.BsDot className='site-dot' /> Delivery Information{' '}
-									</label>
-								}
-								key='3'>
-								<DeliveryInfo theReq={theReq} />
-							</Panel>
-						</Collapse>
+						{theReq?.project_info.request_type === 'Product' ? (
+							<Collapse expandIconPosition='right' className='mt-3'>
+								<Panel
+									header={
+										<label className='muted-font'>
+											{' '}
+											<BsIcon.BsDot className='site-dot' /> Delivery Information{' '}
+										</label>
+									}
+									key='3'>
+									<DeliveryInfo theReq={theReq} />
+								</Panel>
+							</Collapse>
+						) : null}
 
 						<Collapse expandIconPosition='right' className='mt-3'>
 							<Panel
@@ -182,19 +199,6 @@ const ViewRequisition = (props: any) => {
 								}
 								key='3'>
 								<p> Added MTO </p>
-							</Panel>
-						</Collapse>
-
-						<Collapse expandIconPosition='right' className='mt-3'>
-							<Panel
-								header={
-									<label className='muted-font'>
-										{' '}
-										<BsIcon.BsDot className='site-dot' /> Added Products{' '}
-									</label>
-								}
-								key='3'>
-								<Products theReq={theReq} />
 							</Panel>
 						</Collapse>
 					</div>
