@@ -5,10 +5,12 @@ import { Collapse, Layout, Space, Avatar, Dropdown } from 'antd';
 import * as AntIcons from 'react-icons/ai';
 import UserProfileMenu from 'containers/UserProfileMenu/UserProfileMenu';
 
-import FormDetails from './FormDetails';
 import { RootStore } from 'appRedux/Store';
 import { RequisitionsI } from 'appRedux/types/userRequisitionTypes';
 import * as BsIcon from 'react-icons/bs';
+
+import FormDetails from './FormDetails';
+import Service from './Service';
 
 const { Header, Content } = Layout;
 const { Panel } = Collapse;
@@ -127,8 +129,17 @@ const ViewRequisition = (props: any) => {
 					{/*  */}
 
 					<div className='mt-5'>
-						<Collapse expandIconPosition='right' defaultActiveKey={['1']}>
-							<Panel header='This is panel header 1' key='1'>
+						<Collapse
+							expandIconPosition='right'
+							defaultActiveKey={['form-details']}>
+							<Panel
+								header={
+									<label className='muted-font'>
+										{' '}
+										<BsIcon.BsDot className='site-dot' /> Form Details{' '}
+									</label>
+								}
+								key='form-details'>
 								<FormDetails theReq={theReq} />
 							</Panel>
 						</Collapse>
@@ -142,7 +153,7 @@ const ViewRequisition = (props: any) => {
 									</label>
 								}
 								key='2'>
-								<p> Service </p>
+								<Service theReq={theReq} />
 							</Panel>
 						</Collapse>
 
