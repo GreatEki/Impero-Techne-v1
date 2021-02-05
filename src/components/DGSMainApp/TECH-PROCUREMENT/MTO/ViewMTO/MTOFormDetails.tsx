@@ -11,7 +11,6 @@ interface Props {
 }
 
 const MTOFormDetails: React.FC<Props> = ({ mtoId, theMto }) => {
-	console.log(theMto);
 	const showInitiated = () => {
 		return (
 			<>

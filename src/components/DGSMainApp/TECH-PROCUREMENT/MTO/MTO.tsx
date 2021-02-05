@@ -151,7 +151,7 @@ const MTO: React.FC = () => {
 										mtoList.map((proj, index) => {
 											return (
 												<tr key={index}>
-													<th scope='row' style={{ width: '25rem' }}>
+													<th scope='row' style={{ width: '20rem' }}>
 														<Link
 															to={`/app/tech-procurement/view-mto/${proj.projectInfo.project_id}`}>
 															<span className='word-break word-wrap'>
